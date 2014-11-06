@@ -5,7 +5,15 @@ path = pwd;
 addpath(genpath(path));
 
 %% Step 1: Location and Filter for Dataset
+<<<<<<< Updated upstream
 DATA_DIR_PATH = fullfile(path,'/Data/');
+=======
+<<<<<<< Updated upstream
+DATA_DIR_PATH = fullfile(path,'/Data/');
+=======
+DATA_DIR_PATH = fullfile(path,'/Data/H3');
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 %Find all .mat files starting with Tagged_* or Testing_*
 
 DATA_FILE_FILTER = 'Tagged\w*.mat';  % Training Files
