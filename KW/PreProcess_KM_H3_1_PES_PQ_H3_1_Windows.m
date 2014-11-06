@@ -1,5 +1,7 @@
 %% Clear workspace
 clear all; clc; close all;
+%% m.file locations
+addpath(genpath('C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\'));
 %% Step 1: Location and Filter for Dataset
 DATA_DIR_PATH = 'D:\Belkin\H3\H3';
 %Find all .mat files starting with Tagged_* or Testing_*
@@ -38,28 +40,33 @@ start_idx_L1 = min(find(int64(ProcessedData.L1_TimeTicks(:,1)) == int64(start_TS
 stop_idx_L1 = max(find(int64(ProcessedData.L1_TimeTicks(:,1)) == int64(stop_TS) ));   %% end tagging index
 
 %% Event Detection %%
+Window_Size = 20;  %% Window Size in Event Detector
+Window_Shift = 1;   %% Window Shift in Event Detector
+Window_Dist = 30;
+power_thres = 20;
+
+
 featP_L1 = ProcessedData.L1_Real(start_idx_L1:stop_idx_L1);  % truncate
-[featP_EventA_L1, featP_scanA_L1] = fdetect_power_twoWindows(featP_L1);  % the x-axis of the returned signal is where the first window is in smoothing
+[featP_EventA_L1, featP_scanA_L1] = fdetect_power_twoWindows(featP_L1,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
 featQ_L2 = ProcessedData.L1_Imag(start_idx_L1:stop_idx_L1);  % truncate
-[featQ_EventA_L1, featQ_scanA_L1] = fdetect_power_twoWindows(featQ_L2);  % the x-axis of the returned signal is where the first window is in smoothing
+[featQ_EventA_L1, featQ_scanA_L1] = fdetect_power_twoWindows(featQ_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
 
 featP_L2 = ProcessedData.L2_Real(start_idx_L1:stop_idx_L1);  % truncate
-[featP_EventA_L2, featP_scanA_L2] = fdetect_power_twoWindows(featP_L2);  % the x-axis of the returned signal is where the first window is in smoothing
+[featP_EventA_L2, featP_scanA_L2] = fdetect_power_twoWindows(featP_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
 featQ_L2 = ProcessedData.L1_Imag(start_idx_L1:stop_idx_L1);  % truncate
-[featQ_EventA_L2, featQ_scanA_L2] = fdetect_power_twoWindows(featQ_L2);  % the x-axis of the returned signal is where the first window is in smoothing
+[featQ_EventA_L2, featQ_scanA_L2] = fdetect_power_twoWindows(featQ_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
-Window_Size = 15;  %% Window Size in Event Detector
-Window_Shift = 1;   %% Window Shift in Event Detector
+
 
 xmarkers1_L1 = featP_EventA_L1(:,1);   % Where the events are detected in time difference domain
-xmarkers2_L1 = (xmarkers1_L1-1).*Window_Shift+Window_Size;   % Where the events are detected in time domain
+xmarkers2_L1 = (xmarkers1_L1-1).*Window_Shift+Window_Size*2+Window_Dist;   % Where the events are detected in time domain
 ymarkers1_L1 = featP_EventA_L1(:,2);   % Power consumption
 
 xmarkers1_L2 = featP_EventA_L2(:,1);   % Where the events are detected in time difference domain
-xmarkers2_L2 = (xmarkers1_L2-1).*Window_Shift+Window_Size;   % Where the events are detected in time domain
+xmarkers2_L2 = (xmarkers1_L2-1).*Window_Shift+Window_Size*2+Window_Dist;   % Where the events are detected in time domain
 ymarkers1_L2 = featP_EventA_L2(:,2);   % Power consumption
 %%  All Windows Extraction - Phase 1
 tag = 0;
@@ -104,7 +111,7 @@ start_idx = start_idx - start_idx(1) + 1;   % truncate the waveform
 
 figure();
 n = [1:length(featP_L1)];
-ax(1) = subplot(211);plot(n, featP_L1(n), 'r'); hold on;
+ax(1) = subplot(211);plot(n, featP_L1(n), 'r'); hold on;grid;
 for i=1:length(ts_start)
     line([start_idx(i),start_idx(i)],[0,100],'Color','g','LineWidth',2);
     %We add a little offset for display purposes to end marker since event could be +- 30
@@ -115,10 +122,10 @@ for i=1:length(ts_start)
     text(double(end_idx(i)),100,['OFF'] );
 end
 hold off;
-ax(2) = subplot(212);plot(n, featP_L1(n), xmarkers2_L1,ymarkers1_L1,'r*');
+ax(2) = subplot(212);plot(n, featP_L1(n), xmarkers2_L1,ymarkers1_L1,'r*');grid;
 for i = [1:max(Windows_All_L1(:,3))]
     x_temp = min(find(Windows_All_L1(:,3)==i));
-    text((Windows_All_L1(x_temp,1)-1).*Window_Shift+Window_Size, Windows_All_L1(x_temp,2), num2str(Windows_All_L1(x_temp,3)));
+    text((Windows_All_L1(x_temp,1)-1).*Window_Shift+Window_Size*2+Window_Dist, Windows_All_L1(x_temp,2), num2str(Windows_All_L1(x_temp,3)));
 end
 
 title('Real Power (W) and ON/OFF Device Category IDs');
@@ -128,7 +135,7 @@ linkaxes(ax, 'x');
 %% Plotting - Phase 2 
 figure();
 n = [1:length(featP_L2)];
-ax(1) = subplot(211);plot(n, featP_L2(n), 'r'); hold on;
+ax(1) = subplot(211);plot(n, featP_L2(n), 'r'); hold on;grid;
 for i=1:length(ts_start)
     line([start_idx(i),start_idx(i)],[0,100],'Color','g','LineWidth',2);
     %We add a little offset for display purposes to end marker since event could be +- 30
@@ -139,14 +146,14 @@ for i=1:length(ts_start)
     text(double(end_idx(i)),100,['OFF'] );
 end
 hold off;
-ax(2) = subplot(212);plot(n, featP_L2(n), xmarkers2_L2,ymarkers1_L2,'r*');
+ax(2) = subplot(212);plot(n, featP_L2(n), xmarkers2_L2,ymarkers1_L2,'r*');grid;
 for i = [1:max(Windows_All_L2(:,3))]
     x_temp = min(find(Windows_All_L2(:,3)==i));
-    text((Windows_All_L2(x_temp,1)-1).*Window_Shift+Window_Size, Windows_All_L2(x_temp,2), num2str(Windows_All_L2(x_temp,3)));
+    text((Windows_All_L2(x_temp,1)-1).*Window_Shift+Window_Size*2+Window_Dist, Windows_All_L2(x_temp,2), num2str(Windows_All_L2(x_temp,3)));
 end
-for i = [1: floor(length(featP_L2)/50)]
-    line([i*50 i*50], [0 max(featP_L2)], '--r');
-end
+% for i = [1: floor(length(featP_L2)/50)]
+%     line([i*50 i*50], [0 max(featP_L2)]);
+% end
 
 title('Real Power (W) and ON/OFF Device Category IDs');
 hline = refline([0 0]);

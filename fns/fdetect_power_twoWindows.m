@@ -1,13 +1,4 @@
-function [power_EventA, power_scanA] = fdetect_power_twoWindows(powerVa)
-Window_Size_Window1 = 20; % 10-cycle window, 40 default
-
-Window_Size_Window2 = 20; % 10-cycle window, 40 default
-Window_Shift = 1;  % 5-cycle window shift, 20 default
-
-Window_Dist = 30;  % 0.5 sec distance between windows
-
-power_thres = 20;
-
+function [power_EventA, power_scanA] = fdetect_power_twoWindows(powerVa, Window_Size_Window1, Window_Size_Window2, Window_Shift, Window_Dist, power_thres)
 %% Samples From Window 1
         k=1;
         while(Window_Size_Window1+Window_Dist+Window_Size_Window2+(k-1)*Window_Shift<length(powerVa))
