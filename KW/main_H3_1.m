@@ -1,9 +1,11 @@
 %% Clear workspace
 clear all; clc; close all;
 %% m.file locations
-addpath(genpath('C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\'));
+path = pwd;
+path = path(1:end-3);
+addpath(genpath(path));
 %% Step 1: Location and Filter for Dataset
-DATA_DIR_PATH = 'D:\Belkin\H3\H3';
+DATA_DIR_PATH = '..\Data\';
 %Find all .mat files starting with Tagged_* or Testing_*
 
 DATA_FILE_FILTER = 'Tagged\w*.mat';  % Training Files
