@@ -1,6 +1,7 @@
 %% Clear workspace
 clear all; clc; close all;
 %% m.file locations
+% cd ../
 path = pwd;
 addpath(genpath(path));
 
@@ -189,19 +190,11 @@ Bonus_Room_Lights = [11 14 16 18];
 Bonus_Room_Lights = [13 15 17 19];
 
 for i = [1:length(Bedroom_2_Lights_On)]
-    idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    W_Bedroom_2_Lights{i}{1} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
-end
-
-for i = [1:length(Bedroom_2_Lights_Off)]
-    idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    W_Bedroom_2_Lights{i}{2} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
-end
-
+    start = min(find(Windows_All_L1 == Bedroom_2_lights_On(i)));
+    inxend = min(find(Windows_All_L1 == Bedroom_2_lights_On(i)));
+    W_Bedroom_2_Lights_P_On{1} = Windows_All_L1(Bedroom_2_Lights_On);
 % W_Bedroom_2_Lights_Q = Windows_Q_L1(Bedroom_2_Lights);
-% W_Bonus_Room_Lights = Windows_P_L1(Bonus_Rooim_Lights);
+% W_Bonus_Room_Lights = Windows_P_L1(Bonus_Room_Lights);
 % W_Computer = Windows_P_L1(Computer);
 % 
 % 
