@@ -5,7 +5,7 @@ path = pwd;
 addpath(genpath(path));
 
 %% Step 1: Location and Filter for Dataset
-DATA_DIR_PATH = fullfile(path,'/Data/Belkin/H3/H3');
+DATA_DIR_PATH = fullfile(path,'/Data/');
 %Find all .mat files starting with Tagged_* or Testing_*
 
 DATA_FILE_FILTER = 'Tagged\w*.mat';  % Training Files
