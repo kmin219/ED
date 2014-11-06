@@ -1,4 +1,5 @@
 function [power_EventA, power_scanA] = fdetect_power_twoWindows(powerVa, Window_Size_Window1, Window_Size_Window2, Window_Shift, Window_Dist, power_thres)
+%% Define Window Size from the main function
 %% Samples From Window 1
         k=1;
         while(Window_Size_Window1+Window_Dist+Window_Size_Window2+(k-1)*Window_Shift<length(powerVa))
