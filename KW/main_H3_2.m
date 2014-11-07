@@ -5,7 +5,7 @@ path = pwd;
 addpath(genpath(path));
 
 %% Step 1: Location and Filter for Dataset
-DATA_DIR_PATH = fullfile(path,'/Data/');
+DATA_DIR_PATH = fullfile(path,'/Data/Belkin/H3');
 %Find all .mat files starting with Tagged_* or Testing_*
 
 DATA_FILE_FILTER = 'Tagged\w*.mat';  % Training Files
@@ -35,7 +35,7 @@ SNames = fieldnames(ProcessedData);
 min_ts = min(cellfun(@(x)x(1), ProcessedData.TaggingInfo(:,3)));  %% unix time stamp
 max_ts = max(cellfun(@(x)x(1), ProcessedData.TaggingInfo(:,4)));  %% unix time stamp
 
-start_TS = min_ts-50;
+start_TS = min_ts-15;
 stop_TS = max_ts+100;
 
 start_idx_L1 = min(find(int64(ProcessedData.L1_TimeTicks(:,1)) == int64(start_TS) ));  %% start tagging index
@@ -99,6 +99,7 @@ for j = [2:length(ymarkers1_L2)]
 end
 
 %% Plotting - Phase 1 
+% These indexes are used for drawing tagging info
 ts_start = (cellfun(@(x)x(1), ProcessedData.TaggingInfo(:,3)));  %% starting Unix Time Stamp for each Event
 ts_end = (cellfun(@(x)x(1), ProcessedData.TaggingInfo(:,4)));  %% ending Unix Time Stamp for each Event
 for i = 1:length(ts_start)
