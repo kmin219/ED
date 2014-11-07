@@ -35,7 +35,7 @@ SNames = fieldnames(ProcessedData);
 min_ts = min(cellfun(@(x)x(1), ProcessedData.TaggingInfo(:,3)));  %% unix time stamp
 max_ts = max(cellfun(@(x)x(1), ProcessedData.TaggingInfo(:,4)));  %% unix time stamp
 
-start_TS = min_ts;
+start_TS = min_ts-15;
 stop_TS = max_ts+100;
 
 start_idx_L1 = min(find(int64(ProcessedData.L1_TimeTicks(:,1)) == int64(start_TS) ));  %% start tagging index
@@ -182,23 +182,23 @@ hold off;
     
 %%
 % %% Window Post-Process
-Bedroom_2_Lights_On = [3 5 7 9];
-Bedroom_2_Lights_Off = [4 6 8 10];
-
-Bonus_Room_Lights = [11 14 16 18];
-Bonus_Room_Lights = [13 15 17 19];
-
-for i = [1:length(Bedroom_2_Lights_On)]
-    idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    W_Bedroom_2_Lights{i}{1} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
-end
-
-for i = [1:length(Bedroom_2_Lights_Off)]
-    idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    W_Bedroom_2_Lights{i}{2} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
-end
+% Bedroom_2_Lights_On = [3 5 7 9];
+% Bedroom_2_Lights_Off = [4 6 8 10];
+% 
+% Bonus_Room_Lights = [11 14 16 18];
+% Bonus_Room_Lights = [13 15 17 19];
+% 
+% for i = [1:length(Bedroom_2_Lights_On)]
+%     idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
+%     idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
+%     W_Bedroom_2_Lights{i}{1} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
+% end
+% 
+% for i = [1:length(Bedroom_2_Lights_Off)]
+%     idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
+%     idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
+%     W_Bedroom_2_Lights{i}{2} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
+% end
 
 % W_Bedroom_2_Lights_Q = Windows_Q_L1(Bedroom_2_Lights);
 % W_Bonus_Room_Lights = Windows_P_L1(Bonus_Rooim_Lights);
