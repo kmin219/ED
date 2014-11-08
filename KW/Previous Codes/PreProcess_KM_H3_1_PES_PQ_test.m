@@ -1,14 +1,14 @@
 %% Clear workspace
 clear all; clc;
 %% Step 1: Location and Filter for Dataset
-DATA_DIR_PATH = 'D:\Belkin\H3\H3';
+DATA_DIR_PATH = 'C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\Data\Belkin\H2';
 %Find all .mat files starting with Tagged_* or Testing_*
 
 DATA_FILE_FILTER = 'Tagged\w*.mat';  % Training Files
 % DATA_FILE_FILTER = 'Testing\w*.mat';  % Testing Files
 
 %% Step 2: Get all file names under the specified folder & subfolders with regex filter	
-fileList = getAllFiles('D:\Belkin\H3\H3', 'Testing\w*.mat');
+fileList = getAllFiles('C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\Data\Belkin\H2', 'Testing\w*.mat');
 fprintf(1,'Found %d files matching %s at %s\n', size(fileList,2), DATA_FILE_FILTER, DATA_DIR_PATH);
 for i = 1:size(fileList,2)
     [~,fname,~] = fileparts(fileList{i});

@@ -1,0 +1,5 @@
+function [ output_args ] = fgetindex(Clusters,  clusNumber, max, offset )
+mifind(Clusters(:,3) == clusNumber)
+
+end
+
