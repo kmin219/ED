@@ -51,8 +51,8 @@ power_thres = 20;
 featP_L1 = ProcessedData.L1_Real(start_idx_L1:stop_idx_L1);  % truncate
 [featP_EventA_L1, featP_scanA_L1] = fdetect_power_twoWindows(featP_L1,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
-featQ_L2 = ProcessedData.L1_Imag(start_idx_L1:stop_idx_L1);  % truncate
-[featQ_EventA_L1, featQ_scanA_L1] = fdetect_power_twoWindows(featQ_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
+featQ_L1 = ProcessedData.L1_Imag(start_idx_L1:stop_idx_L1);  % truncate
+[featQ_EventA_L1, featQ_scanA_L1] = fdetect_power_twoWindows(featQ_L1,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
 
 featP_L2 = ProcessedData.L2_Real(start_idx_L1:stop_idx_L1);  % truncate
@@ -180,25 +180,55 @@ end
 
 hold off;
     
-%%
-% %% Window Post-Process
-Bedroom_2_Lights_On = [3 5 7 9];
-Bedroom_2_Lights_Off = [4 6 8 10];
+%% Load Indices and store in winP
 
-Bonus_Room_Lights = [11 14 16 18];
-Bonus_Room_Lights = [13 15 17 19];
+%Home 1, Training Data 1
+load ('H4idx')
+A = H1_1;
 
-for i = [1:length(Bedroom_2_Lights_On)]
-    idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    W_Bedroom_2_Lights{i}{1} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
+for i = [1:size(A,1)]
+    on_start_idx = FgetIndex(Windows_All_L1,A(i,1),A(i,2),A(i,3));
+    on_end_idx = FgetIndex(Windows_All_L1,A(i,4),A(i,5),A(i,6));
+    winP{i}{1} = featP_scanA_L1(on_start_idx:on_end_idx);  % on windows
+    
+    off_start_idx = FgetIndex(Windows_All_L1,A(i,7),A(i,8),A(i,9));
+    off_end_idx = FgetIndex(Windows_All_L1,A(i,10),A(i,11),A(i,12));
+    winP{i}{2} = featP_scanA_L1(off_start_idx:off_end_idx);  % off windows
 end
 
-for i = [1:length(Bedroom_2_Lights_Off)]
-    idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    W_Bedroom_2_Lights{i}{2} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
-end
+figure
+subplot(2,1,1)
+plot(winP{1}{1})
+subplot(2,1,2)
+plot(winP{1}{2})
+
+
+
+
+
+
+
+
+
+
+% % %% Window Post-Process
+% Bedroom_2_Lights_On = [3 5 7 9];
+% Bedroom_2_Lights_Off = [4 6 8 10];
+% 
+% Bonus_Room_Lights = [11 14 16 18];
+% Bonus_Room_Lights = [13 15 17 19];
+% 
+% for i = [1:length(Bedroom_2_Lights_On)]
+%     idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
+%     idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
+%     W_Bedroom_2_Lights{i}{1} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
+% end
+% 
+% for i = [1:length(Bedroom_2_Lights_Off)]
+%     idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
+%     idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
+%     W_Bedroom_2_Lights{i}{2} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
+% end
 
 % W_Bedroom_2_Lights_Q = Windows_Q_L1(Bedroom_2_Lights);
 % W_Bonus_Room_Lights = Windows_P_L1(Bonus_Rooim_Lights);
