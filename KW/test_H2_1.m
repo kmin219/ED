@@ -1,5 +1,4 @@
-LoadData();
-main_H2_1();
+test_main_H2_1();
 idx_H2_1= {21	'Master Bath Fan'
 21	'Master Bath Fan'
 21	'Master Bath Fan'

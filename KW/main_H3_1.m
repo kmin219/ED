@@ -20,7 +20,7 @@ for i = 1:size(fileList,2)
 end
 %% Step 3: Load Data File
 % Load one of training files, in partuclar the first.
-fname = fileList{2}; % ***** Note: We are only loading one of the files. This should be put in a loop as needed **
+fname = fileList{1}; % ***** Note: We are only loading one of the files. This should be put in a loop as needed **
 clear Buffer;
 
 fprintf(1, 'Loading file: %s\n', fname);

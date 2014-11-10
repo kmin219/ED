@@ -54,7 +54,7 @@ idx_H2_1 = {21	'Master Bath Fan'
 29	'Printer'
 };
 
-idx_H2_2 = {16	'Kitchen Lights'
+idx_H2_2 = [16	'Kitchen Lights'
 16	'Kitchen Lights'
 16	'Kitchen Lights'
 16	'Kitchen Lights'
@@ -107,9 +107,9 @@ idx_H2_2 = {16	'Kitchen Lights'
 10	'Dryer'
 37	'Washer'
 10	'Dryer'
-};
+];
 
-idx_H2_3 = {27	'Outdoor Lights'
+idx_H2_3 = [27	'Outdoor Lights'
 27	'Outdoor Lights'
 11	'Front Hall Lights'
 11	'Front Hall Lights'
@@ -118,16 +118,16 @@ idx_H2_3 = {27	'Outdoor Lights'
 10	'Dryer'
 37	'Washer'
 10	'Dryer'
-};
+];
 
-idx_H2_4 = {9	'Dishwasher'
+idx_H2_4 = [9	'Dishwasher'
 9	'Dishwasher'
 9	'Dishwasher'
 9	'Dishwasher'
 9	'Dishwasher'
 9	'Dishwasher'
-};
-%%
+];
+
 load window_P_H2_1
 load window_Q_H2_1
 load window_P_H2_2
@@ -139,9 +139,9 @@ load window_Q_H2_4
 
 
 H2_1_ID = cell2mat(idx_H2_1(:,1));
-H2_2_ID = cell2mat(idx_H2_2(:,1));
-H2_3_ID = cell2mat(idx_H2_3(:,1));
-H2_4_ID = cell2mat(idx_H2_4(:,1));
+H2_1_ID = idx_H2_2
+H2_1_ID = idx_H2_4
+H2_1_ID = idx_H2_4
 
 window_P_H2_all = {};
 for i = [unique(sort([H2_1_ID;H2_2_ID;H2_3_ID;H2_4_ID]))']
@@ -213,9 +213,12 @@ for i = 1:length(window_P_H2_all)
     end
 end
 ax(1) = subplot(211);bar(MetricP);
-Labels = {sort([H2_1_ID;H2_2_ID;H2_3_ID;H2_4_ID]')};
-set(gca, 'XTick', 1:121, 'XTickLabel', Labels);
-
+xlabel)
 ax(2) = subplot(212);bar(MetricQ);
 linkaxes(ax, 'x');
+
+
+x = rand(121,1);
+bar(x);
+Labels = sort([H2_1_ID;H2_2_ID;H2_3_ID;H2_4_ID]');
 set(gca, 'XTick', 1:121, 'XTickLabel', Labels);
