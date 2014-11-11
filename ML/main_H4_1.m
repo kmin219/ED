@@ -1,5 +1,5 @@
 %% Clear workspace
-clear all; clc; close all;
+%clear all; clc; close all;
 %% m.file locations
 path = pwd;
 addpath(genpath(path));
@@ -58,7 +58,7 @@ featQ_L1 = ProcessedData.L1_Imag(start_idx_L1:stop_idx_L1);  % truncate
 featP_L2 = ProcessedData.L2_Real(start_idx_L1:stop_idx_L1);  % truncate
 [featP_EventA_L2, featP_scanA_L2] = fdetect_power_twoWindows(featP_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
-featQ_L2 = ProcessedData.L1_Imag(start_idx_L1:stop_idx_L1);  % truncate
+featQ_L2 = ProcessedData.L2_Imag(start_idx_L1:stop_idx_L1);  % truncate
 [featQ_EventA_L2, featQ_scanA_L2] = fdetect_power_twoWindows(featQ_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
 
@@ -183,28 +183,28 @@ hold off;
 %% Load Indices and store in winP
 
 %Home 1, Training Data 1
-load ('H4idx')
-A = H1_1;
-
-for i = [1:size(A,1)]
-    on_start_idx = FgetIndex(Windows_All_L1,A(i,1),A(i,2),A(i,3));
-    on_end_idx = FgetIndex(Windows_All_L1,A(i,4),A(i,5),A(i,6));
-    winP{i}{1} = featP_scanA_L1(on_start_idx:on_end_idx);  % on windows
-    
-    off_start_idx = FgetIndex(Windows_All_L1,A(i,7),A(i,8),A(i,9));
-    off_end_idx = FgetIndex(Windows_All_L1,A(i,10),A(i,11),A(i,12));
-    winP{i}{2} = featP_scanA_L1(off_start_idx:off_end_idx);  % off windows
-end
-
-figure
-subplot(2,1,1)
-plot(winP{1}{1})
-subplot(2,1,2)
-plot(winP{1}{2})
-
-
-
-
+% load ('H4idx')
+% A = H1_1;
+% 
+% for i = [1:size(A,1)]
+%     on_start_idx = fgetindex(Windows_All_L1,A(i,1),A(i,2),A(i,3));
+%     on_end_idx = fgetindex(Windows_All_L1,A(i,4),A(i,5),A(i,6));
+%     winP{i}{1} = featP_scanA_L1(on_start_idx:on_end_idx);  % on windows
+%     
+%     off_start_idx = fgetindex(Windows_All_L1,A(i,7),A(i,8),A(i,9));
+%     off_end_idx = fgetindex(Windows_All_L1,A(i,10),A(i,11),A(i,12));
+%     winP{i}{2} = featP_scanA_L1(off_start_idx:off_end_idx);  % off windows
+% end
+% 
+% figure
+% subplot(2,1,1)
+% plot(winP{1}{1})
+% subplot(2,1,2)
+% plot(winP{1}{2})
+% 
+% 
+% 
+% 
 
 
 
