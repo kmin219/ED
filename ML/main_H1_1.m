@@ -1,5 +1,5 @@
 %% Clear workspace
-clear all; clc; close all;
+% clear all; clc; close all;
 %% m.file locations
 path = pwd;
 addpath(genpath(path));
@@ -51,14 +51,14 @@ power_thres = 20;
 featP_L1 = ProcessedData.L1_Real(start_idx_L1:stop_idx_L1);  % truncate
 [featP_EventA_L1, featP_scanA_L1] = fdetect_power_twoWindows(featP_L1,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
-featQ_L2 = ProcessedData.L1_Imag(start_idx_L1:stop_idx_L1);  % truncate
-[featQ_EventA_L1, featQ_scanA_L1] = fdetect_power_twoWindows(featQ_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
+featQ_L1 = ProcessedData.L1_Imag(start_idx_L1:stop_idx_L1);  % truncate
+[featQ_EventA_L1, featQ_scanA_L1] = fdetect_power_twoWindows(featQ_L1,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
 
 featP_L2 = ProcessedData.L2_Real(start_idx_L1:stop_idx_L1);  % truncate
 [featP_EventA_L2, featP_scanA_L2] = fdetect_power_twoWindows(featP_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
-featQ_L2 = ProcessedData.L1_Imag(start_idx_L1:stop_idx_L1);  % truncate
+featQ_L2 = ProcessedData.L2_Imag(start_idx_L1:stop_idx_L1);  % truncate
 [featQ_EventA_L2, featQ_scanA_L2] = fdetect_power_twoWindows(featQ_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
 
@@ -182,23 +182,23 @@ hold off;
     
 %%
 % %% Window Post-Process
-Bedroom_2_Lights_On = [3 5 7 9];
-Bedroom_2_Lights_Off = [4 6 8 10];
-
-Bonus_Room_Lights = [11 14 16 18];
-Bonus_Room_Lights = [13 15 17 19];
-
-for i = [1:length(Bedroom_2_Lights_On)]
-    idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    W_Bedroom_2_Lights{i}{1} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
-end
-
-for i = [1:length(Bedroom_2_Lights_Off)]
-    idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    W_Bedroom_2_Lights{i}{2} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
-end
+% Bedroom_2_Lights_On = [3 5 7 9];
+% Bedroom_2_Lights_Off = [4 6 8 10];
+% 
+% Bonus_Room_Lights = [11 14 16 18];
+% Bonus_Room_Lights = [13 15 17 19];
+% 
+% for i = [1:length(Bedroom_2_Lights_On)]
+%     idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
+%     idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
+%     W_Bedroom_2_Lights{i}{1} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
+% end
+% 
+% for i = [1:length(Bedroom_2_Lights_Off)]
+%     idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
+%     idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
+%     W_Bedroom_2_Lights{i}{2} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
+% end
 
 % W_Bedroom_2_Lights_Q = Windows_Q_L1(Bedroom_2_Lights);
 % W_Bonus_Room_Lights = Windows_P_L1(Bonus_Rooim_Lights);

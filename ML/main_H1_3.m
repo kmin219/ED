@@ -1,5 +1,5 @@
 %% Clear workspace
-clear all; clc; close all;
+% clear all; clc; close all;
 %% m.file locations
 path = pwd;
 addpath(genpath(path));
@@ -51,14 +51,14 @@ power_thres = 20;
 featP_L1 = ProcessedData.L1_Real(start_idx_L1:stop_idx_L1);  % truncate
 [featP_EventA_L1, featP_scanA_L1] = fdetect_power_twoWindows(featP_L1,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
-featQ_L2 = ProcessedData.L1_Imag(start_idx_L1:stop_idx_L1);  % truncate
-[featQ_EventA_L1, featQ_scanA_L1] = fdetect_power_twoWindows(featQ_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
+featQ_L1 = ProcessedData.L1_Imag(start_idx_L1:stop_idx_L1);  % truncate
+[featQ_EventA_L1, featQ_scanA_L1] = fdetect_power_twoWindows(featQ_L1,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
 
 featP_L2 = ProcessedData.L2_Real(start_idx_L1:stop_idx_L1);  % truncate
 [featP_EventA_L2, featP_scanA_L2] = fdetect_power_twoWindows(featP_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
-featQ_L2 = ProcessedData.L1_Imag(start_idx_L1:stop_idx_L1);  % truncate
+featQ_L2 = ProcessedData.L2_Imag(start_idx_L1:stop_idx_L1);  % truncate
 [featQ_EventA_L2, featQ_scanA_L2] = fdetect_power_twoWindows(featQ_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
 

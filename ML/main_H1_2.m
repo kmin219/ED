@@ -1,5 +1,5 @@
 %% Clear workspace
-clear all; clc; close all;
+% clear all; clc; close all;
 %% m.file locations
 path = pwd;
 addpath(genpath(path));
