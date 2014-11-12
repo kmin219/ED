@@ -3,7 +3,7 @@ clear all; close all;clc;
 path = pwd;
 addpath(genpath(path));
 
-LoadData();
+LoadDataML();
 main_H4_1();
 load H4idx.mat
 labels = H4_1Labels
@@ -12,7 +12,7 @@ load window_Q_H4_1
 window_P = window_P_H4_1; 
 window_Q = window_Q_H4_1;
 % Euclidean Distance Based
-for i = [29:length(window_P)]
+for i = [1:length(window_P)]
     if(~isempty(window_P{i}))
         disp(i)
         N = length(window_P{i}{1});  % P and Q windows are the same length
@@ -64,8 +64,15 @@ for i = [29:length(window_P)]
         title(sprintf('Q Monitor: "%s"', char(labels(i,2))))
         subplot(413);plot(window_P{i}{1});
         title(sprintf('Appliance P Window: "%s"', char(labels(i,2))))
-        subplot(414);plot(window_Q{i}{1});
-        title(sprintf('Appliance Q Window: "%s"', char(labels(i,2))))
+        subplot(414);
+        %plot(window_Q{i}{1});
+        %title(sprintf('Appliance Q Window: "%s"', char(labels(i,2))))
+        
+        threshP = H4_1(i,15);
+        threshQ = H4_1(i,16);
+        output = DetEvents(MetricP, MetricQ, threshP, threshQ);
+        ax(3) = stem(output);
+        title(sprintf('Detected Events: "%s"', char(labels(i,2))))
         linkaxes(ax, 'x');
 
 
