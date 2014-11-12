@@ -1,4 +1,4 @@
-function [featP_scanA_L1, featQ_scanA_L1, featP_scanA_L2, featQ_scanA_L2] = test_main_H2( fileTag )
+function [featP_scanA_L1, featQ_scanA_L1, featP_scanA_L2, featQ_scanA_L2, unixTime] = test_main_H2( fileTag )
 %% Clear workspace
 startup()
 %% m.file locations
@@ -89,6 +89,7 @@ for j = [2:length(ymarkers1_L2)]
     Windows_All_L2(j,3) = count;
 end
 
+if(0)
 %% Plotting - Phase 1 
 figure();
 n = [1:length(featP_L1)];
@@ -115,5 +116,6 @@ n = [1:length(featP_L2)];
 plot(n, featP_L2(n), xmarkers2_L2,ymarkers1_L2,'r*');
 title('Real Power (W) and ON/OFF Device Category IDs');
 hold off;
-
+end
+unixTime = ProcessedData.L1_TimeTicks;
 end
