@@ -1,0 +1,91 @@
+\relax 
+\citation{Kaggle}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Abstract}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Introduction}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Project Description}{1}}
+\citation{EMI,emisurvey,mit,adaptive,prob}
+\citation{mit}
+\citation{EMI}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Summary of Related Work}{2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Literature Survey Summary}{2}}
+\citation{Kaggle}
+\citation{EMI}
+\citation{mit}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Approach of Competition Winners}{3}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Approach of Competition Winners}}{3}}
+\newlabel{winners}{{1}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Approach}{3}}
+\citation{Kaggle}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Classification methods}}{4}}
+\newlabel{classifiers}{{2}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Raw Data}{4}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Total Number of Classes and Datasets for Each Home}}{4}}
+\newlabel{classes}{{4}{4}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Example of Data Files for Each Training and Testing Dataset}}{5}}
+\newlabel{files}{{3}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Evaluation}{5}}
+\citation{mit}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Data Pre-Processing}{6}}
+\newlabel{preprocess}{{3}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Applying Domain Knowledge}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Comparison of Training (left) and Testing Data (right)}}{6}}
+\newlabel{comparison}{{1}{6}}
+\citation{EMI}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Data Cleaning}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Data Reduction}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Example Gaussian Curve Fit to Difference Vector}}{7}}
+\newlabel{gfit}{{2}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Appliance Classification Using Power Consumption}{8}}
+\newlabel{lfapproach}{{4}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces A typical rectangular load shape}}{8}}
+\newlabel{fig:rec}{{3}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The appliances separated in real power and reactive power space}}{8}}
+\newlabel{fig:PQ}{{4}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Event Detection Using Power Consumption Difference}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Event detection using real power (left) and reactive power (right) differential waveforms}}{9}}
+\newlabel{fig:event}{{5}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Data Smoothing}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Noise Reduction}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces N-tap moving average filter is applied to the power consumption waveforms}}{10}}
+\newlabel{fig:lpf}{{6}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Impulse Noise Smoothing}{10}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Parameter tuning}}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces M-length windowed median filter is applied to the power consumption waveforms}}{11}}
+\newlabel{fig:med}{{7}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Phase Detection}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Heater consuming powers from both phases}}{11}}
+\newlabel{fig:heater}{{8}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Classification Using DT and k-NN}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Classifier induced from Home 3 Training Data (a) decision tree (b) k-NN}}{12}}
+\newlabel{fig:Classifier}{{9}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Leave-one-out Cross-Validation}{13}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces LOO Cross-Validation Results Using DT and k-NN}}{13}}
+\newlabel{tab:loo}{{6}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Appliance Classification Using EMI Data}{13}}
+\newlabel{hfapproach}{{5}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Heatmap of appliance EMI pattern for Home 3 training data. Each appliance shows a unique EMI pattern, which is a 4096-point FFT vector, changing over time as appliances are turned on and off.}}{14}}
+\newlabel{fig:H3_heatmap}{{10}{14}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Event Detection}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Frequency binning: Among 4096 FFT dimensions, the lower 2500 frequency bins are taken, and every 100 bins are averaged to become a single bin. As a result, we get a 25-dimension real vector.}}{15}}
+\newlabel{fig:freq_binning}{{11}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Feature Extraction}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces K-Nearest Neighbor (KNN): Euclidean distance versus correlation.}}{16}}
+\newlabel{fig:dist_vs_corr}{{12}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Appliance Classification}{16}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Multi-Classifier Combining}{17}}
+\newlabel{combined}{{6}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces A Venn diagram showing the appliances that are not well separable in LF data (LF blacklist) but well separable in HF data (HF whitelist).}}{17}}
+\newlabel{fig:Venn_diagram}{{13}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces System block diagram for multi-classifier combiner and the combining rule.}}{18}}
+\newlabel{fig:block_diagram}{{14}{18}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Results of Approaches}{18}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Key Findings and Lessons Learned}{18}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{19}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Appliances well characterized using LF features}}{20}}
+\newlabel{tab:LFList}{{7}{20}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Appliances well characterized using HF features (Home 1 and Home 2)}}{21}}
+\newlabel{tab:HFList}{{8}{21}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Appliances well characterized using HF features (Home 3 and Home 4)}}{22}}
+\newlabel{tab:HFList}{{9}{22}}
+\bibdata{Bib}
+\bibstyle{ieeetr}
