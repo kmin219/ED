@@ -64,14 +64,14 @@ for i = [1:length(window_P)]
         title(sprintf('Q Monitor: "%s"', char(labels(i,2))))
         subplot(413);plot(window_P{i}{1});
         title(sprintf('Appliance P Window: "%s"', char(labels(i,2))))
-        subplot(414);
+        ax(3) = subplot(414);
         %plot(window_Q{i}{1});
         %title(sprintf('Appliance Q Window: "%s"', char(labels(i,2))))
         
         threshP = H4_1(i,15);
         threshQ = H4_1(i,16);
         output = DetEvents(MetricP, MetricQ, threshP, threshQ);
-        ax(3) = stem(output);
+        stem(output);
         title(sprintf('Detected Events: "%s"', char(labels(i,2))))
         linkaxes(ax, 'x');
 

@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 NOV 2014 08:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.12)  12 NOV 2014 11:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **PES2015.tex
 (./PES2015.tex
 LaTeX2e <2014/05/01>
-Babel <3.9k> and hyphenation patterns for 78 languages loaded.
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/IEEEtran/IEEEtran.cls
 Document Class: IEEEtran 2014/09/17 V1.8a by Michael Shell
 -- See the "IEEEtran_HOWTO" manual for usage information.
@@ -350,10 +350,10 @@ Before submitting the final camera ready copy, remember to:
 ]
 (./PES2015.aux) ) 
 Here is how much of TeX's memory you used:
- 3674 strings out of 493117
- 58574 string characters out of 6135433
- 127269 words of memory out of 5000000
- 7105 multiletter control sequences out of 15000+600000
+ 3674 strings out of 493109
+ 58574 string characters out of 6135003
+ 127319 words of memory out of 5000000
+ 7107 multiletter control sequences out of 15000+600000
  37650 words of font info for 71 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  38i,7n,38p,810b,240s stack positions out of 5000i,500n,10000p,200000b,80000s
