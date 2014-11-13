@@ -39,6 +39,13 @@ for i = [1:size(H4_1,1)]
          window_P{i} = [];
          window_Q{i} = [];
      end
+     
+     window_P{i}{4} = H4_1(i,14);  % on/off
+     window_P{i}{5} = H4_1(i,15);  % P threshold
+     
+     window_Q{i}{4} = H4_1(i,14);  % on/off
+     window_Q{i}{6} = H4_1(i,16);  % Q threshold
+     
 end
 
 window_P_H4_1 = window_P;
