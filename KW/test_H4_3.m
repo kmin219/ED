@@ -54,7 +54,7 @@ for i = [1:length(window_P)]  %% # of appliance IDs
         N = max([Non Noff]);
         k = 1;
         clear MetricP_on MetricQ_on MetricP_off MetricQ_off   
-        while(k+N-1 < length(featP_scanA_L1))
+        while((k+N-1 < length(featP_scanA_L1)) && (k+N-1 < length(featP_scanA_L2)))
             if(window_app_P{3} == 1)   % If on Phase 1
                 sample = featP_scanA_L1(k:k+Non-1);
                 DistP = (sum((sample - window_app_P{1}).^2));

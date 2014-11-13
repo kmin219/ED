@@ -1,4 +1,4 @@
-% clc;clear all;
+clc;clear all;
 idx_H3_1 = {1	'Back Porch Lights'
 1	'Back Porch Lights'
 1	'Back Porch Lights'
@@ -193,11 +193,11 @@ for i = 1:length(window_P)
     for j = [1:1:length(window_P{i})]
         window_app_P = window_P{i}{j};  % appliance i event j
         window_app_Q = window_Q{i}{j};
-        if(~isempty(window_app_P{2}))
-            tempP = window_app_P{2};  % on window
+        if(~isempty(window_app_P{1}))
+            tempP = window_app_P{1};  % on window
             DistP = max(tempP);
             
-            tempQ = window_app_Q{2};   % on window
+            tempQ = window_app_Q{1};   % on window
             DistQ = max(tempQ);
                 
             MetricP(count) = DistP;
