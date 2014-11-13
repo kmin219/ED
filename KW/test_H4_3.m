@@ -4,15 +4,15 @@ close all;
 
 if(0)
 % Power Difference from each Home
-[featP_scanA_L1_H1_1, featQ_scanA_L1_H1_1, featP_scanA_L2_H1_1, featQ_scanA_L2_H1_1]= test_main_H1(1);
-[featP_scanA_L1_H1_2, featQ_scanA_L1_H1_2, featP_scanA_L2_H1_2, featQ_scanA_L2_H1_2]= test_main_H1(2);
-[featP_scanA_L1_H1_3, featQ_scanA_L1_H1_3, featP_scanA_L2_H1_3, featQ_scanA_L2_H1_3]= test_main_H1(3);
-[featP_scanA_L1_H1_4, featQ_scanA_L1_H1_4, featP_scanA_L2_H1_4, featQ_scanA_L2_H1_4]= test_main_H2(4);
+[featP_scanA_L1_H4_1, featQ_scanA_L1_H4_1, featP_scanA_L2_H4_1, featQ_scanA_L2_H4_1]= test_main_H4(1);
+[featP_scanA_L1_H4_2, featQ_scanA_L1_H4_2, featP_scanA_L2_H4_2, featQ_scanA_L2_H4_2]= test_main_H4(2);
+[featP_scanA_L1_H4_3, featQ_scanA_L1_H4_3, featP_scanA_L2_H4_3, featQ_scanA_L2_H4_3]= test_main_H4(3);
+[featP_scanA_L1_H4_4, featQ_scanA_L1_H4_4, featP_scanA_L2_H4_4, featQ_scanA_L2_H4_4]= test_main_H4(4);
 
-save('scanA_H1_1.mat', 'featP_scanA_L1_H1_1', 'featQ_scanA_L1_H1_1', 'featP_scanA_L2_H1_1', 'featQ_scanA_L2_H1_1')
-save('scanA_H1_2.mat', 'featP_scanA_L1_H1_2', 'featQ_scanA_L1_H1_2', 'featP_scanA_L2_H1_2', 'featQ_scanA_L2_H1_2')
-save('scanA_H1_3.mat', 'featP_scanA_L1_H1_3', 'featQ_scanA_L1_H1_3', 'featP_scanA_L2_H1_3', 'featQ_scanA_L2_H1_3')
-save('scanA_H1_4.mat', 'featP_scanA_L1_H1_4', 'featQ_scanA_L1_H1_4', 'featP_scanA_L2_H1_4', 'featQ_scanA_L2_H1_4')
+save('scanA_H4_1.mat', 'featP_scanA_L1_H4_1', 'featQ_scanA_L1_H4_1', 'featP_scanA_L2_H4_1', 'featQ_scanA_L2_H4_1')
+save('scanA_H4_2.mat', 'featP_scanA_L1_H4_2', 'featQ_scanA_L1_H4_2', 'featP_scanA_L2_H4_2', 'featQ_scanA_L2_H4_2')
+save('scanA_H4_3.mat', 'featP_scanA_L1_H4_3', 'featQ_scanA_L1_H4_3', 'featP_scanA_L2_H4_3', 'featQ_scanA_L2_H4_3')
+save('scanA_H4_4.mat', 'featP_scanA_L1_H4_4', 'featQ_scanA_L1_H4_4', 'featP_scanA_L2_H4_4', 'featQ_scanA_L2_H4_4')
 end
 
 %%
@@ -21,26 +21,26 @@ startup()
 path = pwd;
 addpath(genpath(path));
 
-load scanA_H1_1.mat
-% load scanA_H1_2.mat
-% load scanA_H1_3.mat
-% load scanA_H1_4.mat
+% load scanA_H4_1.mat
+% load scanA_H4_2.mat
+load scanA_H4_3.mat
+% load scanA_H4_4.mat
 %%
 % Phase 1
-featP_scanA_L1 = featP_scanA_L1_H1_1;
-featQ_scanA_L1 = featQ_scanA_L1_H1_1;
+featP_scanA_L1 = featP_scanA_L1_H4_3;
+featQ_scanA_L1 = featQ_scanA_L1_H4_3;
 
 % Phase 2
-featP_scanA_L2 = featP_scanA_L2_H1_1;
-featQ_scanA_L2 = featQ_scanA_L2_H1_1;
+featP_scanA_L2 = featP_scanA_L2_H4_3;
+featQ_scanA_L2 = featQ_scanA_L2_H4_3;
 
 
 %%
-load winH1All
+load winH4All
 
 tic
-window_P = window_P_H1_all;
-window_Q = window_Q_H1_all;
+window_P = window_P_H4_all;
+window_Q = window_Q_H4_all;
 % % Euclidean Distance Based
 % for i = [1:length(window_P)]  %% # of appliance IDs
 for i = [1:length(window_P)]  %% # of appliance IDs    
@@ -139,14 +139,14 @@ for i = [1:length(window_P)]  %% # of appliance IDs
 end
 toc
 
-MetricP_all_on_H1_1 = MetricP_all_on;
-MetricQ_all_on_H1_1 = MetricQ_all_on;
-MetricP_all_off_H1_1 = MetricP_all_off;
-MetricQ_all_off_H1_1 = MetricQ_all_off;
+MetricP_all_on_H4_3 = MetricP_all_on;
+MetricQ_all_on_H4_3 = MetricQ_all_on;
+MetricP_all_off_H4_3 = MetricP_all_off;
+MetricQ_all_off_H4_3 = MetricQ_all_off;
 
-save('MetricP_all_on_H1_1.mat', 'MetricP_all_on_H1_1')
-save('MetricQ_all_on_H1_1.mat', 'MetricQ_all_on_H1_1')
-save('MetricP_all_off_H1_1.mat', 'MetricP_all_off_H1_1')
-save('MetricQ_all_off_H1_1.mat', 'MetricQ_all_off_H1_1')
+save('MetricP_all_on_H4_3.mat', 'MetricP_all_on_H4_3')
+save('MetricQ_all_on_H4_3.mat', 'MetricQ_all_on_H4_3')
+save('MetricP_all_off_H4_3.mat', 'MetricP_all_off_H4_3')
+save('MetricQ_all_off_H4_3.mat', 'MetricQ_all_off_H4_3')
 
 end

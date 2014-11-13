@@ -2,7 +2,7 @@ clc;
 clear all;
 close all;
 
-if(1)
+if(0)
 % Power Difference from each Home
 [featP_scanA_L1_H4_1, featQ_scanA_L1_H4_1, featP_scanA_L2_H4_1, featQ_scanA_L2_H4_1]= test_main_H4(1);
 [featP_scanA_L1_H4_2, featQ_scanA_L1_H4_2, featP_scanA_L2_H4_2, featQ_scanA_L2_H4_2]= test_main_H4(2);
@@ -16,30 +16,31 @@ save('scanA_H4_4.mat', 'featP_scanA_L1_H4_4', 'featQ_scanA_L1_H4_4', 'featP_scan
 end
 
 %%
-if(0)
+if(1)
 startup()
 path = pwd;
 addpath(genpath(path));
 
-% load scanA_H3_1.mat
-% load scanA_H3_2.mat
-load scanA_H3_3.mat
+load scanA_H4_1.mat
+% load scanA_H4_2.mat
+% load scanA_H4_3.mat
+% load scanA_H4_4.mat
 %%
 % Phase 1
-featP_scanA_L1 = featP_scanA_L1_H3_3;
-featQ_scanA_L1 = featQ_scanA_L1_H3_3;
+featP_scanA_L1 = featP_scanA_L1_H4_1;
+featQ_scanA_L1 = featQ_scanA_L1_H4_1;
 
 % Phase 2
-featP_scanA_L2 = featP_scanA_L2_H3_3;
-featQ_scanA_L2 = featQ_scanA_L2_H3_3;
+featP_scanA_L2 = featP_scanA_L2_H4_1;
+featQ_scanA_L2 = featQ_scanA_L2_H4_1;
 
 
 %%
-load window_P_H3_all
-load window_Q_H3_all
+load winH4All
+
 tic
-window_P = window_P_H3_all;
-window_Q = window_Q_H3_all;
+window_P = window_P_H4_all;
+window_Q = window_Q_H4_all;
 % % Euclidean Distance Based
 % for i = [1:length(window_P)]  %% # of appliance IDs
 for i = [1:length(window_P)]  %% # of appliance IDs    
@@ -138,14 +139,14 @@ for i = [1:length(window_P)]  %% # of appliance IDs
 end
 toc
 
-MetricP_all_on_H3_3 = MetricP_all_on;
-MetricQ_all_on_H3_3 = MetricQ_all_on;
-MetricP_all_off_H3_3 = MetricP_all_off;
-MetricQ_all_off_H3_3 = MetricQ_all_off;
+MetricP_all_on_H4_1 = MetricP_all_on;
+MetricQ_all_on_H4_1 = MetricQ_all_on;
+MetricP_all_off_H4_1 = MetricP_all_off;
+MetricQ_all_off_H4_1 = MetricQ_all_off;
 
-save('MetricP_all_on_H3_3.mat', 'MetricP_all_on_H3_3')
-save('MetricQ_all_on_H3_3.mat', 'MetricQ_all_on_H3_3')
-save('MetricP_all_off_H3_3.mat', 'MetricP_all_off_H3_3')
-save('MetricQ_all_off_H3_3.mat', 'MetricQ_all_off_H3_3')
+save('MetricP_all_on_H4_1.mat', 'MetricP_all_on_H4_1')
+save('MetricQ_all_on_H4_1.mat', 'MetricQ_all_on_H4_1')
+save('MetricP_all_off_H4_1.mat', 'MetricP_all_off_H4_1')
+save('MetricQ_all_off_H4_1.mat', 'MetricQ_all_off_H4_1')
 
 end
