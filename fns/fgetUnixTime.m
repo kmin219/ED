@@ -1,4 +1,4 @@
-function [ unixOutput ] = fgetUnixTime( unixTest, unixSub, eventOn, eventOff )
+function [ indexSubOn, indexSubOff ] = fgetUnixTime( unixTest, unixSub, eventOn, eventOff )
     window_size1 = 20;
     window_dist = 30;
     window_size2 = 20;
@@ -12,35 +12,13 @@ function [ unixOutput ] = fgetUnixTime( unixTest, unixSub, eventOn, eventOff )
     unixTestOff = unixTest(indexOff);   
     
     % idx is the index used to mark the event on the submital
-    [~, indexSubOn] = min(abs(unixSub - unixTestOn));
-    [~, indexSubOff] = min(abs(unixSub - unixTestOff));
-    
+    [~, indexSubOn] = min(unixSub.TimeStamp((int64(unixSub.TimeStamp) - int64(unixTestOn) > 0)));
+    [~, indexSubOff] = max(unixSub.TimeStamp((int64(unixSub.TimeStamp) - int64(unixTestOff) < 0)));
 end
 
-
-    
-    
-% cd('C:\Users\Kyungwoo\Google Drive\Data Mining\Project')
-% a = csvread('SampleSubmission.csv');
+% indexOn = 169;
+% indexOff = 269;
+% [~, indexSubOn] = min(abs(unixSub.TimeStamp - unixTestOn))
+% [~, indexSubOff] = min(abs(unixSub.TimeStamp - unixTestOff))
 % 
-% unixH1 = csvread('SampleSubmission.csv',1,3,[1,3,1762,3]);
-% unixH2 = csvread('SampleSubmission.csv',66957,3,[66957,3,68836,3]);
-% unixH3 = csvread('SampleSubmission.csv',136517,3,[136517,3,137788,3]);
-% unixH4 = csvread('SampleSubmission.csv',183544,3,[183544,3,184544,3]);
-cd('C:\Users\Kyungwoo.ECE-Santoso2\Google Drive\Data Mining\Project')
-unixSub = readtable('SampleSubmission.csv');
-idxStart = min(find(strcmp(unixSub.House,'H1') & unixSub.Appliance == 1 ));
-idxEnd = max(find(strcmp(unixSub.House,'H1') & unixSub.Appliance == 1 ));
-unixH1 = unixSub.TimeStamp(idxStart:idxEnd);
-
-idxStart = min(find(strcmp(unixSub.House,'H2') & unixSub.Appliance == 1 ));
-idxEnd = max(find(strcmp(unixSub.House,'H2') & unixSub.Appliance == 1 ));
-unixH2 = unixSub.TimeStamp(idxStart:idxEnd);
-
-idxStart = min(find(strcmp(unixSub.House,'H3') & unixSub.Appliance == 1 ));
-idxEnd = max(find(strcmp(unixSub.House,'H3') & unixSub.Appliance == 1 ));
-unixH3 = unixSub.TimeStamp(idxStart:idxEnd);
-
-idxStart = min(find(strcmp(unixSub.House,'H4') & unixSub.Appliance == 1 ));
-idxEnd = max(find(strcmp(unixSub.House,'H4') & unixSub.Appliance == 1 ));
-unixH4 = unixSub.TimeStamp(idxStart:idxEnd);
+% int64(unixSub.TimeStamp(1))
