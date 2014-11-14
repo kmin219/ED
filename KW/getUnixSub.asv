@@ -49,19 +49,20 @@ unixH1_2 = unixH1(443:884);
 unixH1_3 = unixH1(885:1325);
 unixH1_4 = unixH1(1326:length(unixH1));
 
-unixH2_1 = unixH2(1:438);
-unixH2_2 = unixH2(439:921);
-unixH2_3 = unixH2(922:1399);
-unixH2_4 = unixH2(1400:length(unixH2));
+unixH2_1 = unixH1(1:438);
+unixH2_2 = unixH1(439:921);
+unixH2_3 = unixH1(922:1399);
+unixH2_4 = unixH1(1400:length(unixH2));
 
-unixH3_1 = unixH3(1:284);
-unixH3_2 = unixH3(285:654);
-unixH3_3 = unixH3(655:1016);
-unixH3_4 = unixH3(1017:length(unixH3));
+unixH3_1 = unixH1(1:284);
+unixH3_2 = unixH1(285:654);
+unixH3_3 = unixH1(655:1016);
+unixH3_4 = unixH1(1017:length(unixH3));
 
-unixH4_1 = unixH4(1:309);
-unixH4_2 = unixH4(310:644);
-unixH4_3 = unixH4(645:length(unixH4));
+unixH4_1 = unixH1(1:309);
+unixH4_2 = unixH1(310:654);
+unixH4_3 = unixH1(655:1016);
+unixH4_4 = unixH1(1017:length(unixH3));
 
 figure()
 plot(unixH1_1)
@@ -75,50 +76,23 @@ plot(unixH1_3)
 figure()
 plot(unixH1_4)
 
+for i = [1:length(unixH4)-1]
+    if(unixH4(i+1)>unixH4(i)+100)
+        i
+    end
+end
+        
 figure()
-plot(unixH2_1)
+plot(unixH1)
 
 figure()
-plot(unixH2_2)
+plot(unixH2)
 
 figure()
-plot(unixH2_3)
+plot(unixH3)
 
 figure()
-plot(unixH2_4)
-
-figure()
-plot(unixH3_1)
-
-figure()
-plot(unixH3_2)
-
-figure()
-plot(unixH3_3)
-
-figure()
-plot(unixH3_4)
-
-figure()
-plot(unixH4_1)
-
-figure()
-plot(unixH4_2)
-
-figure()
-plot(unixH4_3)
-
-% figure()
-% plot(unixH1)
-% 
-% figure()
-% plot(unixH2)
-% 
-% figure()
-% plot(unixH3)
-% 
-% figure()
-% plot(unixH4)
+plot(unixH4)
 %% H3_2
 unixTest = unixTest_H3_2;
 for i=[1:size(H3_2,1)] % for # of appliances
