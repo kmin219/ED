@@ -325,7 +325,7 @@
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
-
+\usepackage{epstopdf}
 
 \begin{document}
 %
@@ -433,8 +433,58 @@ Show visualizations
 	-goal is to automate, this task can be done manually, but too tedious
 	-compare to previous and to data mining methods, ours is more interpretable
 
-\section{Training/application of approach-KW}
-This section concentrates on extracting the feature windows in low frequency data.  In particular the real and reactive power differences are used to characterize the appliances given in the data.  Since every appliance consumes power when they are operating, the raw voltage and current measurements are preprocessed and the real power and the reactive power usages of each appliance are computed.  The procedures for calculating the real power and the reactive power include event detection, data smoothing, and power calculation.
+\section{Training - Feature Window Extraction}
+This section concentrates on extracting the feature windows in low frequency data.  In particular,  
+
+the real and the reactive power differences at the fundamental frequency (50 or 60 Hz) are used to characterize the on/off signatures of a given appliance.  This stage are separated into two; building a event detector that will be used to 
+
+
+\subsection{Event Detection Using Power Consumption Difference}
+The purpose of applying a event detector is to estimate the exact on/off time-index of the appliances.  The event on/off times are provided in the training set.  However, the provided labels are not exact
+ven though the tagging info of the appliances are available for the training set, they do not represent the exact on and off time of the appliances.  
+These switching indices are then used to extract the signature windows in the power difference domain.  
+
+
+
+\begin{enumerate}
+	\item{Training Data: the tagging info of the appliances is provided.  However, they do not represent the exact on and off time of the appliances.  In addition, there are multiple mislabels such as the on-label and the off-label indicating the same time index.  The event detector should be programmed separately to account for these offsets and mislabels.}
+	\item{Test Data: the tagging info is not provided.  The event detector should be able to capture when an appliance is switched on and off. }
+\end{enumerate}
+
+
+	\begin{figure}[!t]
+		\centering
+		\includegraphics[width=3.5in]{fig/masterlights.eps}
+		\caption{Simple Distribution Feeder.}
+		\label{fig:feeder}
+	\end{figure}
+	
+	\begin{figure}[!t]
+		\centering
+		\subfloat[]{\includegraphics[width=2.5in]{fig/event1.jpg}
+			\label{fig:event1}}
+		\hfil
+		\subfloat[]{\includegraphics[width=2.5in]{fig/event1.jpg}
+			\label{fig:event2}}
+		\caption{Fault Current Waveform (a) Original waveform, (b) Truncated waveform used for the study.}
+		\label{fig:demon}
+	\end{figure}	
+%\begin{figure}[!t]
+%	\centering
+%	\subfloat[]{\includegraphics[width=2.5in]{fig/masterlights.eps}
+%		\label{fig:rec}}
+%\end{figure}
+
+First a event detector is used in the real power domain to estimate the exact switching time of the event.  By  in the training data.  This is to account for the mismatches of the provided tagging info and the exact switching index.  
+
+A typical rectangular load shape of is shown in Figure \ref{fig:rec}.  Many appliances turned out to have rectangular load shape and these appliances can be separated using real and reactive power consumption features.  Figure \ref{fig:PQ} shows feature space of appliances that have rectangular load shape.  The feature vector of each class are clustered together, implying that the real and reactive power features are sufficient for classifying most of the appliances.
+
+
+This section concentrates on extracting the feature windows in low frequency data.  In particular the real and the reactive power differences are used to extract these windows.  First, a separate event detector is used to correct the   event detector is used in the Training Data to correct the mismatches 
+
+
+
+The procedures for calculating the real power and the reactive power include event detection, data smoothing, and power calculation.
 \subsection{Load Types}
 -constant power - static 
 	- resistive (lights, heaters, kettle) - P domain and rectangular mainly

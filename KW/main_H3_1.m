@@ -3,6 +3,8 @@ clear all; clc;
 %% m.file locations
 path = pwd;
 addpath(genpath(path));
+path = 'D:\Belkin\';
+addpath(genpath(path));
 
 %% Step 1: Location and Filter for Dataset
 DATA_DIR_PATH = fullfile('D:\Belkin\Data\Belkin\H3');
