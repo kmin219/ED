@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.12)  14 NOV 2014 03:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.12)  14 NOV 2014 04:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -326,11 +326,11 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 555.
+(Font)              <8> on input line 596.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 555.
+(Font)              <6> on input line 596.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 555.
+(Font)              <5> on input line 596.
 
 
 ** Conference Paper **
@@ -346,13 +346,12 @@ Before submitting the final camera ready copy, remember to:
 [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
-
 ]
 (./PES2015.aux) ) 
 Here is how much of TeX's memory you used:
  3674 strings out of 493109
  58574 string characters out of 6135003
- 127319 words of memory out of 5000000
+ 128319 words of memory out of 5000000
  7107 multiletter control sequences out of 15000+600000
  37650 words of font info for 71 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -362,7 +361,7 @@ c}</usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/lo
 cal/texlive/2014/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texli
 ve/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/te
 xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on PES2015.pdf (1 page, 49570 bytes).
+Output written on PES2015.pdf (1 page, 53795 bytes).
 PDF statistics:
  25 PDF objects out of 1000 (max. 8388607)
  17 compressed objects within 1 object stream

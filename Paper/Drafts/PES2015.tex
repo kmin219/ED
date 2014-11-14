@@ -415,8 +415,41 @@ Even with advances in smart grid technology and a growing demand for cost-effect
 \section{Introduction}
 In this section, we provide the motivation and a brief description of the project.  A short discussion of related work in this area, including the methodology of previous competition winners is also provided.  This is followed by an overview of our approach, description of the raw data, and evaluation method.
 
-\subsection{Subsection Heading Here}
-Subsection text here.
+\subsection{approach/background}
+Our method focuses on real-time processing.
+
+Show visualizations
+-training data
+-figures show differences domain/power domain
+	- explain reason for looking in difference domain
+	- test data-multiple devices, and steady state, no changes
+	-goal is to detect events on/off
+	-for example, constant power loads, show no change, eg. light
+
+-explain methodology
+	- voltage/current harmonics to P/Q to differences to distances
+	-and why we use this approach
+	-include block diagram
+	-goal is to automate, this task can be done manually, but too tedious
+	-compare to previous and to data mining methods, ours is more interpretable
+
+\section{Training/application of approach}
+\subsection{Load Types}
+-constant power - static 
+	- resistive (lights, heaters, kettle) - P domain and rectangular mainly
+	- resistive + reactive (rotating like fans) - Q is a feature to help classify
+-dynamic
+	- cyclical (washer dryer) - require rules, ie. landmark detection
+	
+\subsection{Window making}
+-because the loads are as described above, we are taking this approach, using different windows (different lengths) for different loads to detect ON/OFF events - these are the most effective approach vs. continuous approach (ours is event based)
+
+-devices have unique features during on off mainly
+
+-outliers - problems with training data, mention issues w/ kaggle ground truth
+
+
+
 
 
 \subsubsection{Subsubsection Heading Here}
@@ -508,8 +541,17 @@ Subsubsection text here.
 
 
 
+
+\section{Cross-Validation}
+Discuss cross validation here. this is the whole procedure for generating thresholds.
+
+need figures as examples of P/Q domain, diff domain, distance domain, window shape (big subplot 3x3?)
+
+\section{Test Data}
+- rules for on/off pairing
+
 \section{Conclusion}
-The conclusion goes here.
+The conclusion goes here. All insight gained from competition. Too many appliances, noisy test data, what is the benefit of identifying small appliances?, noise necessitates clear features (large distance).  also high freqency domain for hard to identify appliances.  you can get 20th w/ just P/Q alone.   
 
 
 
