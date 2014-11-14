@@ -36,6 +36,7 @@ load window_Q_H3_all
 %% Detect On/Off Events for Test 1 Data
 
 % Detect On Events
+disp('Looking for On events in H1');
 metPdata = MetricP_all_on_H3_1;
 metQdata = MetricQ_all_on_H3_1;
 winP = window_P_H3_all;
@@ -44,6 +45,7 @@ winQ = window_Q_H3_all;
 onEvents = FindEvents(metPdata, metQdata, winP, winQ);
 
 % Detect Off Events
+disp('Looking for Off events in H1');
 metPdata = MetricP_all_off_H3_1;
 metQdata = MetricQ_all_off_H3_1;
 
@@ -64,6 +66,7 @@ end
 %% Detect On/Off Events for Test 2 Data
 
 % Detect On Events
+disp('Looking for On events in H2');
 metPdata = MetricP_all_on_H3_2;
 metQdata = MetricQ_all_on_H3_2;
 winP = window_P_H3_all;
@@ -72,6 +75,7 @@ winQ = window_Q_H3_all;
 onEvents = FindEvents(metPdata, metQdata, winP, winQ);
 
 % Detect Off Events
+disp('Looking for Off events in H2');
 metPdata = MetricP_all_off_H3_2;
 metQdata = MetricQ_all_off_H3_2;
 
@@ -91,6 +95,7 @@ end
 %% Detect On/Off Events for Test 3 Data
 
 % Detect On Events
+disp('Looking for On events in H3');
 metPdata = MetricP_all_on_H3_3;
 metQdata = MetricQ_all_on_H3_3;
 winP = window_P_H3_all;
@@ -99,6 +104,7 @@ winQ = window_Q_H3_all;
 onEvents = FindEvents(metPdata, metQdata, winP, winQ);
 
 % Detect Off Events
+disp('Looking for Off events in H3');
 metPdata = MetricP_all_off_H3_3;
 metQdata = MetricQ_all_off_H3_3;
 
@@ -119,6 +125,7 @@ end
 %% Detect On/Off Events for Test 4 Data
 
 % Detect On Events
+disp('Looking for On events in H4');
 metPdata = MetricP_all_on_H3_4;
 metQdata = MetricQ_all_on_H3_4;
 winP = window_P_H3_all;
@@ -127,6 +134,7 @@ winQ = window_Q_H3_all;
 onEvents = FindEvents(metPdata, metQdata, winP, winQ);
 
 % Detect Off Events
+disp('Looking for Off events in H4');
 metPdata = MetricP_all_off_H3_4;
 metQdata = MetricQ_all_off_H3_4;
 

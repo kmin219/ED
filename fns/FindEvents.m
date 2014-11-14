@@ -5,7 +5,7 @@ output = cell(1,numApp);
 
 for i = 1:numApp                 % no. appliances in H3
     if(~isempty(metPdata{i}))    % neglect empty cells
-        disp(i);
+        %disp(i);
         
         for j = 1:length(metPdata{i}) % no. windows for app. i
             
