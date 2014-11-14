@@ -12,8 +12,8 @@ function [ indexSubOn, indexSubOff ] = fgetUnixTime( unixTest, unixSub, eventOn,
     unixTestOff = unixTest(indexOff);   
     
     % idx is the index used to mark the event on the submital
-    [~, indexSubOn] = min(unixSub.TimeStamp((int64(unixSub.TimeStamp) - int64(unixTestOn) > 0)));
-    [~, indexSubOff] = max(unixSub.TimeStamp((int64(unixSub.TimeStamp) - int64(unixTestOff) < 0)));
+    indexSubOn = min(find((int64(unixSub) - int64(unixTestOn) > 0)));
+    indexSubOff = min(find((int64(unixSub) - int64(unixTestOff) > 0)))-1;
 end
 
 % indexOn = 169;

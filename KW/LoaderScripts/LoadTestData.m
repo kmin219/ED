@@ -1,7 +1,14 @@
 %% Clear workspace
 clear; clc;
+startup()
+%% m.file locations
+path = pwd;
+addpath(genpath(path));
+path = 'D:\Belkin\';
+addpath(genpath(path));
 %% Step 1: Location and Filter for Dataset
-DATA_DIR_PATH = '..\H3';
+% DATA_DIR_PATH = '..\H3';
+DATA_DIR_PATH = fullfile(path,'/Data/Belkin/H3');
 %Find all .mat files starting with Tagged_* or Testing_*
 
 %DATA_FILE_FILTER = 'Tagged\w*.mat';  % Training Files

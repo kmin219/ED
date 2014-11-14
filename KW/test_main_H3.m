@@ -4,7 +4,8 @@ startup()
 %% m.file locations
 path = pwd;
 addpath(genpath(path));
-
+path = 'D:\Belkin\';
+addpath(genpath(path));
 %% Step 1: Location and Filter for Dataset
 DATA_DIR_PATH = fullfile(path,'/Data/Belkin/H3');
 %Find all .mat files starting with Tagged_* or Testing_*
@@ -111,9 +112,9 @@ linkaxes(ax, 'x');
 %% Plot - all Phases
 figure()
 n = [1:length(featP_L1)];
-plot(n, featP_L1(n), xmarkers2_L1,ymarkers1_L1,'r*'); hold on;
+plot(n, featP_L1(n),'k', xmarkers2_L1,ymarkers1_L1,'r*'); hold on;
 n = [1:length(featP_L2)];
-plot(n, featP_L2(n), xmarkers2_L2,ymarkers1_L2,'r*');
+plot(n, featP_L2(n),'b', xmarkers2_L2,ymarkers1_L2,'r*');
 title('Real Power (W) and ON/OFF Device Category IDs');
 hold off;
 end
