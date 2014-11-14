@@ -415,6 +415,16 @@ Even with advances in smart grid technology and a growing demand for cost-effect
 \section{Introduction-ML}
 In this section, we provide the motivation and a brief description of the project.  A short discussion of related work in this area, including the methodology of previous competition winners is also provided.  This is followed by an overview of our approach, description of the raw data, and evaluation method.
 
+This project follows the Belkin Energy Disaggregation Competition on kaggle.com \cite{Kaggle}. The goal is to disaggregate household energy consumption into individual appliances. Appliances with switched mode power supplies (SMPS) generate electromagnetic interference (EMI) due to the high frequency switching and will generate noise in the voltage waveform near their switching frequency. Therefore, each type of appliance will have its own frequency-domain signature, typically in the tens to hundreds of KHz. The dataset used for this project is publicly available on the competition website and contains voltage and current harmonics data for four households.  The dataset also contains high frequency noise (EMI) data for each household.  
+
+Although the presence or absence of such EMI signatures and changes in voltage or current can indicate when a particular appliance is in use, classification can become challenging if the number of appliances in the home is large. Additionally, the signature of some appliances may drift or vary over time due to operating conditions and the mode in which they are used.  Predictive modeling is then required to make an inference about the appliance class given a particular signature.  The challenge is to accurately classify end-uses of energy at a fine-grained, appliance level. One application of this project is to continuously monitor real-time power consumption, broken down by electrical appliance.  Consumers can then view their energy usage and cost at a detailed enough level to determine cost-effective energy saving changes to usage patterns.  Based on the description above, our problem statement can be summarized as follows:
+
+\begin{quote}
+	Using the harmonic and EMI measurements as features, the objective of this project is to build a multi-class classification model to determine which appliances are active at any given time (i.e, classify the active appliances based on harmonic and EMI signatures). 
+\end{quote}
+
+
+
 \subsection{approach/background}
 Our method focuses on real-time processing.
 
