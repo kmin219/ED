@@ -1,7 +1,12 @@
 %% Clear workspace
 clear; clc;
 %% Step 1: Location and Filter for Dataset
-DATA_DIR_PATH = '..\H3';
+home = 'H2';
+path  = '/Users/Min/Documents/College Files/Projects/EnergyDisag';
+
+addpath(genpath(path));
+
+DATA_DIR_PATH = strcat('/Users/Min/Documents/College Files/Projects/EnergyDisag/RawData/', home);
 %Find all .mat files starting with Tagged_* or Testing_*
 
 %DATA_FILE_FILTER = 'Tagged\w*.mat';  % Training Files
@@ -16,6 +21,7 @@ for i = 1:size(fileList,2)
 end
 %% Step 3: Load Data File
 for j = 1:size(fileList,2)
+    
 % Load one of training files, in partuclar the first.
 fname = fileList{j}; % ***** Note: We are only loading one of the files. This should be put in a loop as needed **
 clear Buffer;
@@ -28,6 +34,7 @@ fprintf(1, 'Done loading file.\n');
 % content. Also computes power factor. Total power in a home is sum of real
 % power on both phases.
 ProcessedData = Belkin_ProcessRawData(Buffer);
+test{j} = ProcessedData.L1_TimeTicks  ;
 
 % Clear Buffer as we will not be using harmonic content for now.
 % If you see fit, additional features, such as harmonics etc. can be
@@ -46,5 +53,6 @@ Belkin_PlotDatatest(ProcessedData, true);
 
 % Plot data between a start and stop time stamp
 % Belkin_PlotDatatest(ProcessedData, true);
+
 end
 

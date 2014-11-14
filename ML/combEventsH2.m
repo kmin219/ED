@@ -7,18 +7,18 @@ clear path
 %  matrix of AppID, OnIdx, OffIdx
 
 %  Load event data  ------------------------------------------------------- 
-load events_H3
-data{1} = eventsH3_1;
-data{2} = eventsH3_2;
-data{3} = eventsH3_3;
-data{4} = eventsH3_4;
+load events_H2
+data{1} = eventsH2_1;
+data{2} = eventsH2_2;
+data{3} = eventsH2_3;
+data{4} = eventsH2_4;
 
 %  Generate Matrix of ON/OFF Pairs  ---------------------------------------
 
 for k = 1:4
-    eventsH3 = data{k};         % iterate through each test set
+    eventsH2 = data{k};         % iterate through each test set
 
-    numApp = length(eventsH3);
+    numApp = length(eventsH2);
     onOffPairs = zeros(1,3);
     count = 0;      %  number of total ON/OFF pairs
 
@@ -27,16 +27,16 @@ for k = 1:4
         sumEvents = 0;
 
         %  get maximum window length of each appliance  -------------------
-        for j = 1:length(eventsH3{i}) 
-        winLen(j) = length(eventsH3{i}{j});
+        for j = 1:length(eventsH2{i}) 
+        winLen(j) = length(eventsH2{i}{j});
         maxWinLen = max(winLen);
         end
 
         %  pad each window by maxWinLen and add together  -----------------
-        for j = 1:length(eventsH3{i})
-            winLen = length(eventsH3{i}{j});
+        for j = 1:length(eventsH2{i})
+            winLen = length(eventsH2{i}{j});
             diff = maxWinLen - winLen;
-            alignWin = padarray(eventsH3{i}{j}, [0 diff], 'pre');
+            alignWin = padarray(eventsH2{i}{j}, [0 diff], 'pre');
             sumEvents = sumEvents + alignWin;
         end
 
@@ -67,7 +67,7 @@ for k = 1:4
 
 end
 
-save('H3pairs', 'eventPairs');
+save('H2pairs', 'eventPairs');
 
 %% visualize
 
