@@ -32,10 +32,11 @@ load testH3_2
 load testH3_3
 load testH3_4
 
-load H3_1pairs
-load H3_2pairs
-load H3_3pairs
-load H3_4pairs
+% load H3_1pairs
+% load H3_2pairs
+% load H3_3pairs
+% load H3_4pairs
+load H2pairs % Home 2
 %% Test
 eventOn = 200000;
 eventOff = 200002;

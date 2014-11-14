@@ -412,7 +412,7 @@ Even with advances in smart grid technology and a growing demand for cost-effect
 
 
 
-\section{Introduction}
+\section{Introduction-ML}
 In this section, we provide the motivation and a brief description of the project.  A short discussion of related work in this area, including the methodology of previous competition winners is also provided.  This is followed by an overview of our approach, description of the raw data, and evaluation method.
 
 \subsection{approach/background}
@@ -433,7 +433,8 @@ Show visualizations
 	-goal is to automate, this task can be done manually, but too tedious
 	-compare to previous and to data mining methods, ours is more interpretable
 
-\section{Training/application of approach}
+\section{Training/application of approach-KW}
+This section concentrates on extracting the feature windows in low frequency data.  In particular the real and reactive power differences are used to characterize the appliances given in the data.  Since every appliance consumes power when they are operating, the raw voltage and current measurements are preprocessed and the real power and the reactive power usages of each appliance are computed.  The procedures for calculating the real power and the reactive power include event detection, data smoothing, and power calculation.
 \subsection{Load Types}
 -constant power - static 
 	- resistive (lights, heaters, kettle) - P domain and rectangular mainly
@@ -542,7 +543,7 @@ Subsubsection text here.
 
 
 
-\section{Cross-Validation}
+\section{Cross-Validation-ML}
 Discuss cross validation here. this is the whole procedure for generating thresholds.
 
 need figures as examples of P/Q domain, diff domain, distance domain, window shape (big subplot 3x3?)
