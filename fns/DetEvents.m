@@ -28,6 +28,17 @@ for i = 1:k
     
 end
 
-output = padarray(output, [0 winWdth-1],'both');   %    pad output (does nothing if winWdth = 1)
+% output = padarray(output, [0 winWdth-1],'both');   %    pad output (does nothing if winWdth = 1)
 
+
+    for i = 1:length(output)-1
+        if output(i) == 1 && output(i+1) == 1
+            output(i) = 0;
+        elseif output(i) == 1 && output(i+1) == 0
+            output(i) = 1;
+        else
+            output(i) = output(i);
+        end
+    end
+    
 end
