@@ -66,7 +66,7 @@ end
 % Plot the data on Phase 1 (L1) as blue and Phase 2 (L2) as red
 % Plot Real Power(W) and labels. Green is ON and Red line is OFF, along with
 % device category ID.
-h(1) = subplot(411); 
+h(1) = subplot(211); 
 plot(ProcessedData.L1_TimeTicks, ProcessedData.L1_Real); grid; hold on;
 plot(ProcessedData.L2_TimeTicks, ProcessedData.L2_Real, 'r');
 title('Real Power (W) and ON/OFF Device Category IDs');
@@ -89,26 +89,26 @@ end
 hold off;
 
 % Plot Imaginary/Reactive power (VAR)
-h(2) = subplot(412); plot(ProcessedData.L1_TimeTicks, ProcessedData.L1_Imag); grid; hold on;
+h(2) = subplot(212); plot(ProcessedData.L1_TimeTicks, ProcessedData.L1_Imag); grid; hold on;
 plot(ProcessedData.L2_TimeTicks, ProcessedData.L2_Imag,'r'); hold off;
 
 title('Imaginary/Reactive power (VAR)');
 % Plot Power Factor
-h(3) = subplot(413); plot(ProcessedData.L1_TimeTicks, ProcessedData.L1_Pf); grid; hold on;
-plot(ProcessedData.L2_TimeTicks, ProcessedData.L2_Pf,'r');  hold off;
-title('Power Factor');
-xlabel('Unix Timestamp');
-
-% Plot HF Noise
-freq = linspace(1000000,0,4096); % FFT is of size 4096 point across 1 Mhz
-h(4) = subplot(414);
-imagesc(ProcessedData.HF_TimeTicks, freq, ProcessedData.HF);
-title('High Frequency Noise');
-ylabel('Frequency KHz');
-axis xy;
-y = [0:200000:1e6];
-set(gca,'YTick',y);  % Apply the ticks to the current axes
-set(gca,'YTickLabel', arrayfun(@(v) sprintf('%dK',v/1000), y, 'UniformOutput', false) ); % Define the tick labels based on the user-defined format
+% h(3) = subplot(413); plot(ProcessedData.L1_TimeTicks, ProcessedData.L1_Pf); grid; hold on;
+% plot(ProcessedData.L2_TimeTicks, ProcessedData.L2_Pf,'r');  hold off;
+% title('Power Factor');
+% xlabel('Unix Timestamp');
+% 
+% % Plot HF Noise
+% freq = linspace(1000000,0,4096); % FFT is of size 4096 point across 1 Mhz
+% h(4) = subplot(414);
+% imagesc(ProcessedData.HF_TimeTicks, freq, ProcessedData.HF);
+% title('High Frequency Noise');
+% ylabel('Frequency KHz');
+% axis xy;
+% y = [0:200000:1e6];
+% set(gca,'YTick',y);  % Apply the ticks to the current axes
+% set(gca,'YTickLabel', arrayfun(@(v) sprintf('%dK',v/1000), y, 'UniformOutput', false) ); % Define the tick labels based on the user-defined format
 
 linkaxes(h,'x');
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.7.21)  14 NOV 2014 13:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.7.21)  17 NOV 2014 01:40
 entering extended mode
 **PES2015.tex
 (C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\Paper\Drafts\PES2015.tex
@@ -282,7 +282,32 @@ Package grfext Info: Graphics extension search list:
 (grfext)             [.pdf,.jpeg,.png,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 452.
 ))
-(C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\Paper\Drafts\PES2015.aux)
+(C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\Paper\Drafts\PES2015.aux
+
+LaTeX Warning: Label `fig:event1' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:event1' multiply defined.
+
+
+LaTeX Warning: Label `fig:event2' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:event2' multiply defined.
+
+
+LaTeX Warning: Label `fig:event1' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:event1' multiply defined.
+
+
+LaTeX Warning: Label `fig:event2' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:event2' multiply defined.
+
+)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 330.
 LaTeX Font Info:    ... okay on input line 330.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 330.
@@ -314,6 +339,163 @@ p-pdf.mkii
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
+Package epstopdf Info: Source file: <fig/kettle.eps>
+(epstopdf)                    date: 2014-11-17 01:28:02
+(epstopdf)                    size: 50229 bytes
+(epstopdf)             Output file: <fig/kettle-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-11-17 01:28:06
+(epstopdf)                    size: 21694 bytes
+(epstopdf)             Command: <epstopdf --outfile=fig/kettle-eps-converted-to
+.pdf fig/kettle.eps>
+(epstopdf)             \includegraphics on input line 440.
+Package epstopdf Info: Output file is already uptodate.
+ <fig/kettle-eps-converted-to.pdf, id=1, 420.57124pt x 316.18124pt>
+File: fig/kettle-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/kettle-eps-converted-to.pdf>
+Package pdftex.def Info: fig/kettle-eps-converted-to.pdf used on input line 440
+.
+(pdftex.def)             Requested size: 122.85876pt x 92.36565pt.
+Package epstopdf Info: Source file: <fig/fan.eps>
+(epstopdf)                    date: 2014-11-17 01:30:23
+(epstopdf)                    size: 20713 bytes
+(epstopdf)             Output file: <fig/fan-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-11-17 01:30:26
+(epstopdf)                    size: 6167 bytes
+(epstopdf)             Command: <epstopdf --outfile=fig/fan-eps-converted-to.pd
+f fig/fan.eps>
+(epstopdf)             \includegraphics on input line 442.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/fan-eps-converted-to.pdf, id=2, 420.57124pt x 316.18124pt>
+File: fig/fan-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/fan-eps-converted-to.pdf>
+Package pdftex.def Info: fig/fan-eps-converted-to.pdf used on input line 442.
+(pdftex.def)             Requested size: 122.85876pt x 92.36565pt.
+Package epstopdf Info: Source file: <fig/computer1.eps>
+(epstopdf)                    date: 2014-11-17 01:37:30
+(epstopdf)                    size: 36693 bytes
+(epstopdf)             Output file: <fig/computer1-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-11-17 01:37:47
+(epstopdf)                    size: 21179 bytes
+(epstopdf)             Command: <epstopdf --outfile=fig/computer1-eps-converted
+-to.pdf fig/computer1.eps>
+(epstopdf)             \includegraphics on input line 445.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/computer1-eps-converted-to.pdf, id=3, 420.57124pt x 316.18124pt>
+File: fig/computer1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/computer1-eps-converted-to.pdf>
+Package pdftex.def Info: fig/computer1-eps-converted-to.pdf used on input line 
+445.
+(pdftex.def)             Requested size: 122.85876pt x 92.36565pt.
+Package epstopdf Info: Source file: <fig/TV.eps>
+(epstopdf)                    date: 2014-11-17 01:32:27
+(epstopdf)                    size: 25234 bytes
+(epstopdf)             Output file: <fig/TV-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-11-17 01:32:29
+(epstopdf)                    size: 10213 bytes
+(epstopdf)             Command: <epstopdf --outfile=fig/TV-eps-converted-to.pdf
+ fig/TV.eps>
+(epstopdf)             \includegraphics on input line 447.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/TV-eps-converted-to.pdf, id=4, 420.57124pt x 316.18124pt>
+File: fig/TV-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/TV-eps-converted-to.pdf>
+Package pdftex.def Info: fig/TV-eps-converted-to.pdf used on input line 447.
+(pdftex.def)             Requested size: 122.85876pt x 92.36565pt.
+Package epstopdf Info: Source file: <fig/dryer.eps>
+(epstopdf)                    date: 2014-11-16 23:17:57
+(epstopdf)                    size: 159713 bytes
+(epstopdf)             Output file: <fig/dryer-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-11-16 23:19:41
+(epstopdf)                    size: 87527 bytes
+(epstopdf)             Command: <epstopdf --outfile=fig/dryer-eps-converted-to.
+pdf fig/dryer.eps>
+(epstopdf)             \includegraphics on input line 450.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/dryer-eps-converted-to.pdf, id=5, 420.57124pt x 316.18124pt>
+File: fig/dryer-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/dryer-eps-converted-to.pdf>
+Package pdftex.def Info: fig/dryer-eps-converted-to.pdf used on input line 450.
+
+(pdftex.def)             Requested size: 122.85876pt x 92.36565pt.
+Package epstopdf Info: Source file: <fig/oven.eps>
+(epstopdf)                    date: 2014-11-16 23:18:37
+(epstopdf)                    size: 66460 bytes
+(epstopdf)             Output file: <fig/oven-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-11-16 23:19:41
+(epstopdf)                    size: 25275 bytes
+(epstopdf)             Command: <epstopdf --outfile=fig/oven-eps-converted-to.p
+df fig/oven.eps>
+(epstopdf)             \includegraphics on input line 452.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/oven-eps-converted-to.pdf, id=6, 420.57124pt x 316.18124pt>
+File: fig/oven-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/oven-eps-converted-to.pdf>
+Package pdftex.def Info: fig/oven-eps-converted-to.pdf used on input line 452.
+(pdftex.def)             Requested size: 122.85876pt x 92.36565pt.
+
+Overfull \hbox (0.71765pt too wide) in paragraph at lines 440--453
+ [][][] 
+ []
+
+
+Overfull \hbox (0.71765pt too wide) in paragraph at lines 440--453
+ [][] 
+ []
+
+
+Overfull \hbox (0.71765pt too wide) in paragraph at lines 440--453
+ [][] 
+ []
+
+[1{C:/Users/Kyungwoo.ECE-Santoso2/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex
+.map}
+
+
+ <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/fig/kettle-ep
+s-converted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/D
+rafts/fig/fan-eps-converted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/G
+itHub/ED/Paper/Drafts/fig/computer1-eps-converted-to.pdf> <C:/Users/Kyungwoo.EC
+E-Santoso2/Documents/GitHub/ED/Paper/Drafts/fig/TV-eps-converted-to.pdf> <C:/Us
+ers/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/fig/dryer-eps-conver
+ted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/fi
+g/oven-eps-converted-to.pdf>]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 469.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 469.
+Package epstopdf Info: Source file: <fig/maw.eps>
+(epstopdf)                    date: 2014-11-17 00:14:00
+(epstopdf)                    size: 20256 bytes
+(epstopdf)             Output file: <fig/maw-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-11-17 00:14:38
+(epstopdf)                    size: 6015 bytes
+(epstopdf)             Command: <epstopdf --outfile=fig/maw-eps-converted-to.pd
+f fig/maw.eps>
+(epstopdf)             \includegraphics on input line 478.
+Package epstopdf Info: Output file is already uptodate.
+
+<fig/maw-eps-converted-to.pdf, id=39, 421.575pt x 316.18124pt>
+File: fig/maw-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fig/maw-eps-converted-to.pdf>
+Package pdftex.def Info: fig/maw-eps-converted-to.pdf used on input line 478.
+(pdftex.def)             Requested size: 252.94499pt x 189.7102pt.
+
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 478--479
+ [][] 
+ []
+
 Package epstopdf Info: Source file: <fig/masterlights.eps>
 (epstopdf)                    date: 2014-11-14 13:32:26
 (epstopdf)                    size: 45315 bytes
@@ -322,38 +504,71 @@ Package epstopdf Info: Source file: <fig/masterlights.eps>
 (epstopdf)                    size: 15041 bytes
 (epstopdf)             Command: <epstopdf --outfile=fig/masterlights-eps-conver
 ted-to.pdf fig/masterlights.eps>
-(epstopdf)             \includegraphics on input line 450.
+(epstopdf)             \includegraphics on input line 487.
 Package epstopdf Info: Output file is already uptodate.
- <fig/masterlights-eps-converted-to.pdf, id=1, 420.57124pt x 316.18124pt>
+<fig/masterlights-eps-converted-to.pdf, id=40, 420.57124pt x 316.18124pt>
 File: fig/masterlights-eps-converted-to.pdf Graphic file (type pdf)
 
 <use fig/masterlights-eps-converted-to.pdf>
 Package pdftex.def Info: fig/masterlights-eps-converted-to.pdf used on input li
-ne 450.
+ne 487.
 (pdftex.def)             Requested size: 252.94499pt x 190.16371pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 450--451
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 487--488
  [][] 
  []
 
+Package epstopdf Info: Source file: <fig/windowlength.eps>
+(epstopdf)                    date: 2014-11-16 22:03:57
+(epstopdf)                    size: 30507 bytes
+(epstopdf)             Output file: <fig/windowlength-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-11-16 22:04:08
+(epstopdf)                    size: 15125 bytes
+(epstopdf)             Command: <epstopdf --outfile=fig/windowlength-eps-conver
+ted-to.pdf fig/windowlength.eps>
+(epstopdf)             \includegraphics on input line 497.
+Package epstopdf Info: Output file is already uptodate.
+<fig/windowlength-eps-converted-to.pdf, id=41, 420.57124pt x 316.18124pt>
+File: fig/windowlength-eps-converted-to.pdf Graphic file (type pdf)
 
-LaTeX Warning: Reference `fig:rec' on page 1 undefined on input line 464.
+<use fig/windowlength-eps-converted-to.pdf>
+Package pdftex.def Info: fig/windowlength-eps-converted-to.pdf used on input li
+ne 497.
+(pdftex.def)             Requested size: 252.94499pt x 190.16371pt.
 
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 497--498
+ [][] 
+ []
 
-LaTeX Warning: Reference `fig:PQ' on page 1 undefined on input line 464.
+Package epstopdf Info: Source file: <fig/outlier.eps>
+(epstopdf)                    date: 2014-11-16 21:46:06
+(epstopdf)                    size: 56284 bytes
+(epstopdf)             Output file: <fig/outlier-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-11-16 21:46:07
+(epstopdf)                    size: 29426 bytes
+(epstopdf)             Command: <epstopdf --outfile=fig/outlier-eps-converted-t
+o.pdf fig/outlier.eps>
+(epstopdf)             \includegraphics on input line 508.
+Package epstopdf Info: Output file is already uptodate.
+<fig/outlier-eps-converted-to.pdf, id=42, 421.575pt x 316.18124pt>
+File: fig/outlier-eps-converted-to.pdf Graphic file (type pdf)
 
-[1{C:/Users/Kyungwoo.ECE-Santoso2/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex
-.map}
+<use fig/outlier-eps-converted-to.pdf>
+Package pdftex.def Info: fig/outlier-eps-converted-to.pdf used on input line 50
+8.
+(pdftex.def)             Requested size: 252.94499pt x 189.7102pt.
 
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 508--509
+ [][] 
+ []
 
- <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/fig/masterlig
-hts-eps-converted-to.pdf>]
+[2 <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/fig/maw-eps
+-converted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Dr
+afts/fig/masterlights-eps-converted-to.pdf>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 632.
+(Font)              <8> on input line 656.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 632.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 632.
+(Font)              <6> on input line 656.
 
 
 ** Conference Paper **
@@ -366,29 +581,35 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[2
-
-]
+[3 <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/fig/windowl
+ength-eps-converted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED
+/Paper/Drafts/fig/outlier-eps-converted-to.pdf>]
 (C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\Paper\Drafts\PES2015.aux)
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3586 strings out of 493921
- 56509 string characters out of 3147234
- 118563 words of memory out of 3000000
- 6843 multiletter control sequences out of 15000+200000
- 38757 words of font info for 72 fonts, out of 3000000 for 9000
+ 3640 strings out of 493921
+ 58039 string characters out of 3147234
+ 118672 words of memory out of 3000000
+ 6889 multiletter control sequences out of 15000+200000
+ 37650 words of font info for 71 fonts, out of 3000000 for 9000
  844 hyphenation exceptions out of 8191
- 42i,8n,38p,811b,246s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,9n,47p,906b,327s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
-s/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/time
-s/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on PES2015.pdf (2 pages, 74335 bytes).
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/urw/times/utmri8a.pfb>
+Output written on PES2015.pdf (3 pages, 330873 bytes).
 PDF statistics:
- 31 PDF objects out of 1000 (max. 8388607)
+ 103 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
