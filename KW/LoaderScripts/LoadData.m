@@ -19,7 +19,7 @@ for i = 1:size(fileList,2)
     fprintf(1,'%d. %s\n', i, fname);
 end
 %% Step 3: Load Data File
-for j = 3%:size(fileList,2)
+for j = 1%:size(fileList,2)
 % Load one of training files, in partuclar the first.
 fname = fileList{j}; % ***** Note: We are only loading one of the files. This should be put in a loop as needed **
 clear Buffer;

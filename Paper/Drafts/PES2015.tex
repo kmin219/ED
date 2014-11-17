@@ -442,35 +442,91 @@ Show visualizations
 	-include block diagram
 	-goal is to automate, this task can be done manually, but too tedious
 	-compare to previous and to data mining methods, ours is more interpretable
+<<<<<<< HEAD
 	
 The goal of this paper is to document our approach and share insights and conclusions regarding household energy consumption disaggregation in general that we observed throughout the project.  
+=======
+\newpage
+\newpage
+\begin{figure}[!t]
+	\centering
+	\subfloat[]{\includegraphics[width=1.7in]{fig/kettle.eps}
+		\label{fig:event1}}
+	\subfloat[]{\includegraphics[width=1.7in]{fig/fan.eps}
+		\label{fig:event2}}
+	\hfill
+	\subfloat[]{\includegraphics[width=1.7in]{fig/computer1.eps}
+		\label{fig:event1}}
+	\subfloat[]{\includegraphics[width=1.7in]{fig/TV.eps}
+		\label{fig:event2}}
+	\hfill
+	\subfloat[]{\includegraphics[width=1.7in]{fig/dryer.eps}
+		\label{fig:event1}}
+	\subfloat[]{\includegraphics[width=1.7in]{fig/oven.eps}
+		\label{fig:event2}}
+	\caption{Load Types (a) Tea Kettle, (b) Master Bath Fan, (c) Computer, (d) TV, (e) Dryer, (f) Oven.}
+	\label{fig:demon}
+\end{figure}	
 
-\section{Training - Feature Window Extraction}
-This section concentrates on extracting the feature windows in low frequency data.  In particular,  
+\section{Training - Signature Window Extraction}
+This section concentrates on extracting the signature windows by using the real and the reactive power differences.  In particular, two ON/OFF signature windows are trained for each event of the appliances at each Home.  The following sections describe training signature windows depending on the shape of the load.  
+>>>>>>> FETCH_HEAD
 
-the real and the reactive power differences at the fundamental frequency (50 or 60 Hz) are used to characterize the on/off signatures of a given appliance.  This stage are separated into two; building a event detector that will be used to 
-
-
-\subsection{Event Detection Using Power Consumption Difference}
-The purpose of applying a event detector is to estimate the exact on/off time-index of the appliances.  The event on/off times are provided in the training set.  However, the provided labels are not exact
-ven though the tagging info of the appliances are available for the training set, they do not represent the exact on and off time of the appliances.  
-These switching indices are then used to extract the signature windows in the power difference domain.  
-
-
-
+\subsection{Load Types}
+First, the appliances are categorized into three load types based on its shape.  The types include rectangular, non-rectangular, and cyclic loads.  
 \begin{enumerate}
-	\item{Training Data: the tagging info of the appliances is provided.  However, they do not represent the exact on and off time of the appliances.  In addition, there are multiple mislabels such as the on-label and the off-label indicating the same time index.  The event detector should be programmed separately to account for these offsets and mislabels.}
-	\item{Test Data: the tagging info is not provided.  The event detector should be able to capture when an appliance is switched on and off. }
+\item{Rectangular loads:} These type of loads consumes constant power when operating.  The load shapes are rectangular.  They include resistive loads, such as lights, heaters, and kettle, and reactive loads such as fans.  A short duration window consisting of the real and the reactive power differences are used to detect these loads.
+\item{Non-rectangular loads:} These type of loads have a longer transient characteristics when turning on.  They include computers and TVs.  These type of loads require longer window length than the rectangular loads.
+\item{Cyclical loads:} - These type of loads change it's shape depending on the cycle of their operation.  Dryer, oven, and washers are included in this category.  Two approaches are suggested to detect these type of loads; using multiple windows or detecting a notable landmark during the operation.
 \end{enumerate}
 
+\subsection{Smoothed Power Differences}
+Now to train the windows, the real and the reactive power differences are calculated from two moving average windows.  The smoothed difference $S(n)$ is defined as,
+\begin{equation}
+S(n) = \frac{1}{N}\sum_{k=0}^{N}P(n-k) - \frac{1}{N}\sum_{k=N+D}^{2N+D}P(n-k)
+\end{equation}
+where $N$ is the window size and $D$ is the distance between the two windows. 
+It should be noted that if shorter window size is used, it is easier to distinguish events from other events happening at the same incidence.  However, the detector becomes less robust to noise.
 
-	\begin{figure}[!t]
-		\centering
-		\includegraphics[width=3.5in]{fig/masterlights.eps}
-		\caption{Simple Distribution Feeder.}
-		\label{fig:feeder}
-	\end{figure}
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=3.5in]{fig/maw.eps}
+	\caption{Two Moving Average Windows.}
+	\label{fig:maw}
+\end{figure}
+
+Using the power difference,  the mismatches in the tagging info and the actual event index are corrected.  A threshold for the real power difference is set to indicate whether an event occurred, (event occurred if $|S(n)| >$ threshold).  Then this corrected indexes are used as the actual event index instead of the tagging info provided.  On the top plot of Fig. \ref{fig:tagging}, the tagging info of the master room lights do not align with the actual event incidence.  The red markers in the bottom plot shows when the power difference is greater than the threshold and this index is used as the corrected tagging info.  It should be noted that we discarded some appliances that consumes very small real or reactive power.  For these appliances, using real and reactive power differences will rather cause more false alarms in the test data due to the effects of the noises. 
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=3.5in]{fig/masterlights.eps}
+	\caption{Tagging Info Correction.}
+	\label{fig:tagging}
+\end{figure}
 	
+<<<<<<< HEAD
+\subsection{Signature Window Extraction}
+After taking the power differences, the next stop is to extract the signatures for on-events and off-events. The windows are extracted starting from the corrected tagging info.  If an appliance has an longer transient characteristics (non-rectangular load shapes), longer window size is used to detect event.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consumes about 38 Watts at event incidence.  However, laptop charger then spends additional 38 Watts to fully turn on.  Therefore, longer window lengths are used to detect laptop charger than in detecting the dining room lights. 
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=3.5in]{fig/windowlength.eps}
+	\caption{Simple Distribution Feeder.}
+	\label{fig:windowlength}
+\end{figure}
+
+Insert windows used for cyclical loads.
+
+Outlier detection is also held in this stage.  Consider the four ON/OFF events of a computer as shown in Fig. \ref{fig:outlier}.  It is shown that when event 2 occurred, some background noise are introduced that affected the turn-on signature of the computer.  In this case, the second event is regarded as outliers and is not used in training the windows.
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=3.5in]{fig/outlier.eps}
+	\caption{Outlier.}
+	\label{fig:outlier}
+\end{figure}
+\newpage
+=======
 %	\begin{figure}[!t]
 %		\centering
 %		\subfloat[]{\includegraphics[width=2.5in]{fig/event1.jpg}
@@ -506,18 +562,8 @@ The procedures for calculating the real power and the reactive power include eve
 	- resistive + reactive (rotating like fans) - Q is a feature to help classify
 -dynamic
 	- cyclical (washer dryer) - require rules, ie. landmark detection
+>>>>>>> 4a1b9769f1a3f8f92b061559235daa35c859fc63
 	
-\subsection{Window making}
--because the loads are as described above, we are taking this approach, using different windows (different lengths) for different loads to detect ON/OFF events - these are the most effective approach vs. continuous approach (ours is event based)
-
--devices have unique features during on off mainly
-
--outliers - problems with training data, mention issues w/ kaggle ground truth
-
-
-
-
-
 \subsubsection{Subsubsection Heading Here}
 Subsubsection text here.
 
