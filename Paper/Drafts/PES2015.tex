@@ -392,7 +392,7 @@ Fax: (888) 555--1212}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Even with advances in smart grid technology and a growing demand for cost-effective  energy consumption, detailed information about energy usage is often not available for residential electricity consumers. One reason is that energy usage is typically monitored at single point by the utility, only providing information on the aggregate power consumption.  In this paper, we attempt to disaggregate the energy usage data into specific appliances from single-point sensing measurements.  Our method involves extracting events from the time-series data to obtain relevant features.  We focus on two feature sets: low frequency and high frequency.  For each set, we create an event detection algorithm for feature extraction.  We present the results of our approach on a publicly available dataset.
+Even with advances in smart grid technology and a growing demand for cost-effective  energy consumption, detailed information about energy usage is often not available for residential electricity consumers. One reason is that energy usage is monitored at no more than a single point by the utility, only providing information on the aggregate power consumption.  In this paper, we attempt to disaggregate the energy usage data into specific appliances from single-point sensing measurements.  Our method involves extracting events from the time-series data to obtain relevant features.  We focus on two feature sets: low frequency and high frequency.  For each set, we create an event detection algorithm for feature extraction.  We present the results of our approach on a publicly available dataset.
 \end{abstract}
 
 % no keywords
@@ -442,6 +442,8 @@ Show visualizations
 	-include block diagram
 	-goal is to automate, this task can be done manually, but too tedious
 	-compare to previous and to data mining methods, ours is more interpretable
+	
+The goal of this paper is to document our approach and share insights and conclusions regarding household energy consumption disaggregation in general that we observed throughout the project.  
 
 \section{Training - Feature Window Extraction}
 This section concentrates on extracting the feature windows in low frequency data.  In particular,  
@@ -609,7 +611,13 @@ Subsubsection text here.
 \section{Cross-Validation-ML}
 Discuss cross validation here. this is the whole procedure for generating thresholds.
 
+Although data is high resolution (and therefore high dimensional in number of rows), the majority of information unique to each appliance is concentrated to turn-on and turn-off signatures.  This is due to the fact that when multiple appliances are running, the absolute level cannot be used to detect whether one specific appliance is on or not.  The change in real and reactive power consumption must be used to detect which appliance has turned on.  
+
+Prior to submitting our predictions, the 
+
 need figures as examples of P/Q domain, diff domain, distance domain, window shape (big subplot 3x3?)
+
+show how signatures for small appliances, those of the same type in different locations, can produce different signature windows, allowing for separation.
 
 \section{Test Data}
 - rules for on/off pairing
