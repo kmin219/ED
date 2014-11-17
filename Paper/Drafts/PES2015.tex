@@ -332,7 +332,7 @@
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
 % Do not put math or special symbols in the title.
-\title{Disaggregation of Household Energy Consumption into Individual Appliances}
+\title{Event-based Household Energy Consumption Disaggregation of Individual Appliances}
 
 
 % author names and affiliations
@@ -415,7 +415,7 @@ Even with advances in smart grid technology and a growing demand for cost-effect
 \section{Introduction-ML}
 In this section, we provide the motivation and a brief description of the project.  A short discussion of related work in this area, including the methodology of previous competition winners is also provided.  This is followed by an overview of our approach, description of the raw data, and evaluation method.
 
-This project follows the Belkin Energy Disaggregation Competition on kaggle.com \cite{Kaggle}. The goal is to disaggregate household energy consumption into individual appliances. Appliances with switched mode power supplies (SMPS) generate electromagnetic interference (EMI) due to the high frequency switching and will generate noise in the voltage waveform near their switching frequency. Therefore, each type of appliance will have its own frequency-domain signature, typically in the tens to hundreds of KHz. The dataset used for this project is publicly available on the competition website and contains voltage and current harmonics data for four households.  The dataset also contains high frequency noise (EMI) data for each household.  
+This project follows the Belkin Energy Disaggregation Competition on kaggle.com \cite{Kaggle}. The goal is to disaggregate household energy consumption into individual appliances. The dataset used for this project is publicly available on the competition website and contains voltage and current harmonics data for four households.  The dataset also contains high frequency noise (EMI) data for each household.  
 
 Although the presence or absence of such EMI signatures and changes in voltage or current can indicate when a particular appliance is in use, classification can become challenging if the number of appliances in the home is large. Additionally, the signature of some appliances may drift or vary over time due to operating conditions and the mode in which they are used.  Predictive modeling is then required to make an inference about the appliance class given a particular signature.  The challenge is to accurately classify end-uses of energy at a fine-grained, appliance level. One application of this project is to continuously monitor real-time power consumption, broken down by electrical appliance.  Consumers can then view their energy usage and cost at a detailed enough level to determine cost-effective energy saving changes to usage patterns.  Based on the description above, our problem statement can be summarized as follows:
 
@@ -469,16 +469,18 @@ These switching indices are then used to extract the signature windows in the po
 		\label{fig:feeder}
 	\end{figure}
 	
-	\begin{figure}[!t]
-		\centering
-		\subfloat[]{\includegraphics[width=2.5in]{fig/event1.jpg}
-			\label{fig:event1}}
-		\hfil
-		\subfloat[]{\includegraphics[width=2.5in]{fig/event1.jpg}
-			\label{fig:event2}}
-		\caption{Fault Current Waveform (a) Original waveform, (b) Truncated waveform used for the study.}
-		\label{fig:demon}
-	\end{figure}	
+%	\begin{figure}[!t]
+%		\centering
+%		\subfloat[]{\includegraphics[width=2.5in]{fig/event1.jpg}
+%			\label{fig:event1}}
+%		\hfil
+%		\subfloat[]{\includegraphics[width=2.5in]{fig/event1.jpg}
+%			\label{fig:event2}}
+%		\caption{Fault Current Waveform (a) Original waveform, (b) Truncated waveform used for the study.}
+%		\label{fig:demon}
+%	\end{figure}	
+	
+	
 %\begin{figure}[!t]
 %	\centering
 %	\subfloat[]{\includegraphics[width=2.5in]{fig/masterlights.eps}
@@ -495,6 +497,7 @@ This section concentrates on extracting the feature windows in low frequency dat
 
 
 The procedures for calculating the real power and the reactive power include event detection, data smoothing, and power calculation.
+
 \subsection{Load Types}
 -constant power - static 
 	- resistive (lights, heaters, kettle) - P domain and rectangular mainly
@@ -600,7 +603,7 @@ Subsubsection text here.
 % footnotes above bottom floats. This can be corrected via the \fnbelowfloat
 % command of the stfloats package.
 
-
+ 
 
 
 \section{Cross-Validation-ML}
@@ -652,14 +655,21 @@ The authors would like to thank...
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\begin{thebibliography}{1}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+%\begin{thebibliography}{1}
+%
+%\bibitem{IEEEhowto:kopka}
+%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+%  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+%
+%\end{thebibliography}
 
-\end{thebibliography}
+%\begin{thebibliography}{1}
+%
+%\end{thebibliography}
 
+\bibliography{Bib}
+\bibliographystyle{ieeetr}
 
 
 
