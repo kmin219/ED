@@ -332,7 +332,7 @@
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
 % Do not put math or special symbols in the title.
-\title{Event-based Household Energy Consumption Disaggregation of Individual Appliances}
+\title{Non-intrusive Household Energy Consumption Disaggregation of Individual Appliances}
 
 
 % author names and affiliations
@@ -392,7 +392,7 @@ Fax: (888) 555--1212}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Even with advances in smart grid technology and a growing demand for cost-effective  energy consumption, detailed information about energy usage is often not available for residential electricity consumers. One reason is that energy usage is monitored at no more than a single point by the utility, only providing information on the aggregate power consumption.  In this paper, we attempt to disaggregate the energy usage data into specific appliances from single-point sensing measurements.  Our method involves extracting events from the time-series data to obtain relevant features.  We focus on two feature sets: low frequency and high frequency.  For each set, we create an event detection algorithm for feature extraction.  We present the results of our approach on a publicly available dataset.
+Even with advances in smart grid technology and a growing demand for cost-effective  energy consumption, detailed information about energy usage is often not available for residential electricity consumers. One reason is that household energy usage is monitored at no more than a single point by the utility, only providing information on the aggregate power consumption.  In this paper, we attempt to disaggregate  energy usage data into specific appliances from single-point sensing measurements.  Our method involves extracting turn-on and turn-off signature windows from time-series real and reactive power data to obtain transient characteristics of each appliance.  We focus on determining the appropriate window size for each appliance in order to capture unique signatures.  We present the results of our approach on a publicly available dataset.
 \end{abstract}
 
 % no keywords
@@ -413,28 +413,31 @@ Even with advances in smart grid technology and a growing demand for cost-effect
 
 
 \section{Introduction-ML}
-In this section, we provide the motivation and a brief description of the project.  A short discussion of related work in this area, including the methodology of previous competition winners is also provided.  This is followed by an overview of our approach, description of the raw data, and evaluation method.
+%In this section, we provide the motivation and a brief description of the project.  A short discussion of related work in this area, including the methodology of previous competition winners is also provided.  This is followed by an overview of our approach, description of the raw data, and evaluation method.
 
-This project follows the Belkin Energy Disaggregation Competition on kaggle.com \cite{Kaggle}. The goal is to disaggregate household energy consumption into individual appliances. The dataset used for this project is publicly available on the competition website and contains voltage and current harmonics data for four households.  The dataset also contains high frequency noise (EMI) data for each household.  
+The objective of residential non-intrusive load monitoring (NILM) is to monitor the major loads in a home from a single-point.  An alternative is to monitor each appliance individually, however, this scheme typically adds significant cost. Therefore, the challenge with NILM is to accurately disaggregate household energy consumption into the individual appliance level with data from single-point measurements.  
 
-Although the presence or absence of such EMI signatures and changes in voltage or current can indicate when a particular appliance is in use, classification can become challenging if the number of appliances in the home is large. Additionally, the signature of some appliances may drift or vary over time due to operating conditions and the mode in which they are used.  Predictive modeling is then required to make an inference about the appliance class given a particular signature.  The challenge is to accurately classify end-uses of energy at a fine-grained, appliance level. One application of this project is to continuously monitor real-time power consumption, broken down by electrical appliance.  Consumers can then view their energy usage and cost at a detailed enough level to determine cost-effective energy saving changes to usage patterns.  Based on the description above, our problem statement can be summarized as follows:
+Prior research in the area of NILM has focused on the use of aggregate power consumption patterns as features to identify what appliance is being used and how much energy it is consuming. For example, the authors in \cite{mit} discuss various approaches in NILM, including detecting changes in steady-state power measurements and characterizing them as different events. Some challenges reported by the authors include different loads not exhibiting unique signatures in the 2D feature space and the difficulty in determining steady-state features due to turn-on transient noise.  Some recommended advanced techniques are to include the 3rd order harmonics as a feature and using turn-on transients for event detection.  The methodology in [2] and [3] follows a similar strategy, however, the training and test data are manually generated, resulting in a clean dataset that may not be representative of real household energy usage patterns.  Furthermore, the classification can become challenging if the number of appliances in the home is large. Additionally, the signature of some appliances may drift or vary over time due to operating conditions and the mode in which they are used. 
 
-\begin{quote}
-	Using the harmonic and EMI measurements as features, the objective of this project is to build a multi-class classification model to determine which appliances are active at any given time (i.e, classify the active appliances based on harmonic and EMI signatures). 
-\end{quote}
+In this paper, we present a method that focuses on extracting turn-on and turn-off signature windows to obtain transient characteristics of each appliance.  The transient characteristics are observed from the difference of two moving average windows from time-series real and reactive power data.  We focus on determining the appropriate window length for each appliance in order to capture unique signatures.  We present the results of our approach on a publicly available dataset from the Belkin Energy Disaggregation Competition on kaggle.com \cite{Kaggle}. The dataset and methodology are described in detail in Section II.  Section III, describes the different load types and the approach to extracting signature windows for each appliance.
+
+The goal of this paper is to document our approach and share insights and conclusions regarding household energy consumption disaggregation that we observed throughout the project. 
 
 
 
-\subsection{approach/background}
-Our method focuses on real-time processing.
-
+\section{Dataset and Methodology}
+The dataset is publicly available on the competition website and contains voltage and current harmonics data for four households.  The dataset also contains high frequency noise (EMI) data for each household, but is not required with our approach.  
+\subsection{Dataset}
 Show visualizations
+-data description
 -training data
 -figures show differences domain/power domain
 	- explain reason for looking in difference domain
 	- test data-multiple devices, and steady state, no changes
 	-goal is to detect events on/off
 	-for example, constant power loads, show no change, eg. light
+	
+\subsection{Methodology}
 
 -explain methodology
 	- voltage/current harmonics to P/Q to differences to distances
@@ -442,12 +445,13 @@ Show visualizations
 	-include block diagram
 	-goal is to automate, this task can be done manually, but too tedious
 	-compare to previous and to data mining methods, ours is more interpretable
-<<<<<<< HEAD
+	-ability for real time processing
+
 	
-The goal of this paper is to document our approach and share insights and conclusions regarding household energy consumption disaggregation in general that we observed throughout the project.  
-=======
-\newpage
-\newpage
+
+
+
+
 \begin{figure}[!t]
 	\centering
 	\subfloat[]{\includegraphics[width=1.7in]{fig/kettle.eps}
@@ -470,7 +474,7 @@ The goal of this paper is to document our approach and share insights and conclu
 
 \section{Training - Signature Window Extraction}
 This section concentrates on extracting the signature windows by using the real and the reactive power differences.  In particular, two ON/OFF signature windows are trained for each event of the appliances at each Home.  The following sections describe training signature windows depending on the shape of the load.  
->>>>>>> FETCH_HEAD
+
 
 \subsection{Load Types}
 First, the appliances are categorized into three load types based on its shape.  The types include rectangular, non-rectangular, and cyclic loads.  
@@ -504,7 +508,7 @@ Using the power difference,  the mismatches in the tagging info and the actual e
 	\label{fig:tagging}
 \end{figure}
 	
-<<<<<<< HEAD
+
 \subsection{Signature Window Extraction}
 After taking the power differences, the next stop is to extract the signatures for on-events and off-events. The windows are extracted starting from the corrected tagging info.  If an appliance has an longer transient characteristics (non-rectangular load shapes), longer window size is used to detect event.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consumes about 38 Watts at event incidence.  However, laptop charger then spends additional 38 Watts to fully turn on.  Therefore, longer window lengths are used to detect laptop charger than in detecting the dining room lights. 
 
@@ -526,7 +530,7 @@ Outlier detection is also held in this stage.  Consider the four ON/OFF events o
 	\label{fig:outlier}
 \end{figure}
 \newpage
-=======
+
 %	\begin{figure}[!t]
 %		\centering
 %		\subfloat[]{\includegraphics[width=2.5in]{fig/event1.jpg}
@@ -562,7 +566,7 @@ The procedures for calculating the real power and the reactive power include eve
 	- resistive + reactive (rotating like fans) - Q is a feature to help classify
 -dynamic
 	- cyclical (washer dryer) - require rules, ie. landmark detection
->>>>>>> 4a1b9769f1a3f8f92b061559235daa35c859fc63
+
 	
 \subsubsection{Subsubsection Heading Here}
 Subsubsection text here.

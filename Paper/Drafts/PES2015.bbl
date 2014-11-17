@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{mit}
+C.~Laughman, K.~Lee, R.~Cox, S.~Shaw, S.~Leeb, L.~Norford, and P.~Armstrong,
+  ``Power signature analysis,'' {\em Power and Energy Magazine, IEEE}, vol.~1,
+  pp.~56--63, Mar 2003.
+
 \bibitem{Kaggle}
 http://www.kaggle.com/c/belkin-energy-disaggregation-competition.
 
