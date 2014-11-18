@@ -392,7 +392,7 @@ Fax: (888) 555--1212}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Even with advances in smart grid technology and a growing demand for cost-effective  energy consumption, detailed information about energy usage is often not available for residential electricity consumers. One reason is that energy usage is typically monitored at single point by the utility, only providing information on the aggregate power consumption.  In this paper, we attempt to disaggregate the energy usage data into specific appliances from single-point sensing measurements.  Our method involves extracting events from the time-series data to obtain relevant features.  We focus on two feature sets: low frequency and high frequency.  For each set, we create an event detection algorithm for feature extraction.  We present the results of our approach on a publicly available dataset.
+	Even with advances in smart grid technology and a growing demand for cost-effective  energy consumption, detailed information about energy usage is often not available for residential electricity consumers. One reason is that household energy usage is monitored at no more than a single point by the utility, only providing information on the aggregate power consumption.  In this paper, we attempt to disaggregate  energy usage data into specific appliances from single-point sensing measurements.  Our method involves extracting turn-on and turn-off signature windows from time-series real and reactive power data to obtain transient characteristics of each appliance.  We focus on determining the appropriate window size for each appliance in order to capture unique signatures.  We present the results of our approach on a publicly available dataset.
 \end{abstract}
 
 % no keywords
@@ -413,37 +413,126 @@ Even with advances in smart grid technology and a growing demand for cost-effect
 
 
 \section{Introduction-ML}
-In this section, we provide the motivation and a brief description of the project.  A short discussion of related work in this area, including the methodology of previous competition winners is also provided.  This is followed by an overview of our approach, description of the raw data, and evaluation method.
+%In this section, we provide the motivation and a brief description of the project.  A short discussion of related work in this area, including the methodology of previous competition winners is also provided.  This is followed by an overview of our approach, description of the raw data, and evaluation method.
 
-This project follows the Belkin Energy Disaggregation Competition on kaggle.com \cite{Kaggle}. The goal is to disaggregate household energy consumption into individual appliances. The dataset used for this project is publicly available on the competition website and contains voltage and current harmonics data for four households.  The dataset also contains high frequency noise (EMI) data for each household.  
+The objective of residential non-intrusive load monitoring (NILM) is to monitor the major loads in a home from a single-point.  The alternative is to monitor each appliance individually, however, this scheme typically adds significant cost. Therefore, the challenge with NILM is to accurately disaggregate household energy consumption into the individual appliance level with data from single-point measurements.  
 
-Although the presence or absence of such EMI signatures and changes in voltage or current can indicate when a particular appliance is in use, classification can become challenging if the number of appliances in the home is large. Additionally, the signature of some appliances may drift or vary over time due to operating conditions and the mode in which they are used.  Predictive modeling is then required to make an inference about the appliance class given a particular signature.  The challenge is to accurately classify end-uses of energy at a fine-grained, appliance level. One application of this project is to continuously monitor real-time power consumption, broken down by electrical appliance.  Consumers can then view their energy usage and cost at a detailed enough level to determine cost-effective energy saving changes to usage patterns.  Based on the description above, our problem statement can be summarized as follows:
+Prior research in the area of NILM has focused on the use of aggregate power consumption patterns as features to identify what appliance is being used and how much energy it is consuming. For example, the authors in \cite{mit} discuss various approaches in NILM, including detecting changes in steady-state power measurements and characterizing them as different events. Some challenges reported by the authors include different loads not exhibiting unique signatures in the 2D feature space and the difficulty in determining steady-state features due to turn-on transient noise.  Some recommended advanced techniques are to include the 3rd order harmonics as a feature and using turn-on transients for event detection.  The methodology in [2] and [3] follows a similar strategy, however, the training and test data are manually generated, resulting in a clean dataset that may not be representative of real household energy usage patterns.  Furthermore, the classification can become challenging if the number of appliances in the home is large. Additionally, the signature of some appliances may drift or vary over time due to operating conditions and the mode in which they are used. 
 
-\begin{quote}
-	Using the harmonic and EMI measurements as features, the objective of this project is to build a multi-class classification model to determine which appliances are active at any given time (i.e, classify the active appliances based on harmonic and EMI signatures). 
-\end{quote}
+In this paper, we present a method that focuses on extracting turn-on and turn-off signature windows to obtain transient characteristics of each appliance.  The transient characteristics are observed from the difference of two moving average windows from time-series real and reactive power data.  We focus on determining the appropriate window length for each appliance in order to capture unique signatures.  We present the results of our approach using a publicly available dataset from the Belkin Energy Disaggregation Competition on kaggle.com \cite{Kaggle}. The dataset and methodology are described in detail in Section \ref{sec:dataMethod}.  Section \ref{sec:training} describes the approach for extracting signature windows for each appliance from the training data. Section \ref{sec:cv} describes the cross-validation procedure using the training data.  Section \ref{sec:test} describes application of our approach to the test data.  Finally, Section \ref{sec:concl} discusses results and ideas for future work.
+%
+%The goal of this paper is to document our approach and share insights and conclusions regarding household energy consumption disaggregation that we observed throughout the project. 
+
+\section{Data and Methodology}\label{sec:dataMethod}
+The objective is this.... because of this and the dataset, our methodology is specifically chosen for ...This section provides an overview of the dataset and a description of our methodology. 
 
 
 
-\subsection{approach/background}
-Our method focuses on real-time processing.
+Because the dataset is representative of real world appliance usage data, and that we are trying to fine detect multiple appliances and not just major ones, we have chosen a specific methodology.  If we are just detecting major appliances a different methodology can be used.  Strategy is to detect when and appliance turns on and turns off as opposed to steady state characteristics.  Out of 40 appliances per home, only a few exhibit steady state features that allow discrimination from background noise or other appliances.  
 
+\subsection{Dataset}
 Show visualizations
+-data description
 -training data
 -figures show differences domain/power domain
-	- explain reason for looking in difference domain
-	- test data-multiple devices, and steady state, no changes
-	-goal is to detect events on/off
-	-for example, constant power loads, show no change, eg. light
+- explain reason for looking in difference domain
+- test data-multiple devices, and steady state, no changes
+-goal is to detect events on/off
+-for example, constant power loads, show no change, eg. light
+-needed to correct time stamps in order to accurately determine signature windows
+
+The dataset is publicly available on the competition website and contains voltage and current harmonics data for four households.  The dataset also contains high frequency noise (EMI) data for each household, but is not required with our approach.  
+
+In this paper, we utilize the complete dataset available from kaggle.com, provided by Belkin Energy \cite{Kaggle}. The set contains data from 4 homes (labeled H1-H4) consisting of both training and testing datasets. The training datasets are used to learn how each appliance in each home looks in terms of the EMI and harmonic signatures and build a model which can be applied to the test datasets for making predictions.  
+
+Two sets of data are supplied by Belkin Energy: Training and Test. Describe each one and show example figures of each. The training data consists of manually generated power consumption for each appliance at each home.  These typically consist of only one appliance switched on at a time, although background noise is present from untagged appliances.  Tagging labels are provided by Belkin, however, these are not precise enough to correctly identify device on and off times.  A discussion for tagging label correction is presented in Section \ref{sec:training}.   
+
+\begin{figure}[!t]
+	\centering
+	\subfloat[Training]{\includegraphics[width=1.7in]{fig/exTestH2_1.eps}
+		\label{fig:event1ml}}
+	\hfil
+	\subfloat[Test]{\includegraphics[width=1.7in]{fig/exTestH2_1.eps}
+		\label{fig:event2ml}}
+	%\includegraphics[width=3.5in]{fig/exTestH2_1.eps}
+	\caption{Example of (a) training and (b) test data from Home 4.}
+	\label{fig:exTrain}
+\end{figure}
+
+For each home, the datasets include the first 5 harmonics of voltage and current measurements the FFT of the high frequency noise (captured every 1.0667 seconds).  The sampling rate is $f_s$ = 2 Mhz, which results in an FFT resolution of $f_r$ = 244.14 Hz. The dataset for each home is composed of several files.  For example, the data for H4 contains two training datasets and four testing datasets. The size and description of the files associated with each training and testing dataset are detailed in the tables below.
+
+%\begin{table}[h]
+%	\caption{Example of Data Files for Each Training and Testing Dataset}\label{files}
+%	\begin{center}
+%		%\vskip -5pt
+%		\begin{tabular}{|l|l|l|}\hline
+%			\textbf{File name} & \textbf{Description} & \textbf{Data Size}\\
+%			\hline
+%			HF & spectrogram of high frequency noise & 4096 $\times$ 81000\\
+%			\hline
+%			
+%			TimeTicksHF &  UNIX timestamps corresponding to the HF & 81000$\times$1\\
+%			\hline
+%			
+%			LF1V & fundamental and first 5 harmonics of 60Hz voltage of Phase-1. & 517067$\times$6\\
+%			\hline
+%			
+%			LF1I & fundamental and first 5 harmonics of 60Hz current of Phase-1. & 517067$\times$6\\
+%			\hline
+%			
+%			TimeTicks1 & UNIX timestamps corresponding to Phase-1 current and voltage. & 517067$\times$1\\
+%			\hline
+%			
+%			LF2V & fundamental and first 5 harmonics of 60Hz voltage of Phase-2. &  517066$\times$6\\
+%			\hline
+%			
+%			LF2I & fundamental and first 5 harmonics of 60Hz current of Phase-2. & 517066$\times$6\\
+%			\hline
+%			
+%			Timeticks2 & UNIX timestamps corresponding to Phase-2 current and voltage. &  517066$\times$1\\
+%			\hline
+%			
+%			TaggingInfo & labels for training purposes (For Training Data only) & 35$\times$4 \\
+%			\hline
+%		\end{tabular}
+%	\end{center}
+%\end{table}
+
+
+\begin{table}[h!]
+	\renewcommand{\arraystretch}{1.3}
+	\caption{Number of Distinct Appliances and Datasets for Each Home}\label{classes}
+	\label{table_example}
+	\centering
+	\begin{tabular}{p{1.5cm}||p{1.5cm}||p{1.5cm}||p{1.5cm}}
+		\hline 
+		\textbf{Home No.} & \textbf{Appliances} &\textbf{Training Sets} &\textbf{Test Sets}\tabularnewline
+		\hline 
+		\hline 
+		H1 & 38 & 6 & 4\tabularnewline
+		\hline 
+		H2 & 37 & 4 & 4\tabularnewline
+		\hline 
+		H3 & 37 & 3 & 4\tabularnewline
+		\hline 
+		H4 & 36 & 2 & 4\tabularnewline
+		\hline 
+	\end{tabular}
+\end{table}
+
+
+The observations recorded in each training and testing dataset cover approximately 24 hours.  Therefore, the files in Table \ref{files} for each training and testing dataset listed in Table \ref{classes} have approximately the same sizes.
+
+\subsection{Methodology}
 
 -explain methodology
-	- voltage/current harmonics to P/Q to differences to distances
-	-and why we use this approach
-	-include block diagram
-	-goal is to automate, this task can be done manually, but too tedious
-	-compare to previous and to data mining methods, ours is more interpretable
-\newpage
-\newpage
+- voltage/current harmonics to P/Q to differences to distances
+-and why we use this approach
+-include block diagram
+-goal is to automate, this task can be done manually, but too tedious
+-compare to previous and to data mining methods, ours is more interpretable
+-ability for real time processing
+
 \begin{figure}[!t]
 	\centering
 	\subfloat[]{\includegraphics[width=1.7in]{fig/kettle.eps}
@@ -501,7 +590,9 @@ Using the power difference,  the mismatches in the tagging info and the actual e
 	
 <<<<<<< HEAD
 \subsection{Signature Window Extraction}
-After taking the power differences, the next stop is to extract the signatures for on-events and off-events. The windows are extracted starting from the corrected tagging info.  If an appliance has an longer transient characteristics (non-rectangular load shapes), longer window size is used to detect event.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consumes about 38 Watts at event incidence.  However, laptop charger then spends additional 38 Watts to fully turn on.  Therefore, longer window lengths are used to detect laptop charger than in detecting the dining room lights. 
+After taking the power differences, the next stop is to extract the signatures for on-events and off-events. The windows are extracted starting from the corrected tagging info until the real and reactive power waveforms reach steady-state.  The power differences will increase to the rated power consumption of the appliance and decrease to zero, as shown in Fig. \ref{fig:maw}.
+
+If an appliance has an longer transient characteristics (non-rectangular load shapes), longer window size is used to detect event.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consumes about 38 Watts at event incidence.  However, laptop charger then spends additional 38 Watts to fully turn on.  Therefore, longer window lengths are used to detect laptop charger than in detecting the dining room lights. 
 
 \begin{figure}[!t]
 	\centering
@@ -510,7 +601,13 @@ After taking the power differences, the next stop is to extract the signatures f
 	\label{fig:windowlength}
 \end{figure}
 
-Insert windows used for cyclical loads.
+Cyclical loads exhibit unique characteristics throughout the entire operation.  Consider the dryer shown in Fig. \ref{fig:demon}.  The real power waveform consistently rises and falls until the appliance is turned off.  The turn-on and turn-off signature windows detect multiple events when there is actually a single event.  Therefore, in this case, the first-event captured by the turn-on window and the last-event captured by the turn-off windows should be paired up to detect this event.
+
+Consider the oven shown in Fig. \ref{fig:demon}.  In addition to the turn-on signature window, 
+additional window is extracted from the following real power jump.  
+
+
+
 
 Outlier detection is also held in this stage.  Consider the four ON/OFF events of a computer as shown in Fig. \ref{fig:outlier}.  It is shown that when event 2 occurred, some background noise are introduced that affected the turn-on signature of the computer.  In this case, the second event is regarded as outliers and is not used in training the windows.
 
