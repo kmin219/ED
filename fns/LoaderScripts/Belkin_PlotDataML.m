@@ -1,4 +1,4 @@
-function [figure_handle] = Belkin_PlotData(ProcessedData, hasLabels, varargin)
+function [figure_handle] = Belkin_PlotDataML(ProcessedData, hasLabels, varargin)
 % Belkin_PlotData   Plots various measurement in a single figure with
 % linked axis for quickly looking at the data. Plot, real, reactive,
 % apparent and power factor for each phase. Also plots the High Frequency
@@ -109,11 +109,13 @@ hold off;
 % ylabel('Frequency KHz');
 % axis xy;
 % y = [0:200000:1e6];
-set(gca,'YTick',y);  % Apply the ticks to the current axes
-set(gca,'YTickLabel', arrayfun(@(v) sprintf('%dK',v/1000), y, 'UniformOutput', false) ); % Define the tick labels based on the user-defined format
+% set(gca,'YTick',y);  % Apply the ticks to the current axes
+% set(gca,'YTickLabel', arrayfun(@(v) sprintf('%dK',v/1000), y, 'UniformOutput', false) ); % Define the tick labels based on the user-defined format
+% 
+% linkaxes(h,'x');
+% 
+% figure_handle = h;
+set(gcf, 'Position', [10 10 10 10]);
 
-linkaxes(h,'x');
-
-figure_handle = h;
 
 end
