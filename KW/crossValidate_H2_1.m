@@ -67,6 +67,7 @@ for i = [1:length(window_P)]
         disp(i)
         N = length(window_P{i}{1});  % P and Q windows are the same length
         k = 1;
+        clear MetricP MetricQ
         while(k+N-1 < length(featP_scanA_L1))
             if(window_P{i}{3} == 1)
                 sample = featP_scanA_L1(k:k+N-1);
@@ -97,7 +98,7 @@ for i = [1:length(window_P)]
         end
         MetricP_all{i} = MetricP;
         MetricQ_all{i} = MetricQ;
-
+        disp(length(MetricP))
         n = 1:length(MetricP);
         figure()
 %         MetricP(find(MetricP>sqrt(sum(window_P{i}{1}.^2)))) = sqrt(sum(window_P{i}{1}.^2));
