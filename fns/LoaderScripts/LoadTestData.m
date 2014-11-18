@@ -26,11 +26,11 @@ for i = 1:size(fileList,2)
     fprintf(1,'%d. %s\n', i, fname);
 end
 %% Step 3: Load Data File
-for j = 1:size(fileList,2)
+for j = 1%1:size(fileList,2)
     
 % Load one of training files, in partuclar the first.
 fname = fileList{j}; % ***** Note: We are only loading one of the files. This should be put in a loop as needed **
-clear Buffer;
+%clear Buffer;
 
 fprintf(1, 'Loading file: %s\n', fname);
 load(fname);
@@ -45,7 +45,7 @@ test{j} = ProcessedData.L1_TimeTicks  ;
 % Clear Buffer as we will not be using harmonic content for now.
 % If you see fit, additional features, such as harmonics etc. can be
 % computed from the raw Buffer.
-clear Buffer;
+%clear Buffer;
 
 %% Step 4: Plot data
 % Plot all available data in file. The second argument controls if the

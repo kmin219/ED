@@ -1,7 +1,7 @@
 %% Clear workspace
 clear; clc;
 %% Step 1: Location and Filter for Dataset
-home = 'H4';
+home = 'H2';
 path  = '/Users/Min/Documents/College Files/Projects/EnergyDisag';
 
 addpath(genpath(path));
@@ -23,7 +23,7 @@ end
 for j = 1 %:size(fileList,2)
 % Load one of training files, in partuclar the first.
 fname = fileList{j}; % ***** Note: We are only loading one of the files. This should be put in a loop as needed **
-clear Buffer;
+% clear Buffer;
 
 fprintf(1, 'Loading file: %s\n', fname);
 load(fname);
@@ -37,7 +37,7 @@ ProcessedData = Belkin_ProcessRawData(Buffer);
 % Clear Buffer as we will not be using harmonic content for now.
 % If you see fit, additional features, such as harmonics etc. can be
 % computed from the raw Buffer.
-clear Buffer;
+% clear Buffer;
 
 %% Step 4: Plot data
 % Plot all available data in file. The second argument controls if the
@@ -50,6 +50,6 @@ min_ts = min(cellfun(@(x)x(1), ProcessedData.TaggingInfo(:,3)));
 max_ts = max(cellfun(@(x)x(1), ProcessedData.TaggingInfo(:,4)));
 
 % Plot data between a start and stop time stamp
-Belkin_PlotData(ProcessedData, true, min_ts, max_ts);
+Belkin_PlotDataML(ProcessedData, true, min_ts, max_ts);
 end
 
