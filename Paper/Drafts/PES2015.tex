@@ -418,7 +418,7 @@ Even with advances in smart grid technology and a growing demand for cost-effect
 
 
 
-\section{Introduction-ML}
+\section{Introduction}
 %In this section, we provide the motivation and a brief description of the project.  A short discussion of related work in this area, including the methodology of previous competition winners is also provided.  This is followed by an overview of our approach, description of the raw data, and evaluation method.
 
 The objective of residential non-intrusive load monitoring (NILM) is to monitor the major loads in a home from a single-point.  The alternative is to monitor each appliance individually, however, this scheme typically adds significant cost. Therefore, the challenge with NILM is to accurately disaggregate household energy consumption into the individual appliance level with data from single-point measurements.  
@@ -430,42 +430,38 @@ In this paper, we present a method that focuses on extracting turn-on and turn-o
 %The goal of this paper is to document our approach and share insights and conclusions regarding household energy consumption disaggregation that we observed throughout the project. 
 
 \section{Data and Methodology}\label{sec:dataMethod}
-The objective is this.... because of this and the dataset, our methodology is specifically chosen for ...This section provides an overview of the dataset and a description of our methodology. 
+%The objective is this.... because of this and the dataset, our methodology is specifically chosen for ...This section provides an overview of the dataset and a description of our methodology. 
 
 
 
 Because the dataset is representative of real world appliance usage data, and that we are trying to fine detect multiple appliances and not just major ones, we have chosen a specific methodology.  If we are just detecting major appliances a different methodology can be used.  Strategy is to detect when and appliance turns on and turns off as opposed to steady state characteristics.  Out of 40 appliances per home, only a few exhibit steady state features that allow discrimination from background noise or other appliances.  
 
 \subsection{Dataset}
-Show visualizations
--data description
--training data
--figures show differences domain/power domain
-	- explain reason for looking in difference domain
-	- test data-multiple devices, and steady state, no changes
-	-goal is to detect events on/off
-	-for example, constant power loads, show no change, eg. light
-	-needed to correct time stamps in order to accurately determine signature windows
+%Show visualizations
+%-data description
+%-training data
+%-figures show differences domain/power domain
+%	- explain reason for looking in difference domain
+%	- test data-multiple devices, and steady state, no changes
+%	-goal is to detect events on/off
+%	-for example, constant power loads, show no change, eg. light
+%	-needed to correct time stamps in order to accurately determine signature windows
 
-The dataset is publicly available on the competition website and contains voltage and current harmonics data for four households.  The dataset also contains high frequency noise (EMI) data for each household, but is not required with our approach.  
+In this paper, we utilize the complete dataset available from kaggle.com, provided by Belkin Energy \cite{Kaggle}.  The dataset is publicly available on the competition website and contains the first five harmonics of rms voltage and current on two phases for four households (labeled H1-H4),consisting of both training and testing datasets.  The dataset also contains high frequency noise (EMI) data for each household, but is not required with our approach. The training data consists of manually generated power consumption for each appliance at each home.  These typically consist of only one appliance switched on at a time, although background noise is present from untagged appliances.  Table \ref{table:dataset} shows the number of distinct appliances in each home an the number of training and test datasets provided.  Tagging labels in the training data are also provided by Belkin, however, these are not precise enough to correctly identify device on and off times. An example of the data from Home H2 is shown in Fig.\ref{fig:traintest}.  A discussion for tagging label correction is presented in Section \ref{sec:training}.   The observations recorded in each training and testing dataset cover approximately 24 hours.  
 
-In this paper, we utilize the complete dataset available from kaggle.com, provided by Belkin Energy \cite{Kaggle}. The set contains data from 4 homes (labeled H1-H4) consisting of both training and testing datasets. The training datasets are used to learn how each appliance in each home looks in terms of the EMI and harmonic signatures and build a model which can be applied to the test datasets for making predictions.  
-
-Two sets of data are supplied by Belkin Energy: Training and Test. Describe each one and show example figures of each. The training data consists of manually generated power consumption for each appliance at each home.  These typically consist of only one appliance switched on at a time, although background noise is present from untagged appliances.  Tagging labels are provided by Belkin, however, these are not precise enough to correctly identify device on and off times.  A discussion for tagging label correction is presented in Section \ref{sec:training}.   
-
-\begin{figure}[!t]
+\begin{figure}[!t]	
 	\centering
-		\subfloat[Training]{\includegraphics[width=1.7in]{fig/exTestH2_1.eps}
+		\subfloat[Training]{\includegraphics[width=2.5in]{fig/exTrain.eps}
 			\label{fig:event1ml}}
 		\hfil
-		\subfloat[Test]{\includegraphics[width=1.7in]{fig/exTestH2_1.eps}
+		\subfloat[Test]{\includegraphics[width=2.5in]{fig/exTestH2_1.eps}
 			\label{fig:event2ml}}
 	%\includegraphics[width=3.5in]{fig/exTestH2_1.eps}
-	\caption{Example of (a) training and (b) test data from Home 4.}
-	\label{fig:exTrain}
+	\caption{Example of (a) training and (b) test data from Home 4.} 
+	\label{fig:traintest}
 \end{figure}
 
-For each home, the datasets include the first 5 harmonics of voltage and current measurements the FFT of the high frequency noise (captured every 1.0667 seconds).  The sampling rate is $f_s$ = 2 Mhz, which results in an FFT resolution of $f_r$ = 244.14 Hz. The dataset for each home is composed of several files.  For example, the data for H4 contains two training datasets and four testing datasets. The size and description of the files associated with each training and testing dataset are detailed in the tables below.
+%For each home, the datasets include the first 5 harmonics of voltage and current measurements the FFT of the high frequency noise (captured every 1.0667 seconds).  The sampling rate is $f_s$ = 2 Mhz, which results in an FFT resolution of $f_r$ = 244.14 Hz. The dataset for each home is composed of several files.  For example, the data for H4 contains two training datasets and four testing datasets. The size and description of the files associated with each training and testing dataset are detailed in the tables below.
 
 %\begin{table}[h]
 %	\caption{Example of Data Files for Each Training and Testing Dataset}\label{files}
@@ -508,7 +504,7 @@ For each home, the datasets include the first 5 harmonics of voltage and current
 \begin{table}[h!]
 	\renewcommand{\arraystretch}{1.3}
 	\caption{Number of Distinct Appliances and Datasets for Each Home}\label{classes}
-	\label{table_example}
+	\label{table:dataset}
 	\centering
 	\begin{tabular}{p{1.5cm}||p{1.5cm}||p{1.5cm}||p{1.5cm}}
 		\hline 
@@ -527,8 +523,6 @@ For each home, the datasets include the first 5 harmonics of voltage and current
 \end{table}
 
 
-The observations recorded in each training and testing dataset cover approximately 24 hours.  Therefore, the files in Table \ref{files} for each training and testing dataset listed in Table \ref{classes} have approximately the same sizes.
-	
 \subsection{Methodology}
 
 -explain methodology
@@ -746,7 +740,7 @@ The procedures for calculating the real power and the reactive power include eve
  
 
 
-\section{Validation-ML}\label{sec:cv}
+\section{Validation}\label{sec:cv}
 Discuss cross validation here. this is the whole procedure for generating thresholds.
 
 Although data is high resolution (and therefore high dimensional in number of rows), the majority of information unique to each appliance is concentrated to turn-on and turn-off signatures.  This is due to the fact that when multiple appliances are running, the absolute level cannot be used to detect whether one specific appliance is on or not.  The change in real and reactive power consumption must be used to detect which appliance has turned on.  

@@ -5,6 +5,7 @@ home = 'H2';
 path  = '/Users/Min/Documents/College Files/Projects/EnergyDisag';
 
 addpath(genpath(path));
+%addpath(genpath(pwd));
 
 DATA_DIR_PATH = strcat('/Users/Min/Documents/College Files/Projects/EnergyDisag/RawData/', home);
 %Find all .mat files starting with Tagged_* or Testing_*
@@ -51,7 +52,7 @@ test{j} = ProcessedData.L1_TimeTicks  ;
 % Plot all available data in file. The second argument controls if the
 % labels are plotted.
 figure (j)
-Belkin_PlotDatatest(ProcessedData, true);
+Belkin_PlotDataML(ProcessedData, true);
 
 %% Step 4 (alternative): Plot Data between first ON tagging event and last OFF tagging event
 % min_ts = min(cellfun(@(x)x(1), ProcessedData.TaggingInfo(:,3)));
