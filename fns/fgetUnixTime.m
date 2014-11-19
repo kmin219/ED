@@ -1,11 +1,11 @@
-function [ indexSubOn, indexSubOff ] = fgetUnixTime( unixTest, unixSub, eventOn, eventOff )
+function [ indexSubOn, indexSubOff ] = fgetUnixTime( unixTest, unixSub, eventOn, eventOff, sizeOn, sizeOff )
     window_size1 = 20;
     window_dist = 30;
     window_size2 = 20;
 
     % index is the event index in the test data
-    indexOn = (eventOn-1)+window_size1 + window_size2 + window_dist;
-    indexOff = (eventOff-1)+window_size1 + window_size2 + window_dist;
+    indexOn = (eventOn)+ floor((window_size1 + window_size2 + window_dist + sizeOn)/2);
+    indexOff = (eventOff)+ floor((window_size1 + window_size2 + window_dist + sizeOff)/2);
     
     % eventUnix is the corresponding Unixtimestamp of the index
     unixTestOn = unixTest(indexOn);   
