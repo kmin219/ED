@@ -3,6 +3,8 @@ clear all; clc;
 %% m.file locations
 path = pwd;
 addpath(genpath(path));
+path = 'D:\Belkin\';
+addpath(genpath(path));
 
 %% Step 1: Location and Filter for Dataset
 DATA_DIR_PATH = fullfile(path,'/Data/Belkin/H2');
@@ -181,92 +183,10 @@ end
 hold off;
     
 %%
-% %% Window Post-Process
-Bedroom_2_Lights_On = [3 5 7 9];
-Bedroom_2_Lights_Off = [4 6 8 10];
+figure()
+ax(1) = subplot(211);plot(n, featP_L2(n)); hold on;
+ax(2) = subplot(212);plot(n, featQ_L2(n));
+title('Real Power (W) and Reactive Power (var)');
+linkaxes(ax, 'x');
 
-Bonus_Room_Lights = [11 14 16 18];
-Bonus_Room_Lights = [13 15 17 19];
-
-for i = [1:length(Bedroom_2_Lights_On)]
-    idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    W_Bedroom_2_Lights{i}{1} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
-end
-
-for i = [1:length(Bedroom_2_Lights_Off)]
-    idx_start = min(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    idx_end = max(find(Windows_All_L1(:,3) == Bedroom_2_Lights_On(i)));
-    W_Bedroom_2_Lights{i}{2} = featP_scanA_L1(xmarkers1_L1(idx_start):xmarkers1_L1(idx_end));
-end
-
-% W_Bedroom_2_Lights_Q = Windows_Q_L1(Bedroom_2_Lights);
-% W_Bonus_Room_Lights = Windows_P_L1(Bonus_Rooim_Lights);
-% W_Computer = Windows_P_L1(Computer);
-% 
-% 
-% %% Training Error
-% Window_testP = W_Bedroom_2_Lights_P{1}{1}; % On
-% Window_testQ = W_Bedroom_2_Lights_Q{1}{1}; % On
-% 
-% N = length(Window_testP);
-% 
-% % Euclidean Distance Based
-% k = 1;
-% while(k+N-1 < length(featP_scanA_L1))
-%     sample = featP_scanA_L1(k:k+N-1);
-%     Dist = sqrt(sum((sample - Window_testP).^2));
-%     MetricP(k) = Dist;
-%     k = k+1;
-% end
-% 
-% % Euclidean Distance Based
-% k = 1;
-% while(k+N-1 < length(featQ_scanA_L1))
-%     sample = featQ_scanA_L1(k:k+N-1);
-%     Dist = sqrt(sum((sample - Window_testQ).^2));
-%     MetricQ(k) = Dist;
-%     k = k+1;
-% end
-% 
-% % Correlation Based
-% % k = 1;
-% % while(k+N-1 < length(featP_scanA))
-% %     sample = featP_scanA(k:k+N-1);
-% %     Temp = corrcoef(sample,Window_testP);
-% %     Dist = Temp(1,2);
-% %     MetricCor(k) = Dist;
-% %     k = k+1;
-% % end
-% 
-% 
-% n = 1:length(MetricP);
-% figure()
-% ax(1) = subplot(211);plot(n,MetricP);
-% ax(2) = subplot(212);plot(n,MetricQ);
-% linkaxes(ax, 'x');
-
-
-% figure()
-% plot(W_Computer{1}{1})
-% figure()
-% plot(W_Computer{2}{1})
-% figure()
-% plot(W_Computer{3}{1})
-
-% stem(W_Bedroom_2_Lights_P{1}{1});hold on;
-% stem(W_Bedroom_2_Lights_P{2}{1},'r');
-% stem(W_Bedroom_2_Lights_P{3}{1},'m');
-% stem(W_Bedroom_2_Lights_P{4}{1},'y');hold off;
-% 
-% www = W_Bedroom_2_Lights_P{1}{1}+W_Bedroom_2_Lights_P{2}{1}(1:74)+W_Bedroom_2_Lights_P{3}{1}(1:74)+W_Bedroom_2_Lights_P{4}{1}(1:74);
-% 
-% www = www/4;
-% % Euclidean Distance Based
-% k = 1;
-% while(k+N-1 < length(featP_scanA_L1))
-%     sample = featP_scanA_L1(k:k+N-1);
-%     Dist = sqrt(sum((sample - www).^2));
-%     MetricP(k) = Dist;
-%     k = k+1;
-% end
+hold off;

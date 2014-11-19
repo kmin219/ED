@@ -1,6 +1,6 @@
 clc;
 clear all;
-close all;
+% close all;
 
 if(0)
 % Power Difference from each Home
@@ -19,34 +19,32 @@ startup()
 path = pwd;
 addpath(genpath(path));
 
-load scanA_H2_1.mat
+% load scanA_H2_1.mat
 % load scanA_H2_2.mat
-% load scanA_H2_3.mat
+load scanA_H2_3.mat
 % load scanA_H2_4.mat
 %%
 % Phase 1
-featP_scanA_L1 = featP_scanA_L1_H2_1;
-featQ_scanA_L1 = featQ_scanA_L1_H2_1;
+featP_scanA_L1 = featP_scanA_L1_H2_3;
+featQ_scanA_L1 = featQ_scanA_L1_H2_3;
 
 % Phase 2
-featP_scanA_L2 = featP_scanA_L2_H2_1;
-featQ_scanA_L2 = featQ_scanA_L2_H2_1;
+featP_scanA_L2 = featP_scanA_L2_H2_3;
+featQ_scanA_L2 = featQ_scanA_L2_H2_3;
 
 
 %%
-load window_P_H2_all
-load window_Q_H2_all
+load window_P_H2_Dryer
+load window_Q_H2_Dryer
 tic
-window_P = window_P_H2_all;
-window_Q = window_Q_H2_all;
+window_P = window_P_H2_Dryer;
+window_Q = window_Q_H2_Dryer;
 % % Euclidean Distance Based
-% for i = [1:length(window_P)]  %% # of appliance IDs
-for i = [1:length(window_P)]  %% # of appliance IDs    
-    i
-    for j = [1:length(window_P{i})]
-    window_app_P = window_P{i}{j};  % appliance 1 event 1
-    window_app_Q = window_Q{i}{j};
-    if(window_app_P{4})  %% If 'good' appliance
+
+    for j = [1]
+    window_app_P = window_P{j};  % appliance 1 event 1
+    window_app_Q = window_Q{j};
+    if(1)  %% If 'good' appliance
         Non = length(window_app_P{1});  % window length - turn on  (P and Q have same length)
         Noff = length(window_app_P{2});  % window length - turn off        
         N = max([Non Noff]);
@@ -93,21 +91,14 @@ for i = [1:length(window_P)]  %% # of appliance IDs
             MetricQ_off(k) = DistQ_off;
             k = k+1;
         end
-        MetricP_all_on{i}{j} = MetricP_on;
-        MetricQ_all_on{i}{j} = MetricQ_on;
+        MetricP_all_on{j} = MetricP_on;
+        MetricQ_all_on{j} = MetricQ_on;
         
-        MetricP_all_off{i}{j} = MetricP_off;
-        MetricQ_all_off{i}{j} = MetricQ_off;
+        MetricP_all_off{j} = MetricP_off;
+        MetricQ_all_off{j} = MetricQ_off;
 
-        if(0)
+        if(1)
         n = 1:length(MetricP_on);
-        MetricP_on(find(MetricP_on>window_app_P{5}+1)) = window_app_P{5}+1;  % Cut Using Threshold
-        MetricQ_on(find(MetricQ_on>window_app_Q{6}+1)) = window_app_Q{6}+1;  % Cut Using Threshold
-        
-        MetricP_off(find(MetricP_off>window_app_P{5}+1)) = window_app_P{5}+1;  % Cut Using Threshold
-        MetricQ_off(find(MetricQ_off>window_app_Q{6}+1)) = window_app_Q{6}+1;  % Cut Using Threshold        
-
-
         figure()            
         ax(1) = subplot(411);plot(n,MetricP_on);
 %         title(sprintf('P Monitor: "%s"', char(idx_H2_1(i,2))))
@@ -134,34 +125,16 @@ for i = [1:length(window_P)]  %% # of appliance IDs
         end
     end
     end
-end
+
 toc
-%%
-MetricP_all_on_H2_1 = MetricP_all_on;
-MetricQ_all_on_H2_1 = MetricQ_all_on;
-MetricP_all_off_H2_1 = MetricP_all_off;
-MetricQ_all_off_H2_1 = MetricQ_all_off;
 
-save('MetricP_all_on_H2_1.mat', 'MetricP_all_on_H2_1')
-save('MetricQ_all_on_H2_1.mat', 'MetricQ_all_on_H2_1')
-save('MetricP_all_off_H2_1.mat', 'MetricP_all_off_H2_1')
-save('MetricQ_all_off_H2_1.mat', 'MetricQ_all_off_H2_1')
-%%
-% figure;
-% ax(1) = subplot(211);plot(featP_scanA_L1);
-% ax(2) = subplot(212);plot(featQ_scanA_L1);
-% linkaxes(ax,'x');
+MetricP_all_on_H3_3 = MetricP_all_on;
+MetricQ_all_on_H3_3 = MetricQ_all_on;
+MetricP_all_off_H3_3 = MetricP_all_off;
+MetricQ_all_off_H3_3 = MetricQ_all_off;
 
-% for i = [1:length(window_P)]  %% # of appliance IDs    
-%     i
-%     for j = [1:length(window_P{i})]
-%         if(~isempty(MetricP_all_on{i}))  %% If 'good' appliance
-%             figure;
-%             ax(1) = subplot(211);plot(MetricP_all_on{i}{j});
-%             ax(2) = subplot(212);plot(MetricQ_all_on{i}{j});
-%             linkaxes(ax,'x');
-%             pause;
-%         end
-%     end
-% end
-
+        
+% save('MetricP_all_on_H3_3.mat', 'MetricP_all_on_H3_3')
+% save('MetricQ_all_on_H3_3.mat', 'MetricQ_all_on_H3_3')
+% save('MetricP_all_off_H3_3.mat', 'MetricP_all_off_H3_3')
+% save('MetricQ_all_off_H3_3.mat', 'MetricQ_all_off_H3_3')

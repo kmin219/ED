@@ -4,6 +4,8 @@ startup()
 %% m.file locations
 path = pwd;
 addpath(genpath(path));
+path = 'D:\Belkin\';
+addpath(genpath(path));
 
 %% Step 1: Location and Filter for Dataset
 DATA_DIR_PATH = fullfile(path,'/Data/Belkin/H2');
@@ -49,7 +51,7 @@ featQ_L1 = ProcessedData.L1_Imag;  % truncate
 featP_L2 = ProcessedData.L2_Real;  % truncate
 [featP_EventA_L2, featP_scanA_L2] = fdetect_power_twoWindows(featP_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
-featQ_L2 = ProcessedData.L1_Imag;  % truncate
+featQ_L2 = ProcessedData.L2_Imag;  % truncate
 [featQ_EventA_L2, featQ_scanA_L2] = fdetect_power_twoWindows(featQ_L2,Window_Size,Window_Size,Window_Shift,Window_Dist,power_thres);  % the x-axis of the returned signal is where the first window is in smoothing
 
 
@@ -119,3 +121,4 @@ hold off;
 end
 unixTime = ProcessedData.L1_TimeTicks;
 end
+

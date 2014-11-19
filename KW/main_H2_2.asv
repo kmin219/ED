@@ -1,5 +1,5 @@
 %% Clear workspace
-clear all; clc;
+clear all; clc; 
 %% m.file locations
 path = pwd;
 addpath(genpath(path));
@@ -22,7 +22,7 @@ for i = 1:size(fileList,2)
 end
 %% Step 3: Load Data File
 % Load one of training files, in partuclar the first.
-fname = fileList{1}; % ***** Note: We are only loading one of the files. This should be put in a loop as needed **
+fname = fileList{2}; % ***** Note: We are only loading one of the files. This should be put in a loop as needed **
 clear Buffer;
 
 fprintf(1, 'Loading file: %s\n', fname);
@@ -182,3 +182,20 @@ end
 
 hold off;
     
+%%
+figure()
+ax(1) = subplot(211);plot(n, featP_L2(n)); hold on;
+ax(2) = subplot(212);plot(n, featQ_L2(n));
+title('Real Power (W) and Reactive Power (var)');
+linkaxes(ax, 'x');
+
+hold off;
+
+
+
+%% Plotting - Phase 2 
+figure();
+n = [1:length(featP_L2)];
+plot(n, featP_L2(n), 'r'); grid;
+ylabel('Real Power (W)');
+xlabel('Samples');
