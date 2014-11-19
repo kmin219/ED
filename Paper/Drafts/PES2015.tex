@@ -432,9 +432,7 @@ In this paper, we present a method that focuses on extracting turn-on and turn-o
 \section{Data and Methodology}\label{sec:dataMethod}
 %The objective is this.... because of this and the dataset, our methodology is specifically chosen for ...This section provides an overview of the dataset and a description of our methodology. 
 
-
-
-Because the dataset is representative of real world appliance usage data, and that we are trying to fine detect multiple appliances and not just major ones, we have chosen a specific methodology.  If we are just detecting major appliances a different methodology can be used.  Strategy is to detect when and appliance turns on and turns off as opposed to steady state characteristics.  Out of 40 appliances per home, only a few exhibit steady state features that allow discrimination from background noise or other appliances.  
+In this section, we describe the dataset that was used and our methodology for detecting appliances in the test data. Because the set of appliances in each home includes multiple small devices with similar steady-state load characteristics, our methodology focuses on identifying the unique features when a device turns on and off (the transient periods).  Out of approximately 37 appliances per home, only a small subset exhibits steady state features that allow discrimination from other appliances or background noise.   
 
 \subsection{Dataset}
 %Show visualizations
@@ -447,68 +445,16 @@ Because the dataset is representative of real world appliance usage data, and th
 %	-for example, constant power loads, show no change, eg. light
 %	-needed to correct time stamps in order to accurately determine signature windows
 
-In this paper, we utilize the complete dataset available from kaggle.com, provided by Belkin Energy \cite{Kaggle}.  The dataset is publicly available on the competition website and contains the first five harmonics of rms voltage and current on two phases for four households (labeled H1-H4),consisting of both training and testing datasets.  The dataset also contains high frequency noise (EMI) data for each household, but is not required with our approach. The training data consists of manually generated power consumption for each appliance at each home.  These typically consist of only one appliance switched on at a time, although background noise is present from untagged appliances.  Table \ref{table:dataset} shows the number of distinct appliances in each home an the number of training and test datasets provided.  Tagging labels in the training data are also provided by Belkin, however, these are not precise enough to correctly identify device on and off times. An example of the data from Home H2 is shown in Fig.\ref{fig:traintest}.  A discussion for tagging label correction is presented in Section \ref{sec:training}.   The observations recorded in each training and testing dataset cover approximately 24 hours.  
-
-\begin{figure}[!t]	
-	\centering
-		\subfloat[Training]{\includegraphics[width=2.5in]{fig/exTrain.eps}
-			\label{fig:event1ml}}
-		\hfil
-		\subfloat[Test]{\includegraphics[width=2.5in]{fig/exTestH2_1.eps}
-			\label{fig:event2ml}}
-	%\includegraphics[width=3.5in]{fig/exTestH2_1.eps}
-	\caption{Example of (a) training and (b) test data from Home 4.} 
-	\label{fig:traintest}
-\end{figure}
-
-%For each home, the datasets include the first 5 harmonics of voltage and current measurements the FFT of the high frequency noise (captured every 1.0667 seconds).  The sampling rate is $f_s$ = 2 Mhz, which results in an FFT resolution of $f_r$ = 244.14 Hz. The dataset for each home is composed of several files.  For example, the data for H4 contains two training datasets and four testing datasets. The size and description of the files associated with each training and testing dataset are detailed in the tables below.
-
-%\begin{table}[h]
-%	\caption{Example of Data Files for Each Training and Testing Dataset}\label{files}
-%	\begin{center}
-%		%\vskip -5pt
-%		\begin{tabular}{|l|l|l|}\hline
-%			\textbf{File name} & \textbf{Description} & \textbf{Data Size}\\
-%			\hline
-%			HF & spectrogram of high frequency noise & 4096 $\times$ 81000\\
-%			\hline
-%			
-%			TimeTicksHF &  UNIX timestamps corresponding to the HF & 81000$\times$1\\
-%			\hline
-%			
-%			LF1V & fundamental and first 5 harmonics of 60Hz voltage of Phase-1. & 517067$\times$6\\
-%			\hline
-%			
-%			LF1I & fundamental and first 5 harmonics of 60Hz current of Phase-1. & 517067$\times$6\\
-%			\hline
-%			
-%			TimeTicks1 & UNIX timestamps corresponding to Phase-1 current and voltage. & 517067$\times$1\\
-%			\hline
-%			
-%			LF2V & fundamental and first 5 harmonics of 60Hz voltage of Phase-2. &  517066$\times$6\\
-%			\hline
-%			
-%			LF2I & fundamental and first 5 harmonics of 60Hz current of Phase-2. & 517066$\times$6\\
-%			\hline
-%			
-%			Timeticks2 & UNIX timestamps corresponding to Phase-2 current and voltage. &  517066$\times$1\\
-%			\hline
-%			
-%			TaggingInfo & labels for training purposes (For Training Data only) & 35$\times$4 \\
-%			\hline
-%		\end{tabular}
-%	\end{center}
-%\end{table}
-
+In this paper, we utilize the complete dataset available from kaggle.com, provided by Belkin Energy \cite{Kaggle}.  The dataset is publicly available on the competition website and contains the first five harmonics of rms voltage and current on two phases for four households (labeled H1-H4). The dataset also contains high frequency noise (EMI) data for each household, but is not required with our approach (see further discussion in Section \ref{sec:concl}).  Although both training and test datasets are provided, only the training data provides labels and corresponding timestamps for each appliance. Table \ref{table:dataset} shows the number of distinct appliances in each home an the number of training and test sets provided. 
 
 \begin{table}[h!]
 	\renewcommand{\arraystretch}{1.3}
 	\caption{Number of Distinct Appliances and Datasets for Each Home}\label{classes}
 	\label{table:dataset}
 	\centering
-	\begin{tabular}{p{1.5cm}||p{1.5cm}||p{1.5cm}||p{1.5cm}}
+	\begin{tabular}{c||c||c||c}
 		\hline 
-	\textbf{Home No.} & \textbf{Appliances} &\textbf{Training Sets} &\textbf{Test Sets}\tabularnewline
+		\textbf{Home No.} & \textbf{Appliances} &\textbf{Training} &\textbf{Test}\tabularnewline
 		\hline 
 		\hline 
 		H1 & 38 & 6 & 4\tabularnewline
@@ -522,18 +468,34 @@ In this paper, we utilize the complete dataset available from kaggle.com, provid
 	\end{tabular}
 \end{table}
 
+The training sets consist of manually generated power consumption data for each appliance in each home.  The training data is a time-serires where only one appliance is switched on at a time, although background noise can be present from untagged appliances.   Tagging labels in the training data are also provided by Belkin, however, these are not always precise enough to correctly identify device on and off times. Tagging label correction is discussed in Section \ref{sec:training}.  Fig.\ref{fig:traintest} shows an example of both training and test data from H2.  The observations recorded in each training and test set cover approximately 24 hours.  
+
+\begin{figure}[!h]	
+	\centering
+		\subfloat[Training]{\includegraphics[width=3.5in,height = 1in]{fig/exTrain.eps}
+			\label{fig:event1ml}}
+		\hfil
+		\subfloat[Test]{\includegraphics[width=3.5in,height = 1in]{fig/exTestH2_1.eps}
+			\label{fig:event2ml}}
+	%\includegraphics[width=3.5in]{fig/exTestH2_1.eps}
+	\caption{Example of (a) training and (b) test data from Home 2.  Real power consumption is shown for both phases. } 
+	\label{fig:traintest}
+\end{figure}
+
 
 \subsection{Methodology}
+Our goal is to develop an interpretable yet effective classification approach.  It can be observed from Fig. \ref{fig:traintest} (b) that the test data is the aggregated load of multiple appliances.  Therefore, at any given time, it is not possible to determine which appliances are operating by using only the level of power consumption.  However, when an appliance is turned on or off, a step change is produced in real and reactive power.  By comparing the average power consumed before and after these transient events, we can calculate averaged power differences, facilitating discrimination among appliances.  For this reason, our methodology focuses on detecting unique turn-on and turn-off signatures in the power differences domain for each appliance.
 
--explain methodology
-	- voltage/current harmonics to P/Q to differences to distances
-	-and why we use this approach
-	-include block diagram
-	-goal is to automate, this task can be done manually, but too tedious
-	-compare to previous and to data mining methods, ours is more interpretable
-	-ability for real time processing
+The first step is to extract transient signature windows for each appliance and is accomplished by  converting P and Q domain into the differences domain by taking the difference of two moving average windows .  After P and Q differences are calculated, transient signature windows are extracted for each appliance.  This procedure is explained in detail in section \ref{sec:training}. 
 
-	
+Once transient signature windows are extracted for each appliance event in the training data, cross-validation is performed to determine if the signature windows are unique.  This procedure is explained in detail in Section \ref{sec:cv}. 
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=3.3in]{fig/flow.png}
+	\caption{Flow chart of proposed methodology.  The procedure is separated into window extraction, cross-validation, and application to test data.}
+	\label{fig:flow}
+\end{figure}
 
 
 
@@ -559,7 +521,7 @@ In this paper, we utilize the complete dataset available from kaggle.com, provid
 \end{figure}	
 
 \section{Training - Signature Window Extraction}\label{sec:training}
-This section concentrates on extracting transient signature windows by using the real and the reactive power differences.  In particular, two ON/OFF signature windows are trained for each event of the appliances at each home.  The following sections describe training signature windows depending on the shape of the load.  
+This section describes how transient signature windows are extracted by using the real and the reactive power differences.  In particular, a pair of turn-on and turn-off signature windows are trained for each event of each appliance.  The following sections describe how training the signature windows is dependent upon the shape of the load.  
 
 
 \subsection{Load Types}
@@ -572,39 +534,39 @@ First, the appliances are categorized into three load types based on their load 
 \newline
 \item{Cyclical loads:} - The amount of real or reactive power consumed by these loads change depending on the cycle of their operation.  Dryer, oven, and washers are included in this category.   However, because they operate on set cycles, there are only a few possible periodic load shapes they can follow.  Two approaches are suggested to detect these type of loads; using multiple windows or detecting a notable landmark during the operation.
 \end{enumerate}
-Based on these three general load shapes, 
+%Based on these three general load shapes, 
 
-\subsection{Average Power Differences}
-Average power differences are used to detect step changes in real and reactive power consumption. Now to train the windows, the real and the reactive power differences are calculated from two moving average windows.  The average differences for real power $S_{P}(n)$ is defined as,
+\subsection{Averaged Power Differences}
+Moving average differences are used to detect step changes in real and reactive power consumption. To train the windows, the real and the reactive power differences are calculated from two moving average windows.  The average differences for real power $S_{P}(n)$ is defined as,
 \begin{equation}
 S_{P}(n) = \frac{1}{N}\sum_{k=0}^{N}P(n-k) - \frac{1}{N}\sum_{k=N+D}^{2N+D}P(n-k)
 \end{equation}
-where $N$ is the window size and $D$ is the distance between the two windows.  The average differences for reactive power, $S_{Q}(n)$, is calculated using the same $N$ and $D$.  It should be noted that if shorter window size is used, it is easier to distinguish events from other events happening at the same incidence.  However, the detector becomes less robust to noise.
+where $N$ is the window size and $D$ is the distance between the two windows.  The average differences for reactive power, $S_{Q}(n)$, is calculated using the same $N$ and $D$.  It should be noted that if a shorter window size is used, it is easier to distinguish events happening at the same incidence.  However, the detector becomes less robust to noise.
 
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=3.5in]{fig/maw.eps}
-	\caption{Two Moving Average Windows.}
+	\caption{Difference of two moving average windows to detect transient signatures.}
 	\label{fig:maw}
 \end{figure}
 
-Using the power difference,  the mismatches in the tagging info and the actual event index are corrected.  A threshold for the real power difference is set to indicate whether an event occurred, (event occurred if $|S(n)| >$ threshold).  Then this corrected indexes are used as the actual event index instead of the tagging info provided.  On the top plot of Fig. \ref{fig:tagging}, the tagging info of the master room lights do not align with the actual event incidence.  The red markers in the bottom plot shows when the power difference is greater than the threshold and this index is used as the corrected tagging info.  It should be noted that we discarded some appliances that consumes very small real or reactive power.  For these appliances, using real and reactive power differences will rather cause more false alarms in the test data due to the effects of the noises. 
+Using the power difference,  the mismatches in the tagging info and the actual event index are corrected.  A threshold for the real power difference is set to indicate whether an event occurred, (event occurred if $|S(n)| >$ threshold).  Then the corrected indexes are used as the actual event index instead of the tagging info provided in the raw data.  On the top plot of Fig. \ref{fig:tagging}, the tagging labels of the master bedroom lights do not align with the actual event incidence.  The red markers in the bottom plot shows when the power difference is greater than the threshold; this index is used as the corrected tagging label.  It should be noted that some appliances that consumes very small real or reactive power are discarded as they cannot be detected.  For these appliances, using real and reactive power differences will cause false detections in the test data due to the effects of the noise. 
 
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=3.5in]{fig/masterlights.eps}
-	\caption{Tagging Info Correction.}
+	\caption{Provided tagging labels are corrected in the power differences domain.}
 	\label{fig:tagging}
 \end{figure}
 	
 
 \subsection{Signature Window Extraction}
-After taking the power differences, the next stop is to extract the signatures for on-events and off-events. The windows are extracted starting from the corrected tagging info.  If an appliance has an longer transient characteristics (non-rectangular load shapes), longer window size is used to detect event.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consumes about 38 Watts at event incidence.  However, laptop charger then spends additional 38 Watts to fully turn on.  Therefore, longer window lengths are used to detect laptop charger than in detecting the dining room lights. 
+After taking the power differences, the next stop is to extract the signatures for turn-on events and turn-off events. The windows are extracted using the corrected tagging labels.  If an appliance has longer transient characteristics (non-rectangular load shapes), longer window sizes are used to capture the entire unique transient period.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consume about 38 W at event incidence.  However, the laptop charger then spends additional 38 Watts to fully turn on.  Therefore, longer window lengths are needed to detect laptop charger than the dining room lights. 
 
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=3.5in]{fig/windowlength.eps}
-	\caption{Simple Distribution Feeder.}
+	\caption{Example of how choosing the appropriate window length can affect classification.}
 	\label{fig:windowlength}
 \end{figure}
 
@@ -612,7 +574,6 @@ Insert windows used for cyclical loads.
 
 Outlier detection is also held in this stage.  Consider the four ON/OFF events of a computer as shown in Fig. \ref{fig:outlier}.  It is shown that when event 2 occurred, some background noise are introduced that affected the turn-on signature of the computer.  In this case, the second event is regarded as an outlier and is not used in training the windows.
 
-distance domain is used to detect outliers
 
 \begin{figure}[!t]
 	\centering
@@ -640,18 +601,7 @@ distance domain is used to detect outliers
 %		\label{fig:rec}}
 %\end{figure}
 
-First, an event detector is used in the real power domain to estimate the exact switching time of the event.  By  in the training data.  This is to account for the mismatches of the provided tagging info and the exact switching index.  
-
 A typical rectangular load shape of is shown in Figure \ref{fig:rec}.  Many appliances turned out to have rectangular load shape and these appliances can be separated using real and reactive power consumption features.  Figure \ref{fig:PQ} shows feature space of appliances that have rectangular load shape.  The feature vector of each class are clustered together, implying that the real and reactive power features are sufficient for classifying most of the appliances.
-
-
-This section concentrates on extracting the feature windows in low frequency data.  In particular the real and the reactive power differences are used to extract these windows.  First, a separate event detector is used to correct the   event detector is used in the Training Data to correct the mismatches 
-
-
-
-The procedures for calculating the real power and the reactive power include event detection, data smoothing, and power calculation.
-
-
 
 
 % An example of a floating figure using the graphicx package.
@@ -739,17 +689,23 @@ The procedures for calculating the real power and the reactive power include eve
 
  
 
-
 \section{Validation}\label{sec:cv}
-Discuss cross validation here. this is the whole procedure for generating thresholds.
-
-Although data is high resolution (and therefore high dimensional in number of rows), the majority of information unique to each appliance is concentrated to turn-on and turn-off signatures.  This is due to the fact that when multiple appliances are running, the absolute level cannot be used to detect whether one specific appliance is on or not.  The change in real and reactive power consumption must be used to detect which appliance has turned on.  
+Although data is high resolution (and therefore high dimensional in number of rows), the majority of information unique to each appliance is concentrated to turn-on and turn-off signatures.  
 
 Prior to submitting our predictions, the 
 
 need figures as examples of P/Q domain, diff domain, distance domain, window shape (big subplot 3x3?)
 
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=3.5in, height = 2.5in]{fig/cv_bread.eps}
+	\caption{Cross-validation of appliance "breadmaker" for two events in the training data.}
+	\label{fig:bread}
+\end{figure}
+
 show how signatures for small appliances, those of the same type in different locations, can produce different signature windows, allowing for separation.
+
+include table of number of unique signature windows for each home
 
 \section{Test Data}\label{sec:test}
 - rules for on/off pairing
@@ -768,6 +724,13 @@ discuss difficulty of classification based on load types:
 - resistive + reactive (rotating like fans) - Q is a feature to help classify; if P is not unique, but Q is, greatly increases classification
 -dynamic
 	- cyclical (washer dryer) - require rules, ie. landmark detection
+	
+\subsection{Tradeoffs}
+One of the advantages of this approach is that it is more interpretable as it follows intuition for detecting appliance on and off events.  With the proposed approach, misclassifications can be traced back to the signature window length or detection thresholds.  This is particularly true when compared to methods utilizing 'black box' predictive models such as artificial neural networks.  Furthermore, the proposed approach as the ability for real time processing.
+
+However, one of the primary drawbacks is that manual identification of appropriate window lengths is requried during training.
+
+
 
 
 
@@ -777,10 +740,10 @@ discuss difficulty of classification based on load types:
 
 
 % use section* for acknowledgement
-\section*{Acknowledgment}
-
-
-The authors would like to thank...
+%\section*{Acknowledgment}
+%
+%
+%The authors would like to thank...
 
 
 
