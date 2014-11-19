@@ -1,8 +1,8 @@
 clear all; close all;clc;
 
 %% m.file locations
-LoadDataML_KW();
-main_H4_1_KW();
+LoadDataML();
+main_H4_1();
 load H4idx.mat
 labels = H4_1Labels
 load window_P_H4_1
