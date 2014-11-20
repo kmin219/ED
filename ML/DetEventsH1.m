@@ -30,8 +30,8 @@ load MetricQ_all_off_H1_3.mat
 load MetricQ_all_off_H1_4.mat
 
 %  Load Windows to get thresh
-load window_P_H1_all
-load window_Q_H1_all
+load winH1All
+
 
 %% Detect On/Off Events for Test 1 Data
 
@@ -155,32 +155,32 @@ end
 save('events_H1.mat', 'eventsH1_1','eventsH1_2','eventsH1_3','eventsH1_4');
 
 %%  Visualize Combined On Off results to verify
-% 
-% metPdata = MetricP_all_on_H1_1;
-% metQdata = MetricQ_all_on_H1_1;
-% 
-% for i = 1:36
-%     disp(i)
-%     if(~isempty(events{i}))
-%         for j = 1:length(events{i})
-%             if any(events{i}{j})
-%             MetricP = metPdata{i}{j};
-%             MetricQ = metQdata{i}{j};
-%                 
-%                 figure()
-%                 ax(1) = subplot(311);plot(MetricP);
-%                 title(sprintf('MetricP for Appliance %i', i))
-%                 ax(2) = subplot(312);plot(MetricQ);
-%                 title(sprintf('MetricQ for Appliance %i', i))
-%                 ax(3) = subplot(313);stem(events{i}{j});
+
+metPdata = MetricP_all_on_H1_3;
+metQdata = MetricQ_all_on_H1_3;
+
+for i = 35
+    disp(i)
+    if(~isempty(eventsH1_1{i}))
+        for j = 1:length(eventsH1_1{i})
+%             if any(eventsH1_1{i}{j})
+            MetricP = metPdata{i}{j};
+            MetricQ = metQdata{i}{j}; 
+                
+                figure()
+                ax(1) = subplot(311);plot(MetricP);
+                title(sprintf('MetricP for Appliance %i', i))
+                ax(2) = subplot(312);plot(MetricQ);
+                title(sprintf('MetricQ for Appliance %i', i))
+%                 ax(3) = subplot(313);stem(eventsH1_1{i}{j});
 %                 title(sprintf('ON Event for Window  %i', j))
-%                 linkaxes(ax, 'x');
-% 
-%                 pause; 
+                linkaxes(ax, 'x');
+
+                pause; 
 %             end
-%         end
-%     end
-% end
+        end
+    end
+end
 
 %%  Visualize Combined Off results to verify
 % 

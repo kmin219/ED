@@ -41,16 +41,16 @@ for i = [unique(sort([H1_1_ID;H1_2_ID;H1_3_ID;H1_4_ID;H1_5_ID;H1_6_ID]))']
     temp = [temp window_P_H1_2(idx_H2)];
     
     idx_H3 = find(H1_3_ID == i);
-    temp = [temp window_P_H1_2(idx_H3)];
+    temp = [temp window_P_H1_3(idx_H3)];
     
     idx_H4 = find(H1_4_ID == i);
-    temp = [temp window_P_H1_2(idx_H4)];
+    temp = [temp window_P_H1_4(idx_H4)];
     
     idx_H5 = find(H1_5_ID == i);
-    temp = [temp window_P_H1_2(idx_H5)];
+    temp = [temp window_P_H1_5(idx_H5)];
     
     idx_H6 = find(H1_6_ID == i);
-    temp = [temp window_P_H1_2(idx_H6)];
+    temp = [temp window_P_H1_6(idx_H6)];
     
     window_P_H1_all{i} = temp;
 end
@@ -65,16 +65,16 @@ for i = [unique(sort([H1_1_ID;H1_2_ID;H1_3_ID;H1_4_ID;H1_5_ID;H1_6_ID]))']
     temp = [temp window_Q_H1_2(idx_H2)];
     
     idx_H3 = find(H1_3_ID == i);
-    temp = [temp window_Q_H1_2(idx_H3)];
+    temp = [temp window_Q_H1_3(idx_H3)];
     
     idx_H4 = find(H1_4_ID == i);
-    temp = [temp window_Q_H1_2(idx_H4)];
+    temp = [temp window_Q_H1_4(idx_H4)];
     
     idx_H5 = find(H1_5_ID == i);
-    temp = [temp window_Q_H1_2(idx_H5)];
+    temp = [temp window_Q_H1_5(idx_H5)];
     
     idx_H6 = find(H1_6_ID == i);
-    temp = [temp window_Q_H1_2(idx_H6)]; 
+    temp = [temp window_Q_H1_6(idx_H6)]; 
     
     window_Q_H1_all{i} = temp;
     i
