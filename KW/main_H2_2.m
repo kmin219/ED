@@ -190,3 +190,12 @@ title('Real Power (W) and Reactive Power (var)');
 linkaxes(ax, 'x');
 
 hold off;
+
+
+
+%% Plotting - Phase 2 
+figure();
+n = [1:length(featP_L2)];
+plot(n, featP_L2(n), 'r'); grid;
+ylabel('Real Power (W)');
+xlabel('Samples');

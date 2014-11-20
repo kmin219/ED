@@ -20,17 +20,17 @@ path = pwd;
 addpath(genpath(path));
 
 % load scanA_H2_1.mat
-% load scanA_H2_2.mat
-load scanA_H2_3.mat
+load scanA_H2_2.mat
+% load scanA_H2_3.mat
 % load scanA_H2_4.mat
 %%
 % Phase 1
-featP_scanA_L1 = featP_scanA_L1_H2_3;
-featQ_scanA_L1 = featQ_scanA_L1_H2_3;
+featP_scanA_L1 = featP_scanA_L1_H2_2;
+featQ_scanA_L1 = featQ_scanA_L1_H2_2;
 
 % Phase 2
-featP_scanA_L2 = featP_scanA_L2_H2_3;
-featQ_scanA_L2 = featQ_scanA_L2_H2_3;
+featP_scanA_L2 = featP_scanA_L2_H2_2;
+featQ_scanA_L2 = featQ_scanA_L2_H2_2;
 
 
 %%

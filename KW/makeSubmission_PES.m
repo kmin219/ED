@@ -7,39 +7,12 @@ path = 'D:\Belkin\';
 addpath(genpath(path));
 
 tableSub = readtable('SampleSubmission.csv');
-load unixTest_H1_1
-load unixTest_H1_2
-load unixTest_H1_3
-load unixTest_H1_4
-
-load unixTest_H2_1
-load unixTest_H2_2
-load unixTest_H2_3
-load unixTest_H2_4
 
 load unixTest_H3_1
 load unixTest_H3_2
 load unixTest_H3_3
 load unixTest_H3_4
 
-load unixTest_H4_1
-load unixTest_H4_2
-load unixTest_H4_3
-load unixTest_H4_4
-
-load testH3_1
-load testH3_2
-load testH3_3
-load testH3_4
-
-% load H3_1pairs
-% load H3_2pairs
-% load H3_3pairs
-% load H3_4pairs
-load H2pairs % Home 2
-%% Test
-eventOn = 200000;
-eventOff = 200002;
 %%
 H3_1 = [
 33	271459 276145 72 69
@@ -49,19 +22,27 @@ H3_1 = [
 H3_2 = [
 12 312152 319983 116 72
 12 286960 295313 116 72
+31 242476 243192 80 70
+31 245721 246438 80 70
 ];
-
 
 
 H3_3 = [
 12 297654 305408 116 72
 12 318890 326262 116 72
+31 207181 207896 80 70
+31 253288 254004 80 70
+31 256590 257307 80 70
+31 418242 418598 80 70
 ];
 
 
 H3_4 = [
     12 288997  296849 116 72
     12 308052  319716 116 72
+    31 242616 243345 80 70
+    31 245717 246013 80 70
+    31 336823 337606 80 70
 ];
 
 

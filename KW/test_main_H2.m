@@ -122,3 +122,11 @@ end
 unixTime = ProcessedData.L1_TimeTicks;
 end
 
+%% Plotting - reactive power
+% figure();
+% n = [1:length(featQ_L2)];
+% ax(1) = subplot(211);plot(n, featQ_L2(n), 'r'); grid;
+% ax(2) = subplot(212);plot(n, [zeros(1,70) featQ_scanA_L2], 'r');grid;
+% title('Real Power (W) and ON/OFF Device Category IDs');
+% % hline = refline([0 0]);
+% linkaxes(ax, 'x');

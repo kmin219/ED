@@ -539,7 +539,7 @@ First, the appliances are categorized into three load types based on their load 
 \subsection{Averaged Power Differences}
 Moving average differences are used to detect step changes in real and reactive power consumption. To train the windows, the real and the reactive power differences are calculated from two moving average windows.  The average differences for real power $S_{P}(n)$ is defined as,
 \begin{equation}
-S_{P}(n) = \frac{1}{N}\sum_{k=0}^{N}P(n-k) - \frac{1}{N}\sum_{k=N+D}^{2N+D}P(n-k)
+S_{P}(n) = \frac{1}{N}\sum_{k=0}^{N-1}P(n-k) - \frac{1}{N}\sum_{k=N+D}^{2N+D-1}P(n-k)
 \end{equation}
 where $N$ is the window size and $D$ is the distance between the two windows.  The average differences for reactive power, $S_{Q}(n)$, is calculated using the same $N$ and $D$.  It should be noted that if a shorter window size is used, it is easier to distinguish events happening at the same incidence.  However, the detector becomes less robust to noise.
 
@@ -570,11 +570,19 @@ After taking the power differences, the next stop is to extract the signatures f
 	\label{fig:windowlength}
 \end{figure}
 
-Insert windows used for cyclical loads.
+Cyclical loads exhibit unique characteristics that are different from the rectangular and non-rectangular loads.  For these type of loads, separate rules are made for the detection.  Consider the oven shown in Fig. \ref{fig:demon}.  In addition to the turn-on signature window, the real power waveform consistently rises and falls until the appliance is turned off.  This additional changes are trained as separate signature windows to indicate that the oven is still in operation.  
+
+Similarly, dryers in Home 2 consistently shows sharp peaks while operating as shown in Fig. \ref{fig:dryerH2}.  Signature windows are trained to detect these sharp peaks to indicate that dryer is in operation in Home 2.  It should be noted that, some delays are introduced because this sharp peaks doesn't always occur at the exact time of the switching time.
 
 Outlier detection is also held in this stage.  Consider the four ON/OFF events of a computer as shown in Fig. \ref{fig:outlier}.  It is shown that when event 2 occurred, some background noise are introduced that affected the turn-on signature of the computer.  In this case, the second event is regarded as an outlier and is not used in training the windows.
 
-
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=3.5in]{fig/dryerH2.eps}
+	\caption{Unique Characteristics of Dryers in Home 2.}
+	\label{fig:dryerH2}
+\end{figure}
+	
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=3.5in]{fig/outlier.eps}
@@ -593,16 +601,6 @@ Outlier detection is also held in this stage.  Consider the four ON/OFF events o
 %		\caption{Fault Current Waveform (a) Original waveform, (b) Truncated waveform used for the study.}
 %		\label{fig:demon}
 %	\end{figure}	
-	
-	
-%\begin{figure}[!t]
-%	\centering
-%	\subfloat[]{\includegraphics[width=2.5in]{fig/masterlights.eps}
-%		\label{fig:rec}}
-%\end{figure}
-
-A typical rectangular load shape of is shown in Figure \ref{fig:rec}.  Many appliances turned out to have rectangular load shape and these appliances can be separated using real and reactive power consumption features.  Figure \ref{fig:PQ} shows feature space of appliances that have rectangular load shape.  The feature vector of each class are clustered together, implying that the real and reactive power features are sufficient for classifying most of the appliances.
-
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
