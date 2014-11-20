@@ -3,7 +3,7 @@ clear all; close all;clc;
 path = pwd;
 addpath(genpath(path));
 
-LoadData();
+LoadDataML();
 main_H4_2();
 load H4idx.mat
 labels = H4_2Labels

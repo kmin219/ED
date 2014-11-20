@@ -9,6 +9,17 @@ addpath(genpath(path));
 path = 'D:\Belkin\';
 addpath(genpath(path));
 DATA_DIR_PATH = 'D:\Belkin\Data\Belkin\H4';
+
+%% For running on ML's mbp
+% Step 1: Location and Filter for Dataset
+home = 'H4';
+path  = '/Users/Min/Documents/College Files/Projects/EnergyDisag';
+
+addpath(genpath(path));
+
+DATA_DIR_PATH = strcat('/Users/Min/Documents/College Files/Projects/EnergyDisag/RawData/', home);
+%Find all .mat files starting with Tagged_* or Testing_*
+
 %%
 %DATA_FILE_FILTER = 'Tagged\w*.mat';  % Training Files
 DATA_FILE_FILTER = 'Testing\w*.mat';  % Testing Files
