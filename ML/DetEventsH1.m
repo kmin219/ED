@@ -159,7 +159,7 @@ save('events_H1.mat', 'eventsH1_1','eventsH1_2','eventsH1_3','eventsH1_4');
 % metPdata = MetricP_all_on_H1_1;
 % metQdata = MetricQ_all_on_H1_1;
 % 
-% for i = 1:numApp
+% for i = 1:36
 %     disp(i)
 %     if(~isempty(events{i}))
 %         for j = 1:length(events{i})

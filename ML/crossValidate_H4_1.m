@@ -12,7 +12,7 @@ load window_Q_H4_1
 window_P = window_P_H4_1; 
 window_Q = window_Q_H4_1;
 % Euclidean Distance Based
-for i = [1:length(window_P)]
+for i = [22:length(window_P)]
     if(~isempty(window_P{i}))
         disp(i)
         N = length(window_P{i}{1});  % P and Q windows are the same length
