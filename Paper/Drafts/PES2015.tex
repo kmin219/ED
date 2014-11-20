@@ -570,9 +570,7 @@ After taking the power differences, the next stop is to extract the signatures f
 	\label{fig:windowlength}
 \end{figure}
 
-Cyclical loads exhibit unique characteristics that are different from the rectangular and non-rectangular loads.  For these type of loads, separate rules are made for the detection.  Consider the oven shown in Fig. \ref{fig:demon}.  In addition to the turn-on signature window, the real power waveform consistently rises and falls until the appliance is turned off.  This additional changes are trained as separate signature windows to indicate that the oven is still in operation.  
-
-Similarly, dryers in Home 2 consistently shows sharp peaks while operating as shown in Fig. \ref{fig:dryerH2}.  Signature windows are trained to detect these sharp peaks to indicate that dryer is in operation in Home 2.  It should be noted that, some delays are introduced because this sharp peaks doesn't always occur at the exact time of the switching time.
+Cyclical loads exhibit unique characteristics that are different from the rectangular and the non-rectangular loads.  These type of appliances are very difficult to be detected by using turn-on and turn-off signature windows.  Therefore, for cyclical loads only, a window is trained to capture unique signatures not when the appliances are switching but during their operation.  Consider the dryers in Home 2 as shown in Fig. \ref{fig:dryerH2}.  The load shape of the dryer has multiple sharp peaks during its entire operation time.  Therefore, a single window can be trained to detect these sharp peaks.  Then, the following rule can be made:  "While the landmark window is detecting an event, the appliance is operating."  
 
 Outlier detection is also held in this stage.  Consider the four ON/OFF events of a computer as shown in Fig. \ref{fig:outlier}.  It is shown that when event 2 occurred, some background noise are introduced that affected the turn-on signature of the computer.  In this case, the second event is regarded as an outlier and is not used in training the windows.
 

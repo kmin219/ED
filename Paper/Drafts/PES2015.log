@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.7.21)  19 NOV 2014 20:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.7.21)  20 NOV 2014 14:52
 entering extended mode
 **PES2015.tex
 (C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\Paper\Drafts\PES2015.tex
@@ -564,11 +564,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 533--535
 
  []
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 540.
 
 Underfull \vbox (badness 1210) has occurred while \output is active []
 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 540.
 Package epstopdf Info: Source file: <fig/maw.eps>
 (epstopdf)                    date: 2014-11-17 00:14:00
 (epstopdf)                    size: 20256 bytes
@@ -647,7 +647,7 @@ Overfull \hbox (0.94499pt too wide) in paragraph at lines 568--569
  []
 
 
-LaTeX Warning: File `fig/dryerH2.eps' not found on input line 581.
+LaTeX Warning: File `fig/dryerH2.eps' not found on input line 579.
 
 Package epstopdf Info: Source file: <fig/dryerH2.eps>
 (epstopdf)             Output file: <./fig/dryerH2-eps-converted-to.pdf>
@@ -655,17 +655,17 @@ Package epstopdf Info: Source file: <fig/dryerH2.eps>
 (epstopdf)                    size: 44126 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/dryerH2-eps-converted
 -to.pdf fig/dryerH2.eps>
-(epstopdf)             \includegraphics on input line 581.
+(epstopdf)             \includegraphics on input line 579.
 Package epstopdf Info: Output file is already uptodate.
 <./fig/dryerH2-eps-converted-to.pdf, id=86, 420.57124pt x 316.18124pt>
 File: ./fig/dryerH2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/dryerH2-eps-converted-to.pdf>
 Package pdftex.def Info: ./fig/dryerH2-eps-converted-to.pdf used on input line 
-581.
+579.
 (pdftex.def)             Requested size: 252.94499pt x 190.16371pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 581--582
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 579--580
  [][] 
  []
 
@@ -677,17 +677,17 @@ Package epstopdf Info: Source file: <fig/outlier.eps>
 (epstopdf)                    size: 29426 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/outlier-eps-converted
 -to.pdf fig/outlier.eps>
-(epstopdf)             \includegraphics on input line 588.
+(epstopdf)             \includegraphics on input line 586.
 Package epstopdf Info: Output file is already uptodate.
 <./fig/outlier-eps-converted-to.pdf, id=87, 421.575pt x 316.18124pt>
 File: ./fig/outlier-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/outlier-eps-converted-to.pdf>
 Package pdftex.def Info: ./fig/outlier-eps-converted-to.pdf used on input line 
-588.
+586.
 (pdftex.def)             Requested size: 252.94499pt x 189.7102pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 588--589
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 586--587
  [][] 
  []
 
@@ -705,7 +705,7 @@ Package epstopdf Info: Source file: <fig/cv_bread.eps>
 (epstopdf)                    size: 201950 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/cv_bread-eps-converte
 d-to.pdf fig/cv_bread.eps>
-(epstopdf)             \includegraphics on input line 699.
+(epstopdf)             \includegraphics on input line 697.
 Package epstopdf Info: Output file is already uptodate.
 
 <./fig/cv_bread-eps-converted-to.pdf, id=106, 797.98125pt x 477.785pt>
@@ -713,10 +713,10 @@ File: ./fig/cv_bread-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/cv_bread-eps-converted-to.pdf>
 Package pdftex.def Info: ./fig/cv_bread-eps-converted-to.pdf used on input line
- 699.
+ 697.
 (pdftex.def)             Requested size: 252.94832pt x 180.67075pt.
 
-Overfull \hbox (0.94832pt too wide) in paragraph at lines 699--700
+Overfull \hbox (0.94832pt too wide) in paragraph at lines 697--698
  [][] 
  []
 
@@ -742,7 +742,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  3687 strings out of 493921
  59239 string characters out of 3147234
- 121798 words of memory out of 3000000
+ 122798 words of memory out of 3000000
  6926 multiletter control sequences out of 15000+200000
  38797 words of font info for 72 fonts, out of 3000000 for 9000
  844 hyphenation exceptions out of 8191
@@ -758,7 +758,7 @@ b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/tim
 es/utmri8a.pfb>
-Output written on PES2015.pdf (5 pages, 768462 bytes).
+Output written on PES2015.pdf (5 pages, 768634 bytes).
 PDF statistics:
  150 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
