@@ -195,7 +195,7 @@
 
 % *** SPECIALIZED LIST PACKAGES ***
 %
-%\usepackage{algorithmic}
+\usepackage{algorithmic}
 % algorithmic.sty was written by Peter Williams and Rogerio Brito.
 % This package provides an algorithmic environment fo describing algorithms.
 % You can use the algorithmic environment in-text or within a figure
@@ -687,6 +687,37 @@ When the procedure is complete transient signature windows $w_{i,j}(n)$ are defi
 % command of the stfloats package.
 
  
+\section{Validation}\label{sec:cv}
+In this Section, the signature windows trained in Section XX are cross-validated using the training set.  The RMSE values shown in (\ref{eq:RMSE-P})-(\ref{eq:RMSE-Q}) are used as metrics for the evaluation.  
+\begin{align}
+\label{eq:RMSE-P}
+\text{RMSE-P}(n_0) &= \frac{1}{N}\sum\limits_{n=1}^{N}(w_{i,j}(n) - \Delta_{avg}P(n+n_0))^2\\
+\label{eq:RMSE-Q}
+\text{RMSE-Q}(n_0) &= \frac{1}{N}\sum\limits_{n=1}^{N}(w_{i,j}(n) - \Delta_{avg}Q(n+n_0))^2
+\end{align}
+where $w_{i,j}$ is the trained window for $j$-th event of an appliance with ID $i$.
+
+When the signature window is scanning its target, both the RMSE-P and RMSE-Q values fall very low.  On the other hand, if the window is scanning on a different time stamp, each RMSE-P and RMSE-Q value can rise, fall, or stay the same.  It is possible that both the RMSE values drop when the window is detecting different appliance.  This happens when the signature windows of the two appliances have a very similar shape and amplitude.  To prevent this scenario, RMSE thresholds is set to separate these appliance from being detected.  If a RMSE threshold could not be set, the window is discarded.  Figure XX shows the detection result after applying the turn-on window of a breadmaker to the training set.  The window successfully detects the breadmaker turning-on with all the other events being not detected. 
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=3.5in, height = 2.5in]{fig/cv_bread.eps}
+	\caption{Cross-validation of appliance "breadmaker" for two events in the training data.}
+	\label{fig:bread}
+\end{figure}
+
+
+\section{Test Data}\label{sec:test}
+We then apply our algorithm on the provided test data and identify appliance on and off intervals.  The detections are made from the signature windows we extracted from the training set with the threshold values acquired from cross-validation.  The algorithm is shown below.
+\begin{algorithmic}
+	\FOR{Every Time Instant $n_0$}	
+	\STATE Calculate $RMSE_P(n_0)$ and $RMSE_P(n_0)$
+	\IF{$RMSE_P(n_0)<\theta_P$ and $RMSE_Q(n_0)<\theta_Q$ } 
+	\STATE Event is detected at time instant $n_0$
+	\ENDIF
+	\ENDFOR
+\end{algorithmic}
+Although the competition has closed, we can still submit our predictions and see its rank on the leaderboard. Our best submission would have placed 7th.  However, the strategy for the test data is changed to achieve the best score.  Because average Hamming distance is used, thresholds are adjusted so that only the most likely predictions, i.e., low RMSE values are submitted.  
 
 \section{Validation}\label{sec:cv}
 Although data is high resolution (and therefore high dimensional in number of rows), the majority of information unique to each appliance is concentrated to turn-on and turn-off signatures.  

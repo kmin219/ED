@@ -57,35 +57,35 @@ for i = [1:length(window_P)]  %% # of appliance IDs
         while((k+N-1 < length(featP_scanA_L1)) && (k+N-1 < length(featP_scanA_L2)))
             if(window_app_P{3} == 1)   % If on Phase 1
                 sample = featP_scanA_L1(k:k+Non-1);
-                DistP = (sum((sample - window_app_P{1}).^2));
+                DistP = (sum((sample - window_app_P{1}).^2))/Non;
                 DistP_on = log(DistP);
                 
                 sample = featQ_scanA_L1(k:k+Non-1);
-                DistQ = (sum((sample - window_app_Q{1}).^2));
+                DistQ = (sum((sample - window_app_Q{1}).^2))/Non;
                 DistQ_on = log(DistQ);
                 
                 sample = featP_scanA_L1(k:k+Noff-1);
-                DistP = (sum((sample - window_app_P{2}).^2));
+                DistP = (sum((sample - window_app_P{2}).^2))/Noff;
                 DistP_off = log(DistP);
                 
                 sample = featQ_scanA_L1(k:k+Noff-1);
-                DistQ = (sum((sample - window_app_Q{2}).^2));
+                DistQ = (sum((sample - window_app_Q{2}).^2))/Noff;
                 DistQ_off = log(DistQ);
             else  % if on phase 2
                 sample = featP_scanA_L2(k:k+Non-1);
-                DistP = (sum((sample - window_app_P{1}).^2));
+                DistP = (sum((sample - window_app_P{1}).^2))/Non;
                 DistP_on = log(DistP);
                 
                 sample = featQ_scanA_L2(k:k+Non-1);
-                DistQ = (sum((sample - window_app_Q{1}).^2));                
+                DistQ = (sum((sample - window_app_Q{1}).^2))/Non;                
                 DistQ_on = log(DistQ);
                 
                 sample = featP_scanA_L2(k:k+Noff-1);
-                DistP = (sum((sample - window_app_P{2}).^2));
+                DistP = (sum((sample - window_app_P{2}).^2))/Noff;
                 DistP_off = log(DistP);
                 
                 sample = featQ_scanA_L2(k:k+Noff-1);
-                DistQ = (sum((sample - window_app_Q{2}).^2));                
+                DistQ = (sum((sample - window_app_Q{2}).^2))/Noff;                
                 DistQ_off = log(DistQ);
             end
             MetricP_on(k) = DistP_on;

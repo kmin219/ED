@@ -1,5 +1,10 @@
 clc;clear all;close all;
 
+path = pwd;
+addpath(genpath(path));
+path = 'D:\Belkin\';
+addpath(genpath(path));
+
 test_H1_1();
 test_H1_2();
 test_H1_3();
