@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.7.21)  21 NOV 2014 13:41
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.7.21)  21 NOV 2014 16:03
 entering extended mode
 **PES2015.tex
 
@@ -298,32 +298,7 @@ Package grfext Info: Graphics extension search list:
 (grfext)             \AppendGraphicsExtensions on input line 452.
 ))
 (C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\Paper\Drafts\latexKW\PES201
-5.aux
-
-LaTeX Warning: Label `fig:event1' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:event1' multiply defined.
-
-
-LaTeX Warning: Label `fig:event2' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:event2' multiply defined.
-
-
-LaTeX Warning: Label `fig:event1' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:event1' multiply defined.
-
-
-LaTeX Warning: Label `fig:event2' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:event2' multiply defined.
-
-)
+5.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 332.
 LaTeX Font Info:    ... okay on input line 332.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 332.
@@ -456,12 +431,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 533--535
 
  []
 
+
+LaTeX Warning: Reference `fig:exLoads' on page 3 undefined on input line 538.
+
 Package epstopdf Info: Source file: <fig/maw.eps>
-(epstopdf)                    date: 2014-11-17 00:14:00
-(epstopdf)                    size: 20256 bytes
+(epstopdf)                    date: 2014-11-21 14:39:04
+(epstopdf)                    size: 15099 bytes
 (epstopdf)             Output file: <./fig/maw-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-11-17 00:14:38
-(epstopdf)                    size: 6015 bytes
+(epstopdf)                    date: 2014-11-21 14:39:05
+(epstopdf)                    size: 5688 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/maw-eps-converted-to.
 pdf fig/maw.eps>
 (epstopdf)             \includegraphics on input line 549.
@@ -478,23 +456,23 @@ Overfull \hbox (0.94499pt too wide) in paragraph at lines 549--550
  [][] 
  []
 
-Package epstopdf Info: Source file: <fig/masterlights.eps>
-(epstopdf)                    date: 2014-11-14 13:32:26
-(epstopdf)                    size: 45315 bytes
-(epstopdf)             Output file: <./fig/masterlights-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-11-14 13:32:44
-(epstopdf)                    size: 15041 bytes
-(epstopdf)             Command: <epstopdf --outfile=./fig/masterlights-eps-conv
-erted-to.pdf fig/masterlights.eps>
+Package epstopdf Info: Source file: <fig/tagginginfo.eps>
+(epstopdf)                    date: 2014-11-21 15:39:37
+(epstopdf)                    size: 18084 bytes
+(epstopdf)             Output file: <./fig/tagginginfo-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-11-21 15:39:43
+(epstopdf)                    size: 9263 bytes
+(epstopdf)             Command: <epstopdf --outfile=./fig/tagginginfo-eps-conve
+rted-to.pdf fig/tagginginfo.eps>
 (epstopdf)             \includegraphics on input line 558.
 Package epstopdf Info: Output file is already uptodate.
-<./fig/masterlights-eps-converted-to.pdf, id=43, 420.57124pt x 316.18124pt>
-File: ./fig/masterlights-eps-converted-to.pdf Graphic file (type pdf)
+<./fig/tagginginfo-eps-converted-to.pdf, id=43, 420.57124pt x 312.16624pt>
+File: ./fig/tagginginfo-eps-converted-to.pdf Graphic file (type pdf)
 
-<use ./fig/masterlights-eps-converted-to.pdf>
-Package pdftex.def Info: ./fig/masterlights-eps-converted-to.pdf used on input 
-line 558.
-(pdftex.def)             Requested size: 252.94499pt x 190.16371pt.
+<use ./fig/tagginginfo-eps-converted-to.pdf>
+Package pdftex.def Info: ./fig/tagginginfo-eps-converted-to.pdf used on input l
+ine 558.
+(pdftex.def)             Requested size: 252.94499pt x 187.74893pt.
 
 Overfull \hbox (0.94499pt too wide) in paragraph at lines 558--559
  [][] 
@@ -503,17 +481,17 @@ Overfull \hbox (0.94499pt too wide) in paragraph at lines 558--559
 [3 <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/latexKW/fig
 /maw-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig/windowlength.eps>
-(epstopdf)                    date: 2014-11-16 22:03:57
-(epstopdf)                    size: 30507 bytes
+(epstopdf)                    date: 2014-11-21 14:49:58
+(epstopdf)                    size: 26907 bytes
 (epstopdf)             Output file: <./fig/windowlength-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-11-16 22:04:08
-(epstopdf)                    size: 15125 bytes
+(epstopdf)                    date: 2014-11-21 14:50:04
+(epstopdf)                    size: 15282 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/windowlength-eps-conv
 erted-to.pdf fig/windowlength.eps>
 (epstopdf)             \includegraphics on input line 569.
 Package epstopdf Info: Output file is already uptodate.
 
-<./fig/windowlength-eps-converted-to.pdf, id=55, 420.57124pt x 316.18124pt>
+<./fig/windowlength-eps-converted-to.pdf, id=54, 420.57124pt x 316.18124pt>
 File: ./fig/windowlength-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/windowlength-eps-converted-to.pdf>
@@ -526,16 +504,21 @@ Overfull \hbox (0.94499pt too wide) in paragraph at lines 569--570
  []
 
 Package epstopdf Info: Source file: <fig/dryerH2.eps>
-(epstopdf)                    date: 2014-11-19 16:56:13
-(epstopdf)                    size: 76995 bytes
+(epstopdf)                    date: 2014-11-21 16:03:11
+(epstopdf)                    size: 59294 bytes
 (epstopdf)             Output file: <./fig/dryerH2-eps-converted-to.pdf>
 (epstopdf)                    date: 2014-11-19 16:56:20
 (epstopdf)                    size: 44126 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/dryerH2-eps-converted
 -to.pdf fig/dryerH2.eps>
 (epstopdf)             \includegraphics on input line 582.
-Package epstopdf Info: Output file is already uptodate.
-<./fig/dryerH2-eps-converted-to.pdf, id=56, 420.57124pt x 316.18124pt>
+runsystem(epstopdf --outfile=./fig/dryerH2-eps-converted-to.pdf fig/dryerH2.eps
+)...executed (allowed).
+
+Package epstopdf Info: Result file: <./fig/dryerH2-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-11-21 16:03:20
+(epstopdf)                    size: 34945 bytes.
+<./fig/dryerH2-eps-converted-to.pdf, id=55, 420.57124pt x 316.18124pt>
 File: ./fig/dryerH2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/dryerH2-eps-converted-to.pdf>
@@ -548,33 +531,33 @@ Overfull \hbox (0.94792pt too wide) in paragraph at lines 582--583
  []
 
 Package epstopdf Info: Source file: <fig/outlier.eps>
-(epstopdf)                    date: 2014-11-16 21:46:06
-(epstopdf)                    size: 56284 bytes
+(epstopdf)                    date: 2014-11-21 15:36:13
+(epstopdf)                    size: 51469 bytes
 (epstopdf)             Output file: <./fig/outlier-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-11-16 21:46:07
-(epstopdf)                    size: 29426 bytes
+(epstopdf)                    date: 2014-11-21 15:36:18
+(epstopdf)                    size: 29324 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/outlier-eps-converted
 -to.pdf fig/outlier.eps>
 (epstopdf)             \includegraphics on input line 589.
 Package epstopdf Info: Output file is already uptodate.
-<./fig/outlier-eps-converted-to.pdf, id=57, 421.575pt x 316.18124pt>
+<./fig/outlier-eps-converted-to.pdf, id=56, 420.57124pt x 316.18124pt>
 File: ./fig/outlier-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/outlier-eps-converted-to.pdf>
 Package pdftex.def Info: ./fig/outlier-eps-converted-to.pdf used on input line 
 589.
-(pdftex.def)             Requested size: 252.94499pt x 189.7102pt.
+(pdftex.def)             Requested size: 252.94499pt x 190.16371pt.
 
 Overfull \hbox (0.94499pt too wide) in paragraph at lines 589--590
  [][] 
  []
 
 [4 <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/latexKW/fig
-/masterlights-eps-converted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/G
-itHub/ED/Paper/Drafts/latexKW/fig/windowlength-eps-converted-to.pdf> <C:/Users/
-Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/latexKW/fig/dryerH2-eps-
-converted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Dra
-fts/latexKW/fig/outlier-eps-converted-to.pdf>]
+/tagginginfo-eps-converted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/Gi
+tHub/ED/Paper/Drafts/latexKW/fig/windowlength-eps-converted-to.pdf> <C:/Users/K
+yungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/latexKW/fig/dryerH2-eps-c
+onverted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Draf
+ts/latexKW/fig/outlier-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig/cv_bread.eps>
 (epstopdf)                    date: 2014-11-20 19:15:08
 (epstopdf)                    size: 5072986 bytes
@@ -586,7 +569,7 @@ d-to.pdf fig/cv_bread.eps>
 (epstopdf)             \includegraphics on input line 704.
 Package epstopdf Info: Output file is already uptodate.
 
-<./fig/cv_bread-eps-converted-to.pdf, id=76, 797.98125pt x 477.785pt>
+<./fig/cv_bread-eps-converted-to.pdf, id=74, 797.98125pt x 477.785pt>
 File: ./fig/cv_bread-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/cv_bread-eps-converted-to.pdf>
@@ -627,14 +610,14 @@ Before submitting the final camera ready copy, remember to:
 (C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\Paper\Drafts\latexKW\PES201
 5.aux)
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3842 strings out of 493921
- 60583 string characters out of 3147234
- 124595 words of memory out of 3000000
- 7079 multiletter control sequences out of 15000+200000
+ 3838 strings out of 493921
+ 60522 string characters out of 3147234
+ 124510 words of memory out of 3000000
+ 7075 multiletter control sequences out of 15000+200000
  39904 words of font info for 73 fonts, out of 3000000 for 9000
  844 hyphenation exceptions out of 8191
  42i,10n,47p,1206b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -649,9 +632,9 @@ b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/tim
 es/utmri8a.pfb>
-Output written on PES2015.pdf (5 pages, 609876 bytes).
+Output written on PES2015.pdf (5 pages, 595009 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
+ 116 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
