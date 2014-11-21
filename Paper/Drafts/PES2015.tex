@@ -195,7 +195,11 @@
 
 % *** SPECIALIZED LIST PACKAGES ***
 %
-\usepackage{algorithmic}
+%\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+%\usepackage{algpseudocode}
 % algorithmic.sty was written by Peter Williams and Rogerio Brito.
 % This package provides an algorithmic environment fo describing algorithms.
 % You can use the algorithmic environment in-text or within a figure
@@ -497,28 +501,28 @@ Finally, for the test set, we use the cross-validated signature windows and thre
 	\label{fig:flow}
 \end{figure}
 
-
-
-
-\begin{figure}[!t]
-	\centering
-	\subfloat[]{\includegraphics[width=1.7in]{fig/kettle.eps}
-		\label{fig:event1}}
-	\subfloat[]{\includegraphics[width=1.7in]{fig/fan.eps}
-		\label{fig:event2}}
-	\hfill
-	\subfloat[]{\includegraphics[width=1.7in]{fig/computer1.eps}
-		\label{fig:event1}}
-	\subfloat[]{\includegraphics[width=1.7in]{fig/TV.eps}
-		\label{fig:event2}}
-	\hfill
-	\subfloat[]{\includegraphics[width=1.7in]{fig/dryer.eps}
-		\label{fig:event1}}
-	\subfloat[]{\includegraphics[width=1.7in]{fig/oven.eps}
-		\label{fig:event2}}
-	\caption{Load Types (a) Tea Kettle, (b) Master Bath Fan, (c) Computer, (d) TV, (e) Dryer, (f) Oven.}
-	\label{fig:exLoads}
-\end{figure}	
+%
+%
+%
+%\begin{figure}[!t]
+%	\centering
+%%	\subfloat[]{\includegraphics[width=1.7in]{fig/kettle.eps}
+%%		\label{fig:event1}}
+%	\subfloat[]{\includegraphics[width=3.5in, height = 1in]{fig/fan.eps}
+%		\label{fig:event2}}
+%	\hfill
+%%	\subfloat[]{\includegraphics[width=1.7in]{fig/computer1.eps}
+%%		\label{fig:event1}}
+%	\subfloat[]{\includegraphics[width=3.5in,height = 1in]{fig/TV.eps}
+%		\label{fig:event2}}
+%	\hfill
+%	\subfloat[]{\includegraphics[width=3.5in,height = 1in]{fig/dryer.eps}
+%		\label{fig:event1}}
+%%	\subfloat[]{\includegraphics[width=1.7in]{fig/oven.eps}
+%%		\label{fig:event2}}
+%	\caption{Load Types (a) Tea Kettle, (b) Master Bath Fan, (c) Computer, (d) TV, (e) Dryer, (f) Oven.}
+%	\label{fig:exLoads}
+%\end{figure}	
 
 \section{Signature Window Extraction}\label{sec:training}
 This section describes how transient signature windows are extracted by using averaged real and the reactive power differences.  In particular, a pair of turn-on and turn-off signature windows are trained for every event of each appliance in the training data.  The following sections describe how the signature windows are extracted.  
@@ -532,10 +536,10 @@ The appliances are first categorized into three load types based on their load s
 \newline
 \item{Non-rectangular loads:} These type of loads have a longer transient period when turning on and include computers and TVs.  Their transient period is characterized by a stepwise transition from zero to rated power consumption.  Although the power consumed may vary based on how the device is operated, the turn-on signatures can be unique, allowing discrimination against other devices.  These type of loads require a longer window length to capture the unique transient shape.
 \newline
-\item{Cyclical loads:} - The amount of real or reactive power consumed by these loads change depending on the cycle of their operation.  Dryers, ovens, and washers are included in this category.   However, because they operate on set cycles, there are only a few possible periodic load shapes they can follow.  A modified approach is required to detect these type of loads: identifying a notable landmark during appliance operation.
+\item{Cyclical loads:} - The amount of real or reactive power consumed by these loads change depending on the cycle of their operation.  Dryers, ovens, and washers are included in this category.   However, because they operate on set cycles, there are only a few possible periodic load shapes they can follow.  A modified approach is required to detect these type of loads: identifying a notable recurrent patterns during appliance operation.
 \end{enumerate}
 
-Illustrative examples of these load types are shown in Fig. \ref{fig:exLoads}.  The dryer for example produces several rectangular step changes over the course of its cycle, resulting in misclassifications if not accounted for.  The modified approach for detecting these appliance is discussed below.
+%Illustrative examples of these load types are shown in Fig. \ref{fig:exLoads}.  The dryer for example produces several rectangular step changes over the course of its cycle, resulting in misclassifications if not accounted for.  The modified approach for detecting these appliance is discussed below.
 
 \subsection{Averaged Power Differences}
 Our approach relies on identifying appliance turn-on and turn-off events by detecting unique transient signatures in real and reactive power consumption. To extract transient signatures for each appliance, the averaged power differences are calculated from two moving average windows.  The averaged differences for real power, $\Delta P_{avg}(n)$, is defined as,
@@ -551,7 +555,7 @@ where $N$ is the window size and $D$ is the distance between the two windows.  T
 	\label{fig:maw}
 \end{figure}
 
-Using the averaged power differences to determine true appliance event indices, tagging labels tagging labels from the raw data are first corrected.  A threshold for the real power difference is set to indicate whether an event occurred, (event occurred if $|\Delta P_{avg}(n)| >$ threshold).  Then the corrected indexes are used as the actual event index instead of the tagging info provided in the raw data.  On the top plot of Fig. \ref{fig:tagging}, the tagging labels of the master bedroom lights do not align with the actual event incidence.  The red markers in the bottom plot shows when the power difference is greater than the threshold; this index is used as the corrected tagging label.  It should be noted that some appliances that consumes very small real or reactive power are discarded as they cannot be detected.  For these appliances, using real and reactive power differences will cause false detections in the test data due to the effects of the noise. 
+Using the averaged power differences to determine true appliance event indices, tagging labels from the raw data are first corrected.  A threshold in real power differences is then set to indicate whether an event occurred, (i.e., an event occurred if $|\Delta P_{avg}(n)| >$ threshold).  Then the corrected indices are used as the actual event index instead of the tagging info provided in the raw data.  On the top plot of Fig. \ref{fig:tagging}, the tagging labels of the master bedroom lights do not align with the actual event incidence.  The red markers in the bottom plot shows when the power difference is greater than the threshold; this index is used as the corrected tagging label.  It should be noted that some appliances that consume very small real or reactive power are discarded as they cannot be detected.  For these appliances, using real and reactive power differences will cause false detections in the test data due to the effects of the noise.  Additional features must be considered to detect such appliances.
 
 \begin{figure}[!t]
 	\centering
@@ -561,8 +565,8 @@ Using the averaged power differences to determine true appliance event indices, 
 \end{figure}
 	
 
-\subsection{Signature Window Extraction}
-After taking the power differences, the next stop is to extract the signatures for turn-on events and turn-off events. The windows are extracted using the corrected tagging labels.  If an appliance has longer transient characteristics (non-rectangular load shapes), longer window sizes are used to capture the entire unique transient period.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consume about 38 W at event incidence.  However, the laptop charger then spends additional 38 Watts to fully turn on.  Therefore, longer window lengths are needed to detect laptop charger than the dining room lights. 
+\subsection{Window Extraction}
+After taking the power differences, the next step is to extract the signatures for turn-on  and turn-off events. The windows are extracted using the corrected tagging labels.  For rectangular load shapes, the transient signature window is extracted from the start of the turn-on event until the load reaches steady-state power consumption.  If an appliance has longer transient characteristics (non-rectangular load shapes), longer window sizes are used to capture the entire unique transient period.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consume about 38 W at event incidence.  However, the laptop charger then spends additional 38 Watts to fully turn on.  Therefore, a longer window length is needed to detect the laptop charger than the dining room lights. 
 
 \begin{figure}[!t]
 	\centering
@@ -571,11 +575,9 @@ After taking the power differences, the next stop is to extract the signatures f
 	\label{fig:windowlength}
 \end{figure}
 
-Cyclical loads exhibit unique characteristics that are different from the rectangular and the non-rectangular loads.  These type of appliances are very difficult to be detected by using turn-on and turn-off signature windows.  Therefore, for cyclical loads only, a window is trained to capture unique signatures not when the appliances are switching but during their operation.  Consider the dryers in Home 2 as shown in Fig. \ref{fig:dryerH2}.  The load shape of the dryer has multiple sharp peaks during its entire operation time.  Therefore, a single window can be trained to detect these sharp peaks.  Then, the following rule can be made:  "While the landmark window is detecting an event, the appliance is operating."  
+Cyclical loads exhibit unique characteristics that are different from the rectangular and the non-rectangular loads.  These types of appliances are difficult to be detected by using turn-on and turn-off signature windows because each step change in power consumption during the cycle can be mistaken for other appliances..  Therefore, for cyclical loads only, a window is trained to capture unique signatures during their operation.  Consider the dryer in Home 2 as shown in Fig. \ref{fig:dryerH2}.  The load shape of the dryer has multiple sharp peaks during its operation.  Therefore, a single window can be trained to detect these sharp peaks.  In this case, the following rule can be made:  "While the recurrent pattern window is detecting an event, the appliance is operating."  
 
-Outlier detection is also held in this stage.  Consider the four ON/OFF events of a computer as shown in Fig. \ref{fig:outlier}.  It is shown that when event 2 occurred, some background noise are introduced that affected the turn-on signature of the computer.  In this case, the second event is regarded as an outlier and is not used in training the windows.
-
-When the procedure is complete transient signature windows $w_{i,j}(n)$ are defined for $i$ appliances in each home and $j$ events in the training data.
+Outlier detection is also held during this stage.  Consider the four on/off events of a computer as shown in Fig. \ref{fig:outlier}.  It can be seen that when event two occurred, some background noise affected the turn-on signature of the computer.  In this case, the second event is regarded as an outlier and is not used in training the windows.  When the window extraction procedure is complete transient signature windows are defined for all detectable events.  
 
 \begin{figure}[!t]
 	\centering
@@ -591,17 +593,6 @@ When the procedure is complete transient signature windows $w_{i,j}(n)$ are defi
 	\label{fig:outlier}
 \end{figure}
 
-
-%	\begin{figure}[!t]
-%		\centering
-%		\subfloat[]{\includegraphics[width=2.5in]{fig/event1.jpg}
-%			\label{fig:event1}}
-%		\hfil
-%		\subfloat[]{\includegraphics[width=2.5in]{fig/event1.jpg}
-%			\label{fig:event2}}
-%		\caption{Fault Current Waveform (a) Original waveform, (b) Truncated waveform used for the study.}
-%		\label{fig:demon}
-%	\end{figure}	
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
@@ -686,65 +677,50 @@ When the procedure is complete transient signature windows $w_{i,j}(n)$ are defi
 % footnotes above bottom floats. This can be corrected via the \fnbelowfloat
 % command of the stfloats package.
 
- 
-\section{Validation}\label{sec:cv}
-In this Section, the signature windows trained in Section XX are cross-validated using the training set.  The RMSE values shown in (\ref{eq:RMSE-P})-(\ref{eq:RMSE-Q}) are used as metrics for the evaluation.  
+
+
+\section{Cross-Validation}\label{sec:cv}
+In this section, we present the procedure for cross-validating the signature windows trained in Section \ref{sec:training} in the training set.  The objective of cross-validating the signature windows of each appliance is to verify the ability to detect other events of the same appliance in the training data.  The root-mean-squared error (RMSE) is chosen as the metric to determine how well the signature window matches with the measured signal.  The equations for calculating RMSE are shown in (\ref{eq:RMSE-P}) and (\ref{eq:RMSE-Q}).
+
 \begin{align}
 \label{eq:RMSE-P}
-\text{RMSE-P}(n_0) &= \frac{1}{N}\sum\limits_{n=1}^{N}(w_{i,j}(n) - \Delta_{avg}P(n+n_0))^2\\
+\text{RMSE}_{\text{P}}(n) &= \sqrt{\frac{1}{N}\sum\limits_{k=1}^{N}(w_{i,j}(k) - \Delta P_{avg}(n+k))^2}\\
 \label{eq:RMSE-Q}
-\text{RMSE-Q}(n_0) &= \frac{1}{N}\sum\limits_{n=1}^{N}(w_{i,j}(n) - \Delta_{avg}Q(n+n_0))^2
+\text{RMSE}_{\text{Q}}(n) &= \sqrt{\frac{1}{N}\sum\limits_{k=1}^{N}(w_{i,j}(k) - \Delta Q_{avg}(n+k))^2}
 \end{align}
-where $w_{i,j}$ is the trained window for $j$-th event of an appliance with ID $i$.
+where $w_{i,j}$ is the transient signature window for $j$-th turn-on or turn-off event for appliance number $i$.  For each $w_{i,j}$ the procedure for cross-validation is presented in Fig \ref{fig:flow}.
 
-When the signature window is scanning its target, both the RMSE-P and RMSE-Q values fall very low.  On the other hand, if the window is scanning on a different time stamp, each RMSE-P and RMSE-Q value can rise, fall, or stay the same.  It is possible that both the RMSE values drop when the window is detecting different appliance.  This happens when the signature windows of the two appliances have a very similar shape and amplitude.  To prevent this scenario, RMSE thresholds is set to separate these appliance from being detected.  If a RMSE threshold could not be set, the window is discarded.  Figure XX shows the detection result after applying the turn-on window of a breadmaker to the training set.  The window successfully detects the breadmaker turning-on with all the other events being not detected. 
+%\begin{algorithm}
+%	\caption{Cross-validation Algorithm}\label{euclid}
+%	\begin{algorithmic}[1]
+%		\For{every time instant $n_0$}	
+%
+%		\State Calculate $\text{RMSE}_{\text{P}}(n_0)$ and $\text{RMSE}_{\text{Q}}(n_0)$
+%		\If{$\text{RMSE}_{\text{P}}(n_0)<\theta_P$ and $\text{RMSE}_{\text{Q}}(n_0)<\theta_Q$ } 
+%		determine if threshhold (theta) exists for which log(RMSE)<1.3*theta is able to detect 100 \% of appliances i in the training set and none of the other  N-1 appliances in the training set
+%		
+%		\State Event is detected at time instant $n_0$
+%		\EndIf
+%		%		\EndFor
+%		\EndFor
+%	\end{algorithmic}
+%\end{algorithm}
+%
+%This step involves moving  $\Delta P_{avg}(n)$ or $\Delta Q_{avg}(n)$ past the extracted signature window to calculate the root-mean-squared error (RMSE).  
+%apply signature window w(n)i,j
+% (that's why 1.3*theta)
+%need to determine P and Q thresholds simultaneously
+%Turn-on and turn-off events are detected when the RMSE falls below a specified threshold simultaneously for both real and reactive power differences.    If an appliance cannot be detected during cross-validation, it will not be predicted in the test set.  
+
+When the signature window is scanning its target, both the $\text{RMSE}_{\text{P}}$ and $\text{RMSE}_{\text{Q}}$ values fall very low.  On the other hand, if the window is scanning on a different time stamp, each $\text{RMSE}_{\text{P}}$ and $\text{RMSE}_{\text{Q}}$ value can rise, fall, or stay the same.  It is possible that both the RMSE values drop when the window is detecting different appliance.  This happens when the signature windows of the two appliances have a very similar shape and amplitude.  To prevent this scenario, RMSE thresholds ($\theta_P$ and $\theta_Q$) is set to separate these appliance from being detected.  If a RMSE threshold could not be set, the window is discarded.  Figure \ref{fig:bread} shows the detection result after applying the turn-on window of a breadmaker to the training set.  The window successfully detects the breadmaker turning-on with all the other events being not detected. 
 
 \begin{figure}[!t]
 	\centering
-	\includegraphics[width=3.5in, height = 2.5in]{fig/cv_bread.eps}
+	\includegraphics[width=3.5in]{fig/cv_bread.eps}
 	\caption{Cross-validation of appliance "breadmaker" for two events in the training data.}
 	\label{fig:bread}
 \end{figure}
 
-
-\section{Test Data}\label{sec:test}
-We then apply our algorithm on the provided test data and identify appliance on and off intervals.  The detections are made from the signature windows we extracted from the training set with the threshold values acquired from cross-validation.  The algorithm is shown below.
-\begin{algorithmic}
-	\FOR{Every Time Instant $n_0$}	
-	\STATE Calculate $RMSE_P(n_0)$ and $RMSE_P(n_0)$
-	\IF{$RMSE_P(n_0)<\theta_P$ and $RMSE_Q(n_0)<\theta_Q$ } 
-	\STATE Event is detected at time instant $n_0$
-	\ENDIF
-	\ENDFOR
-\end{algorithmic}
-Although the competition has closed, we can still submit our predictions and see its rank on the leaderboard. Our best submission would have placed 7th.  However, the strategy for the test data is changed to achieve the best score.  Because average Hamming distance is used, thresholds are adjusted so that only the most likely predictions, i.e., low RMSE values are submitted.  
-
-\section{Validation}\label{sec:cv}
-Although data is high resolution (and therefore high dimensional in number of rows), the majority of information unique to each appliance is concentrated to turn-on and turn-off signatures.  
-
-Prior to submitting our predictions, the 
-
-need pseudo code for determining if appliance is separable or not, eg,
-apply signature window w(n)i,j
-determine if threshhold (theta) exists for which D(n)<1.3*theta is able to detect 100 \% of appliances i in the training set and none of the other  N-1 appliances in the training set (that's why 1.3*theta)
-need to determine P and Q thresholds simultaneously
-
-\begin{equation}
-RMSE_{P}(n) = \sqrt{\frac{1}{N}\sum_{k=0}^{N-1}\left(\Delta P_{avg}(n-k)-w_{i,j}(k)\right)^2}
-\end{equation}
-
-need figures as examples of P/Q domain, diff domain, distance domain, window shape (big subplot 3x3?)
-
-\begin{figure}[!t]
-	\centering
-	\includegraphics[width=3.5in, height = 2.5in]{fig/cv_bread.eps}
-	\caption{Cross-validation of appliance "breadmaker" for two events in the training data.}
-	\label{fig:bread}
-\end{figure}
-
-show how signatures for small appliances, those of the same type in different locations, can produce different signature windows, allowing for separation.
-
-include table of number of unique signature windows for each home
 \begin{table}[h!]
 	\renewcommand{\arraystretch}{1.3}
 	\caption{Number of Appliances Validated and Discarded for Each Home}\label{classes}
@@ -752,41 +728,51 @@ include table of number of unique signature windows for each home
 	\centering
 	\begin{tabular}{c||c||c||c}
 		\hline 
-		\textbf{Home No.} & \textbf{Validated} &\textbf{Discarded} &\textbf{\% Validated}\tabularnewline
+		\textbf{Home No.} & \textbf{Total Appliances} &\textbf{Discarded} &\textbf{No. Validated (\%)}\tabularnewline
 		\hline 
 		\hline 
-		H1 & 38 & 6 & 4\tabularnewline
+		H1 & 38 & 6 & 32 (80\%)\tabularnewline
 		\hline 
-		H2 & 37 & 4 & 4\tabularnewline
+		H2 & 37 & 6 & 31 (83.8\%)\tabularnewline
 		\hline 
-		H3 & 37 & 3 & 4\tabularnewline
+		H3 & 37 & 5 & 32 (86.5\%)\tabularnewline
 		\hline 
-		H4 & 36 & 2 & 4\tabularnewline
+		H4 & 36 & 2 & 34 (80\%)\tabularnewline
 		\hline 
 	\end{tabular}
 \end{table}
 
 
-
 \section{Test Data}\label{sec:test}
-We then apply our algorithm on the provided test data and identify appliance on and off intervals.  Although the competition has closed, we can still submit our predictions and see its rank on the leaderboard. Our best submission would have placed 7th.  However, the strategy for the test data is changed to achieve the best score.  Because average Hamming distance is used, thresholds are adjusted so that only the most likely predictions, i.e., low RMSE values are submitted.  
+We then apply our algorithm on the provided test data and identify appliance on and off intervals.  The detections are made from the signature windows we extracted from the training set with the threshold values acquired from cross-validation.  The algorithm is shown below and is applied for every extracted signature window $w_{i,j}(n)$.
+
+\begin{algorithm}
+	\caption{Event Detection Algorithm}\label{euclid}
+	\begin{algorithmic}[1]
+	\For{every time instant $n_0$}	
+%		\ForAll{$w_{i,j}$}
+			\State Calculate $\text{RMSE}_{\text{P}}(n_0)$ and $\text{RMSE}_{\text{Q}}(n_0)$
+			\If{$\text{RMSE}_{\text{P}}(n_0)<\theta_P$ and $\text{RMSE}_{\text{Q}}(n_0)<\theta_Q$ } 
+			\State Event is detected at time instant $n_0$
+			\EndIf
+%		\EndFor
+	\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+Although the competition has closed, we can still submit our predictions and see its rank on the leaderboard. Our best submission would have placed 7th.  However, the strategy for the test data is changed to achieve the best score.  Because average Hamming distance is used, thresholds are adjusted so that only the most likely predictions, i.e., low RMSE values are submitted.  
 
 \section{Conclusion}\label{sec:concl}
-The conclusion goes here. All insight gained from competition. Too many appliances, noisy test data, what is the benefit of identifying small appliances?, noise necessitates clear features (large distance).  also high freqency domain for hard to identify appliances.  you can get 20th w/ just P/Q alone.   
+also high freqency domain for hard to identify appliances.  you can get 7th w/ just P/Q alone.   
 
-\subsection{Data Cleaning}
 Using this dataset, a lot of effort was put into cleaning the data.  Specifically, the tagging information for appliance on off events was not precise enough to accurately extract on and off signatures windows automatically.  However, if these event tags were generated correctly, event signature windows could be automatically extracted form the training data. 
-
-\subsection{Load Types}
-discuss difficulty of classification based on load types:
 
 -constant power - static: can be difficult if rated power is similar between two appliances, same for below.
 - resistive (lights, heaters, kettle) - P domain and rectangular mainly, can be separated in P domain only if turn on/off signature is unique or if rated power is not similar to others
 - resistive + reactive (rotating like fans) - Q is a feature to help classify; if P is not unique, but Q is, greatly increases classification
 -dynamic
-	- cyclical (washer dryer) - require rules, ie. landmark detection
-	
-\subsection{Tradeoffs}
+	- cyclical (washer dryer) - require rules, ie. recurrent pattern detection
+
 One of the advantages of this approach is that it is more interpretable as it follows intuition for detecting appliance on and off events.  With the proposed approach, misclassifications can be traced back to the signature window length or detection thresholds.  This is particularly true when compared to methods utilizing 'black box' predictive models such as artificial neural networks.  Furthermore, the proposed approach as the ability for real time processing. We also used a simplified dataset, only needing P and Q.  High frequency features could have been added to help classify smaller appliances.
 
 However, one of the primary drawbacks is that manual identification of appropriate window lengths is requried during training.
