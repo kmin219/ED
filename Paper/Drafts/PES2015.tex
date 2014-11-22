@@ -104,7 +104,7 @@
 
 % *** CITATION PACKAGES ***
 %
-%\usepackage{cite}
+\usepackage{cite}
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
 % \cite{} output to follow that of IEEE. Loading the cite package will
@@ -348,22 +348,9 @@
 % author names and affiliations
 % use a multiple column layout for up to three different
 % affiliations
-\author{\IEEEauthorblockN{Michael Shell}
-\IEEEauthorblockA{School of Electrical and\\Computer Engineering\\
-Georgia Institute of Technology\\
-Atlanta, Georgia 30332--0250\\
-Email: http://www.michaelshell.org/contact.html}
-\and
-\IEEEauthorblockN{Homer Simpson}
-\IEEEauthorblockA{Twentieth Century Fox\\
-Springfield, USA\\
-Email: homer@thesimpsons.com}
-\and
-\IEEEauthorblockN{James Kirk\\ and Montgomery Scott}
-\IEEEauthorblockA{Starfleet Academy\\
-San Francisco, California 96678-2391\\
-Telephone: (800) 555--1212\\
-Fax: (888) 555--1212}}
+\author{\IEEEauthorblockN{Kyung Woo Min, Min Lwin, Surya Santoso}
+\IEEEauthorblockA{Department of Electrical and Computer Engineering\\
+The University of Texas at Austin\\}}
 
 % conference papers do not typically use \thanks and this command
 % is locked out in conference mode. If really needed, such as for
@@ -427,7 +414,7 @@ Even with advances in smart grid technology and a growing demand for cost-effect
 
 The objective of residential non-intrusive load monitoring (NILM) is to monitor the major loads in a home from a single-point.  The alternative is to monitor each appliance individually, however, this scheme typically adds significant cost. Therefore, the challenge with NILM is to accurately disaggregate household energy consumption into the individual appliance level with data from single-point measurements.  
 
-Prior research in the area of NILM has focused on the use of aggregate power consumption patterns as features to identify what appliance is being used and how much energy it is consuming. For example, the authors in \cite{mit} discuss various approaches in NILM, including detecting changes in steady-state power measurements and characterizing them as different events. Some challenges reported by the authors include different loads not exhibiting unique signatures in the 2D feature space and the difficulty in determining steady-state features due to turn-on transient noise.  Some recommended advanced techniques are to include the 3rd order harmonics as a feature and using turn-on transients for event detection.  The methodology in [2] and [3] follows a similar strategy, however, the training and test data are manually generated, resulting in a clean dataset that may not be representative of real household energy usage patterns.  Furthermore, the classification can become challenging if the number of appliances in the home is large. Additionally, the signature of some appliances may drift or vary over time due to operating conditions and the mode in which they are used. 
+Prior research in the area of NILM has focused on the use of aggregate power consumption patterns as features to identify what appliance is being used and how much energy it is consuming. For example, the authors in \cite{mit} discuss various approaches in NILM, including detecting changes in steady-state power measurements and characterizing them as different events. Some challenges reported by the authors include different loads not exhibiting unique signatures in the 2D feature space and the difficulty in determining steady-state features due to turn-on transient noise.  Some recommended advanced techniques are to include the 3rd order harmonics as a feature and using turn-on transients for event detection.  The methodology in \cite{adaptive, EMI, prob, Hart, Shaw, Lin, Chang, Wave} follows a similar strategy, however, the training and test data are manually generated, resulting in a clean dataset that may not be representative of real household energy usage patterns.  Furthermore, the classification can become challenging if the number of appliances in the home is large. Additionally, the signature of some appliances may drift or vary over time due to operating conditions and the mode in which they are used. 
 
 In this paper, we present a method that focuses on extracting turn-on and turn-off signature windows to obtain transient characteristics of each appliance.  The transient characteristics are observed from the difference of two moving average windows from time-series real and reactive power data.  We focus on determining the appropriate window length for each appliance in order to capture unique signatures.  We present the results of our approach using a publicly available dataset from the Belkin Energy Disaggregation Competition on kaggle.com \cite{Kaggle}. The dataset and methodology are described in detail in Section \ref{sec:dataMethod}.  Section \ref{sec:training} describes the approach for extracting signature windows for each appliance from the training data. Section \ref{sec:cv} describes the cross-validation procedure using the training data.  Section \ref{sec:test} describes application of our approach to the test data.  Finally, Section \ref{sec:concl} discusses results and topics for future work.
 
@@ -449,7 +436,7 @@ In this section, we describe the dataset that was used and our methodology for d
 
 In this paper, we utilize the complete dataset from the Belkin Energy Disaggregation Competition hosted on kaggle.com, provided by Belkin Energy \cite{Kaggle}.  The dataset is publicly available on the competition website and contains single-point sensing measurements of the first five harmonics of rms voltage and current on two phases for four households (labeled H1-H4). The dataset also contains high frequency noise (EMI) data for each household, but is not required with our approach (see further discussion in Section \ref{sec:concl}).  Although both training and test datasets are provided, only the training data provides labels and corresponding timestamps for each appliance. Table \ref{table:dataset} shows the number of distinct appliances in each home and the number of training and test sets provided. 
 
-\begin{table}[h!]
+\begin{table}[!t]
 	\renewcommand{\arraystretch}{1.3}
 	\caption{Number of Distinct Appliances and Datasets for Each Home}\label{classes}
 	\label{table:dataset}
@@ -470,20 +457,19 @@ In this paper, we utilize the complete dataset from the Belkin Energy Disaggrega
 	\end{tabular}
 \end{table}
 
-Each training set consists of manually generated power consumption data for each appliance in each home.  The training data is a time-serires where only one appliance is switched on at a time, although background noise can be present from untagged appliances. Tagging labels in the training data are also provided, however, these are not always precise enough to correctly identify device turn-on and turn-off times. Correction of tagging labels for training data is therefore needed and is discussed in Section \ref{sec:training}.  Fig.\ref{fig:traintest} shows an example of both training and test data from H2.  The observations recorded in each training and test set cover approximately 24 hours.  
-
-\begin{figure}[!h]	
+\begin{figure}[!t]	
 	\centering
-		\subfloat[Training]{\includegraphics[width=3.7in,height = 1.05in]{fig/exTrain.eps}
-			\label{fig:event1ml}}
-		\hfil
-		\subfloat[Test]{\includegraphics[width=3.7in,height = 1.05in]{fig/exTestH2_1.eps}
-			\label{fig:event2ml}}
+	\subfloat[Training]{\includegraphics[width=3.5in,height = 1.05in]{fig/exTrain.eps}
+		\label{fig:event1ml}}
+	\hfil
+	\subfloat[Test]{\includegraphics[width=3.5in,height = 1.05in]{fig/exTestH2_1.eps}
+		\label{fig:event2ml}}
 	%\includegraphics[width=3.5in]{fig/exTestH2_1.eps}
 	\caption{Example of (a) training and (b) test data from Home 2.  In each plot, real power consumption measured from a single point is shown for both phases. } 
 	\label{fig:traintest}
 \end{figure}
 
+Each training set consists of manually generated power consumption data for each appliance in each home.  The training data is a time-serires where only one appliance is switched on at a time, although background noise can be present from untagged appliances. Tagging labels in the training data are also provided, however, these are not always precise enough to correctly identify device turn-on and turn-off times. Correction of tagging labels for training data is therefore needed and is discussed in Section \ref{sec:training}.  Fig.\ref{fig:traintest} shows an example of both training and test data from H2.  The observations recorded in each training and test set cover approximately 24 hours.  
 
 \subsection{Methodology}
 Our goal is to develop an interpretable yet effective classification approach.  It can be observed from Fig. \ref{fig:traintest} (b) that the test data is the aggregated load of multiple appliances.  Therefore, at any given time, it is not possible to determine which appliances are operating by using only the level of power consumption.  However, when an appliance is turned on or off, a step change is produced in real and reactive power.  By comparing the average power consumed before and after these transient events, we can calculate averaged power differences, facilitating discrimination among appliances.  For this reason, our methodology focuses on detecting unique turn-on and turn-off signatures in the power differences domain for each appliance.  A flow chart of the proposed methodology is shown in Fig. \ref{fig:flow}.
@@ -555,11 +541,11 @@ where $N$ is the window size and $D$ is the distance between the two windows.  T
 	\label{fig:maw}
 \end{figure}
 
-Using the averaged power differences to determine true appliance event indices, tagging labels from the raw data are first corrected.  A threshold in real power differences is then set to indicate whether an event occurred, (i.e., an event occurred if $|\Delta P_{avg}(n)| >$ threshold).  Then the corrected indices are used as the actual event index instead of the tagging info provided in the raw data.  On the top plot of Fig. \ref{fig:tagging}, the tagging labels of the master bedroom lights do not align with the actual event incidence.  The red markers in the bottom plot shows when the power difference is greater than the threshold; this index is used as the corrected tagging label.  It should be noted that some appliances that consume very small real or reactive power are discarded as they cannot be detected.  For these appliances, using real and reactive power differences will cause false detections in the test data due to the effects of the noise.  Additional features must be considered to detect such appliances.
+Using the averaged power differences to determine true appliance event indices, tagging labels from the raw data are first corrected.  A threshold in real power differences is then set to indicate whether an event occurred, (i.e., an event occurred if $|\Delta P_{avg}(n)| >$ threshold).  Then the corrected indices are used as the actual event index instead of the tagging info provided in the raw data.  On the top plot of Fig. \ref{fig:tagging}, the tagging labels of the bedroom lights do not align with the actual event incidence.  The bottom plot shows when the first index of the averaged power difference is greater than the threshold; this index is used as the corrected tagging label.  It should be noted that some appliances that consume very small real or reactive power are discarded as they cannot be detected.  For these appliances, using real and reactive power differences will cause false detections in the test data due to the effects of the noise.  Additional features must be considered to detect such appliances.
 
 \begin{figure}[!t]
 	\centering
-	\includegraphics[width=3.5in]{fig/masterlights.eps}
+	\includegraphics[width=3.5in]{fig/tagginginfo.eps}
 	\caption{Provided tagging labels are corrected in the power differences domain.}
 	\label{fig:tagging}
 \end{figure}
@@ -681,7 +667,6 @@ Outlier detection is also held during this stage.  Consider the four on/off even
 
 \section{Cross-Validation}\label{sec:cv}
 In this section, we present the procedure for cross-validating the signature windows trained in Section \ref{sec:training} in the training set.  The objective of cross-validating the signature windows of each appliance is to verify the ability to detect other events of the same appliance in the training data.  The root-mean-squared error (RMSE) is chosen as the metric to determine how well the signature window matches with the measured signal.  The equations for calculating RMSE are shown in (\ref{eq:RMSE-P}) and (\ref{eq:RMSE-Q}).
-
 \begin{align}
 \label{eq:RMSE-P}
 \text{RMSE}_{\text{P}}(n) &= \sqrt{\frac{1}{N}\sum\limits_{k=1}^{N}(w_{i,j}(k) - \Delta P_{avg}(n+k))^2}\\
@@ -712,7 +697,7 @@ where $w_{i,j}$ is the transient signature window for $j$-th turn-on or turn-off
 %need to determine P and Q thresholds simultaneously
 %Turn-on and turn-off events are detected when the RMSE falls below a specified threshold simultaneously for both real and reactive power differences.    If an appliance cannot be detected during cross-validation, it will not be predicted in the test set.  
 
-When the signature window is scanning its target, both the $\text{RMSE}_{\text{P}}$ and $\text{RMSE}_{\text{Q}}$ values fall very low.  On the other hand, if the window is scanning on a different time stamp, each $\text{RMSE}_{\text{P}}$ and $\text{RMSE}_{\text{Q}}$ value can rise, fall, or stay the same.  It is possible that both the RMSE values drop when the window is detecting different appliance.  This happens when the signature windows of the two appliances have a very similar shape and amplitude.  To prevent this scenario, RMSE thresholds ($\theta_P$ and $\theta_Q$) is set to separate these appliance from being detected.  If a RMSE threshold could not be set, the window is discarded.  Figure \ref{fig:bread} shows the detection result after applying the turn-on window of a breadmaker to the training set.  The window successfully detects the breadmaker turning-on with all the other events being not detected. 
+Both $\text{RMSE}_{\text{P}}$ and $\text{RMSE}_{\text{Q}}$ will simultaneously reach a minimum when the associated appliance turns on or off in the averaged power differences domain. However, other appliances switching on and off can cause $\text{RMSE}_{\text{P}}$ and $\text{RMSE}_{\text{Q}}$ value to rise, fall, or stay the same.  It is possible that both the RMSE values drop when the window is detecting different appliance.  This happens when the signature windows of the two appliances have a very similar shape and amplitude.  To prevent this scenario, RMSE thresholds ($\theta_P$ and $\theta_Q$) are set to prevent other appliances from being detected.  If such thresholds ($\theta_P$ and $\theta_Q$) can not be set, the window is discarded.  Figure \ref{fig:bread} shows an example of this procedure. The window successfully detects the breadmaker turning-on with all the other events being rejected. 
 
 \begin{figure}[!t]
 	\centering
@@ -721,7 +706,7 @@ When the signature window is scanning its target, both the $\text{RMSE}_{\text{P
 	\label{fig:bread}
 \end{figure}
 
-\begin{table}[h!]
+\begin{table}[!t]
 	\renewcommand{\arraystretch}{1.3}
 	\caption{Number of Appliances Validated and Discarded for Each Home}\label{classes}
 	\label{table:cv}
@@ -731,13 +716,13 @@ When the signature window is scanning its target, both the $\text{RMSE}_{\text{P
 		\textbf{Home No.} & \textbf{Total Appliances} &\textbf{Discarded} &\textbf{No. Validated (\%)}\tabularnewline
 		\hline 
 		\hline 
-		H1 & 38 & 6 & 32 (80\%)\tabularnewline
+		H1 & 38 & 11 & 27 (71.1\%)\tabularnewline
 		\hline 
 		H2 & 37 & 6 & 31 (83.8\%)\tabularnewline
 		\hline 
 		H3 & 37 & 5 & 32 (86.5\%)\tabularnewline
 		\hline 
-		H4 & 36 & 2 & 34 (80\%)\tabularnewline
+		H4 & 36 & 9 & 27 (75.0\%)\tabularnewline
 		\hline 
 	\end{tabular}
 \end{table}
@@ -760,22 +745,22 @@ We then apply our algorithm on the provided test data and identify appliance on 
 	\end{algorithmic}
 \end{algorithm}
 
-Although the competition has closed, we can still submit our predictions and see its rank on the leaderboard. Our best submission would have placed 7th.  However, the strategy for the test data is changed to achieve the best score.  Because average Hamming distance is used, thresholds are adjusted so that only the most likely predictions, i.e., low RMSE values are submitted.  
+Although the competition has closed, we are ableo to submit our predictions and see its rank compared to past submissions. Our best submission would have placed 7th overall.  However, the strategy for the test data is modified to achieve the best score.  Because scoring is based on average Hamming distance, thresholds are adjusted so that only the most likely predictions, i.e., low RMSE values are predicted.  
 
 \section{Conclusion}\label{sec:concl}
-also high freqency domain for hard to identify appliances.  you can get 7th w/ just P/Q alone.   
+From our cross-validation and test data submission results, the proposed strategy can be a simple yet effective method for household energy usage disaggregation. One of the advantages of this approach is that it is more interpretable because it follows an intuitive approach for detecting appliance on and off events.  With the proposed approach, misclassifications can be traced back to the signature window length or detection thresholds.  This is particularly true when compared to methods utilizing ``black box" predictive models such as artificial neural networks.  Furthermore, the proposed approach as the ability for real time processing. Because calculations are implemented as sliding windows, data can be streamed into the algorithm. Additionally, this method only utilized a subset of the entire dataset, needing only P and Q measurements.  High frequency features could have been added to help classify smaller appliances that were discarded during cross-validation.  However, one of the primary drawbacks is that manual identification of appropriate window lengths is requried during training.  Future work would consider automation of appropriate window lengths.
 
-Using this dataset, a lot of effort was put into cleaning the data.  Specifically, the tagging information for appliance on off events was not precise enough to accurately extract on and off signatures windows automatically.  However, if these event tags were generated correctly, event signature windows could be automatically extracted form the training data. 
 
--constant power - static: can be difficult if rated power is similar between two appliances, same for below.
-- resistive (lights, heaters, kettle) - P domain and rectangular mainly, can be separated in P domain only if turn on/off signature is unique or if rated power is not similar to others
-- resistive + reactive (rotating like fans) - Q is a feature to help classify; if P is not unique, but Q is, greatly increases classification
--dynamic
-	- cyclical (washer dryer) - require rules, ie. recurrent pattern detection
 
-One of the advantages of this approach is that it is more interpretable as it follows intuition for detecting appliance on and off events.  With the proposed approach, misclassifications can be traced back to the signature window length or detection thresholds.  This is particularly true when compared to methods utilizing 'black box' predictive models such as artificial neural networks.  Furthermore, the proposed approach as the ability for real time processing. We also used a simplified dataset, only needing P and Q.  High frequency features could have been added to help classify smaller appliances.
+%-constant power - static: can be difficult if rated power is similar between two appliances, same for below.
+%- resistive (lights, heaters, kettle) - P domain and rectangular mainly, can be separated in P domain only if turn on/off signature is unique or if rated power is not similar to others
+%- resistive + reactive (rotating like fans) - Q is a feature to help classify; if P is not unique, but Q is, greatly increases classification
+%-dynamic
+%	- cyclical (washer dryer) - require rules, ie. recurrent pattern detection
+%	also high freqency domain for hard to identify appliances.  you can get 7th w/ just P/Q alone.   
+	
 
-However, one of the primary drawbacks is that manual identification of appropriate window lengths is requried during training.
+
 
 
 

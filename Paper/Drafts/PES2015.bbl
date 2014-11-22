@@ -1,9 +1,52 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{mit}
 C.~Laughman, K.~Lee, R.~Cox, S.~Shaw, S.~Leeb, L.~Norford, and P.~Armstrong,
   ``Power signature analysis,'' {\em Power and Energy Magazine, IEEE}, vol.~1,
   pp.~56--63, Mar 2003.
+
+\bibitem{adaptive}
+R.~Dong, L.~Ratliff, H.~Ohlsson, and S.~Sastry, ``Energy disaggregation via
+  adaptive filtering,'' in {\em Communication, Control, and Computing
+  (Allerton), 2013 51st Annual Allerton Conference on}, pp.~173--180, Oct 2013.
+
+\bibitem{EMI}
+S.~Gupta, M.~S. Reynolds, and S.~N. Patel, ``Electrisense: Single-point sensing
+  using emi for electrical event detection and classification in the home,'' in
+  {\em Proceedings of the 12th ACM International Conference on Ubiquitous
+  Computing}, Ubicomp '10, (New York, NY, USA), pp.~139--148, ACM, 2010.
+
+\bibitem{prob}
+M.~Zeifman, ``Disaggregation of home energy display data using probabilistic
+  approach,'' {\em Consumer Electronics, IEEE Transactions on}, vol.~58,
+  pp.~23--31, February 2012.
+
+\bibitem{Hart}
+G.~Hart, ``Nonintrusive appliance load monitoring,'' {\em Proceedings of the
+  IEEE}, vol.~80, pp.~1870--1891, Dec 1992.
+
+\bibitem{Shaw}
+S.~Shaw, S.~Leeb, L.~Norford, and R.~Cox, ``Nonintrusive load monitoring and
+  diagnostics in power systems,'' {\em Instrumentation and Measurement, IEEE
+  Transactions on}, vol.~57, pp.~1445--1454, July 2008.
+
+\bibitem{Lin}
+Y.-H. Lin and M.-S. Tsai, ``A novel feature extraction method for the
+  development of nonintrusive load monitoring system based on bp-ann,'' in {\em
+  Computer Communication Control and Automation (3CA), 2010 International
+  Symposium on}, vol.~2, pp.~215--218, May 2010.
+
+\bibitem{Chang}
+H.-H. Chang, L.-S. Lin, N.~Chen, and W.-J. Lee,
+  ``Particle-swarm-optimization-based nonintrusive demand monitoring and load
+  identification in smart meters,'' {\em Industry Applications, IEEE
+  Transactions on}, vol.~49, pp.~2229--2236, Sept 2013.
+
+\bibitem{Wave}
+H.-H. Chang, K.-L. Lian, Y.-C. Su, and W.-J. Lee, ``Power-spectrum-based
+  wavelet transform for nonintrusive demand monitoring and load
+  identification,'' {\em Industry Applications, IEEE Transactions on}, vol.~50,
+  pp.~2081--2089, May 2014.
 
 \bibitem{Kaggle}
 http://www.kaggle.com/c/belkin-energy-disaggregation-competition.
