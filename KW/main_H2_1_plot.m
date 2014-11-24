@@ -22,7 +22,7 @@ for i = 1:size(fileList,2)
 end
 %% Step 3: Load Data File
 % Load one of training files, in partuclar the first.
-fname = fileList{3}; % ***** Note: We are only loading one of the files. This should be put in a loop as needed **
+fname = fileList{1}; % ***** Note: We are only loading one of the files. This should be put in a loop as needed **
 clear Buffer;
 
 fprintf(1, 'Loading file: %s\n', fname);
@@ -139,7 +139,7 @@ linkaxes(ax, 'x');
 %% Plotting - Phase 2 
 figure();
 n = [1:length(featP_L2)];
-ax(1) = subplot(211);plot(n, featP_L2(n), 'r'); grid;
+ax(1) = subplot(211);plot(n, featP_L2(n), 'r'); hold on;grid;
 for i=1:length(ts_start)
     line([start_idx(i),start_idx(i)],[0,100],'Color','g','LineWidth',2);
     %We add a little offset for display purposes to end marker since event could be +- 30
@@ -149,15 +149,18 @@ for i=1:length(ts_start)
     text(double(start_idx(i)),100,['ON-' ProcessedData.TaggingInfo{i, 2}] );
     text(double(end_idx(i)),100,['OFF'] );
 end
-title('Real Power (W) and ON/OFF Device Category IDs');
-featP_scanA_L2_2 = [zeros(1,70) featP_scanA_L2];
-ax(2) = subplot(212);plot(n, featP_scanA_L2_2);grid;
-
+hold off;
+ax(2) = subplot(212);plot(n, featP_L2(n), xmarkers2_L2,ymarkers1_L2,'r*');grid;
+for i = [1:max(Windows_All_L2(:,3))]
+    x_temp = min(find(Windows_All_L2(:,3)==i));
+    text((Windows_All_L2(x_temp,1)-1).*Window_Shift+Window_Size*2+Window_Dist, Windows_All_L2(x_temp,2), num2str(Windows_All_L2(x_temp,3)));
+end
 % for i = [1: floor(length(featP_L2)/50)]
 %     line([i*50 i*50], [0 max(featP_L2)]);
 % end
 
-title('Real Power Difference (W) and ON/OFF Device Category IDs');
+title('Real Power (W) and ON/OFF Device Category IDs');
+hline = refline([0 0]);
 linkaxes(ax, 'x');
 
 %% Plot tagging info in plot versus samples - all Phases
