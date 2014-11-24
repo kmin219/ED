@@ -341,8 +341,8 @@
 %\title{Disaggregation of Household Energy Consumption into Individual Appliances}
 
 %\title{Transient Signature Detection for Disaggregation of Household Energy Consumption into Individual Appliances}
-\title{Transient Signature Detection of Appliances for Household Energy Consumption Disaggregation}
-
+%\title{Transient Signature Detection of Appliances for Household Energy Consumption Disaggregation}
+\title{Transient Signature Detection for Disaggregating Appliances in Households}
 
 
 % author names and affiliations
@@ -389,7 +389,7 @@ The University of Texas at Austin\\}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Even with advances in smart grid technology and a growing demand for cost-effective  energy consumption, detailed information about energy usage is often not available for residential electricity consumers. One reason is that household energy usage is monitored at no more than a single point by the utility, only providing information on the aggregate power consumption.  In this paper, we attempt to disaggregate  energy usage data into specific appliances from single-point sensing measurements.  Our method involves extracting turn-on and turn-off signature windows from time-series real and reactive power data to obtain transient characteristics of each appliance.  We focus on determining the appropriate window size for each appliance in order to capture unique signatures.  We present the results of our approach on a publicly available dataset.
+Even with advances in smart grid technology and a growing demand for cost-effective  energy consumption, detailed information about energy usage is often not available for residential electricity consumers. One reason is that household energy usage is typically monitored at no more than a single point, only providing information on the aggregate power consumption.  In this paper, we attempt to disaggregate  energy usage data into specific appliances from single-point sensing measurements.  Our method involves extracting turn-on and turn-off signature windows from real and reactive power time series data to obtain transient characteristics of each appliance.  We focus on determining the appropriate window size for each appliance in order to capture unique signatures.  We present the results of our approach on a publicly available dataset.
 \end{abstract}
 
 % no keywords
@@ -412,29 +412,19 @@ Even with advances in smart grid technology and a growing demand for cost-effect
 \section{Introduction}
 %In this section, we provide the motivation and a brief description of the project.  A short discussion of related work in this area, including the methodology of previous competition winners is also provided.  This is followed by an overview of our approach, description of the raw data, and evaluation method.
 
-The objective of residential non-intrusive load monitoring (NILM) is to monitor the major loads in a home from a single-point.  The alternative is to monitor each appliance individually, however, this scheme typically adds significant cost. Therefore, the challenge with NILM is to accurately disaggregate household energy consumption into the individual appliance level with data from single-point measurements.  
+The objective of residential non-intrusive load monitoring (NILM) is to determine the power consumption of major loads in a home from a single-point.  The alternative is to monitor each appliance individually, however, this scheme typically adds significant cost. Therefore, the challenge with residential NILM is to accurately disaggregate household energy consumption into the individual appliance level with data from single-point measurements from the service entrance panel.  
 
-Prior research in the area of NILM has focused on the use of aggregate power consumption patterns as features to identify what appliance is being used and how much energy it is consuming. For example, the authors in \cite{mit} discuss various approaches in NILM, including detecting changes in steady-state power measurements and characterizing them as different events. Some challenges reported by the authors include different loads not exhibiting unique signatures in the 2D feature space and the difficulty in determining steady-state features due to turn-on transient noise.  Some recommended advanced techniques are to include the 3rd order harmonics as a feature and using turn-on transients for event detection.  The methodology in \cite{adaptive, EMI, prob, Hart, Shaw, Lin, Chang, Wave} follows a similar strategy, however, the training and test data are manually generated, resulting in a clean dataset that may not be representative of real household energy usage patterns.  Furthermore, the classification can become challenging if the number of appliances in the home is large. Additionally, the signature of some appliances may drift or vary over time due to operating conditions and the mode in which they are used. 
+Prior research in the area of NILM has focused on the use of aggregate power consumption patterns as features to identify what appliance is being used and how much energy it is consuming. For example, \cite{mit} discusses various approaches in NILM, including detecting changes in steady-state power measurements and characterizing them as different events. Some challenges reported include different loads not exhibiting unique signatures in the 2-D feature space and the difficulty in determining steady-state features due to turn-on transient noise.  Recommended advanced techniques include 3rd order harmonics as a feature and use turn-on transients for event detection.  The methodology in \cite{adaptive, EMI, prob, Hart, Shaw, Lin, Chang, Wave} follows a similar strategy, however, the training and test data are manually generated, resulting in a clean dataset that may not be representative of real household energy usage patterns.  Furthermore, the classification can become challenging if the number of appliances in the home is large. Additionally, the signature of some appliances may change or vary over time due to operating conditions and the mode in which they are used. 
 
-In this paper, we present a method that focuses on extracting turn-on and turn-off signature windows to obtain transient characteristics of each appliance.  The transient characteristics are observed from the difference of two moving average windows from time-series real and reactive power data.  We focus on determining the appropriate window length for each appliance in order to capture unique signatures.  We present the results of our approach using a publicly available dataset from the Belkin Energy Disaggregation Competition on kaggle.com \cite{Kaggle}. The dataset and methodology are described in detail in Section \ref{sec:dataMethod}.  Section \ref{sec:training} describes the approach for extracting signature windows for each appliance from the training data. Section \ref{sec:cv} describes the cross-validation procedure using the training data.  Section \ref{sec:test} describes application of our approach to the test data.  Finally, Section \ref{sec:concl} discusses results and topics for future work.
+In this paper, we present a method that focuses on extracting turn-on and turn-off signature windows to obtain transient characteristics of each appliance.  The transient characteristics are observed from the difference of two moving average windows from real and reactive power time series data.  We focus on determining the appropriate window length for each appliance in order to capture unique signatures.  We present the results of our approach using a publicly available dataset from the Belkin Energy Disaggregation Competition on kaggle.com \cite{Kaggle}. The dataset and methodology are described in detail in Section \ref{sec:dataMethod}.  Section \ref{sec:training} describes the approach for extracting signature windows for each appliance from the training data. Section \ref{sec:cv} then describes the cross-validation procedure using the training data and also application to the test data. Finally, Section \ref{sec:concl} discusses results and topics for future work.
 
 \section{Approach}\label{sec:dataMethod}
 %The objective is this.... because of this and the dataset, our methodology is specifically chosen for ...This section provides an overview of the dataset and a description of our methodology. 
 
-In this section, we describe the dataset that was used and our methodology for detecting appliances in the test data. Because the set of appliances in each home includes multiple small devices with similar steady-state load characteristics, our methodology focuses on identifying the unique features when a device turns on and off (the transient periods).  Out of approximately 37 appliances per home, only a small subset of appliances have pronounced steady state features that allow discrimination from other appliances or background noise.   
+In this section, we describe the dataset and our methodology for detecting turn-on and turn-off events of appliances in the test data. Because the set of appliances in each home includes multiple small devices with similar steady-state load characteristics, our methodology focuses on identifying the unique features when a device turns on and off (the transient periods).  Out of approximately 37 appliances per home, only a small subset of appliances have pronounced steady state features that allow discrimination from other appliances or background noise.   
 
 \subsection{Dataset}
-%Show visualizations
-%-data description
-%-training data
-%-figures show differences domain/power domain
-%	- explain reason for looking in difference domain
-%	- test data-multiple devices, and steady state, no changes
-%	-goal is to detect events on/off
-%	-for example, constant power loads, show no change, eg. light
-%	-needed to correct time stamps in order to accurately determine signature windows
-
-In this paper, we utilize the complete dataset from the Belkin Energy Disaggregation Competition hosted on kaggle.com, provided by Belkin Energy \cite{Kaggle}.  The dataset is publicly available on the competition website and contains single-point sensing measurements of the first five harmonics of rms voltage and current on two phases for four households (labeled H1-H4). The dataset also contains high frequency noise (EMI) data for each household, but is not required with our approach (see further discussion in Section \ref{sec:concl}).  Although both training and test datasets are provided, only the training data provides labels and corresponding timestamps for each appliance. Table \ref{table:dataset} shows the number of distinct appliances in each home and the number of training and test sets provided. 
+We utilize the complete dataset from the Belkin Energy Disaggregation Competition hosted on kaggle.com, provided by Belkin Energy \cite{Kaggle}.  The dataset is publicly available on the competition website and contains single-point sensing measurements from the service entrance panel for four households (labeled H1-H4).  The measurements include the first five harmonics of rms voltage and current on two phases and high frequency noise (EMI) data for each household.  The EMI data is not required with our approach (see further discussion in Section \ref{sec:concl}).  Although both training and test datasets are provided, only the training data provides labels and corresponding timestamps for each appliance. Table \ref{table:dataset} shows the number of distinct appliances in each home and the number of training and test sets provided. 
 
 \begin{table}[!t]
 	\renewcommand{\arraystretch}{1.3}
@@ -469,16 +459,14 @@ In this paper, we utilize the complete dataset from the Belkin Energy Disaggrega
 	\label{fig:traintest}
 \end{figure}
 
-Each training set consists of manually generated power consumption data for each appliance in each home.  The training data is a time-serires where only one appliance is switched on at a time, although background noise can be present from untagged appliances. Tagging labels in the training data are also provided, however, these are not always precise enough to correctly identify device turn-on and turn-off times. Correction of tagging labels for training data is therefore needed and is discussed in Section \ref{sec:training}.  Fig.\ref{fig:traintest} shows an example of both training and test data from H2.  The observations recorded in each training and test set cover approximately 24 hours.  
+Each training set consists of manually generated power consumption data for each appliance in each home.  The training data is a time series where only one appliance is switched on at a time, although background noise can be present from untagged appliances. Tagging labels in the training data are also provided, however, these are not always precise enough to correctly identify device turn-on and turn-off times. Correction of tagging labels for training data is therefore needed and is discussed in Section \ref{sec:training}.  Fig.\ref{fig:traintest} shows an example of both training and test data from H2.  The observations recorded in each training and test set cover approximately 24 hours.  
 
 \subsection{Methodology}
-Our goal is to develop an interpretable yet effective classification approach.  It can be observed from Fig. \ref{fig:traintest} (b) that the test data is the aggregated load of multiple appliances.  Therefore, at any given time, it is not possible to determine which appliances are operating by using only the level of power consumption.  However, when an appliance is turned on or off, a step change is produced in real and reactive power.  By comparing the average power consumed before and after these transient events, we can calculate averaged power differences, facilitating discrimination among appliances.  For this reason, our methodology focuses on detecting unique turn-on and turn-off signatures in the power differences domain for each appliance.  A flow chart of the proposed methodology is shown in Fig. \ref{fig:flow}.
+Our goal is to develop an interpretable yet effective classification approach.  It can be observed from Fig. \ref{fig:traintest} (b) that the test data is the aggregated load of multiple appliances.  Therefore, at any given time, it is not possible to determine which appliances are operating by using only the level of power consumption.  However, when an appliance is turned on or off, a step change is produced in real and reactive power.  By comparing the average power consumed before and after these transient events, we can calculate an averaged power difference time series, facilitating discrimination among appliances.  For this reason, our methodology focuses on detecting unique turn-on and turn-off signatures in the averaged power difference time series for each appliance.  A flow chart of the proposed methodology is shown in Fig. \ref{fig:flow}.
 
-The first step is to extract transient signature windows for each appliance.  Raw data is converted from the power domain (P and Q) into the power differences domain ($\Delta P_{avg}$ and $\Delta Q_{avg}$) by taking the difference of two moving average windows in P and Q.  After $\Delta P_{avg}$ and $\Delta Q_{avg}$ are calculated, transient signature windows are extracted for each appliance.  Choosing the appropriate window length is a key component to this step and the procedure is explained in detail in Section \ref{sec:training}. 
+The first step is to extract transient signature windows for each appliance.  Raw data is converted from a power time series ($\text{P}_{\text{rms}}$ and $\text{Q}_{\text{rms}}$ ) into an averaged power difference time series ($\Delta P_{avg}$ and $\Delta Q_{avg}$) by taking the difference of two moving average windows.  After $\Delta P_{avg}$ and $\Delta Q_{avg}$ are calculated, transient signature windows are extracted for each appliance.  Each signature window, $w_{i,j}$ is of length $\text{N}_{i,j}$, meaning each $i^{\text{th}}$ appliance and corresponding $j^{\text{th}}$ event in the training data has a signature window with its own specified window length. Choosing the appropriate window length is a key component to this step and the procedure is explained in detail in Section \ref{sec:training}. 
 
-Once transient signatures are extracted for each appliance in the training data, cross-validation is performed.  This step involves moving  $\Delta P_{avg}(n)$ or $\Delta Q_{avg}(n)$ past the extracted signature window to calculate the root-mean-squared error (RMSE).  Turn-on and turn-off events are detected when the RMSE falls below a specified threshold simultaneously for both real and reactive power differences.  The ability of each signature window to detect other events of the same appliance in the training data is used to determine if the appliance is detectable or not.  If an appliance cannot be detected during cross-validation, it will not be predicted in the test set.  The procedure to determine the correct threshold and separability of each appliance is presented in Section \ref{sec:cv}.  
-
-Finally, for the test set, we use the cross-validated signature windows and threshold values to calculate RMSE and detect appliance turn-on and turn-off events.  This process is discussed in Section \ref{sec:concl}.  
+Once transient signatures are extracted for each appliance in the training data, cross-validation is performed.  The objective of this step is to determine the ability of each signature window to only detect other events of the same appliance. This step involves sliding $\Delta P_{avg}(n)$ or $\Delta Q_{avg}(n)$ past each extracted signature window to calculate the root-mean-squared error (RMSE) at each time step.  Turn-on and turn-off events are detected in the resulting time series when RMSE falls below a specified threshold simultaneously in both the real and reactive power difference.   If an appliance cannot be detected during cross-validation, it will not be predicted in the test set.  The procedure for cross-validation is presented in Section \ref{sec:cv}. Finally, for the test set, we use the cross-validated signature windows and threshold values to calculate an RMSE time series and detect appliance turn-on and turn-off events.  The results and conclusion are discussed in Section \ref{sec:concl}.  
 
 \begin{figure}[!t]
 	\centering
@@ -487,72 +475,50 @@ Finally, for the test set, we use the cross-validated signature windows and thre
 	\label{fig:flow}
 \end{figure}
 
-%
-%
-%
-%\begin{figure}[!t]
-%	\centering
-%%	\subfloat[]{\includegraphics[width=1.7in]{fig/kettle.eps}
-%%		\label{fig:event1}}
-%	\subfloat[]{\includegraphics[width=3.5in, height = 1in]{fig/fan.eps}
-%		\label{fig:event2}}
-%	\hfill
-%%	\subfloat[]{\includegraphics[width=1.7in]{fig/computer1.eps}
-%%		\label{fig:event1}}
-%	\subfloat[]{\includegraphics[width=3.5in,height = 1in]{fig/TV.eps}
-%		\label{fig:event2}}
-%	\hfill
-%	\subfloat[]{\includegraphics[width=3.5in,height = 1in]{fig/dryer.eps}
-%		\label{fig:event1}}
-%%	\subfloat[]{\includegraphics[width=1.7in]{fig/oven.eps}
-%%		\label{fig:event2}}
-%	\caption{Load Types (a) Tea Kettle, (b) Master Bath Fan, (c) Computer, (d) TV, (e) Dryer, (f) Oven.}
-%	\label{fig:exLoads}
-%\end{figure}	
 
 \section{Signature Window Extraction}\label{sec:training}
-This section describes how transient signature windows are extracted by using averaged real and the reactive power differences.  In particular, a pair of turn-on and turn-off signature windows are trained for every event of each appliance in the training data.  The following sections describe how the signature windows are extracted.  
+This section describes how transient signature windows are extracted by using averaged real and the reactive power difference time series.  In particular, a pair of turn-on and turn-off signature windows are trained for every event of each appliance in the training data.  The following sections describe how the signature windows are extracted.  
 
 
 \subsection{Load Types}
-The appliances are first categorized into three load types based on their load shape in P and Q.  The types include rectangular, non-rectangular, and cyclic loads:
+The appliances are first categorized into three load types based on their load shapes in P and Q.  The types include rectangular, non-rectangular, and cyclic loads:
 
 \begin{enumerate}
-\item{Rectangular loads:} These type of loads consume constant power when operating and their transient period is characterized by a sharp transition from zero to rated power consumption.  Their load shapes are generally rectangular and consist of primarily resistive loads, such as lights, heaters, and kettles.  Some inductive loads, such as small fans, also exhibit this load shape.  A short duration window consisting of the real and the reactive power differences are used to detect these loads.
+\item{Rectangular loads:} These types of loads consume constant power during steady-state operation and their transient period is characterized by a sharp transition from zero to rated power consumption.  Their load shapes are generally rectangular and consist primarily of resistive loads, such as incandescent lights and heating elements.  Some inductive loads, such as small fans, also exhibit this load shape.  A short duration signature window in the real and the reactive power difference time series is used to detect these loads.
 \newline
-\item{Non-rectangular loads:} These type of loads have a longer transient period when turning on and include computers and TVs.  Their transient period is characterized by a stepwise transition from zero to rated power consumption.  Although the power consumed may vary based on how the device is operated, the turn-on signatures can be unique, allowing discrimination against other devices.  These type of loads require a longer window length to capture the unique transient shape.
+\item{Non-rectangular loads:} These types of loads have a longer transient period when turning on and include computers and TVs.  Their transient period is characterized by a stepwise or gradual transition from zero to rated power consumption.  Although the power consumed may vary based on how the device is operated, the turn-on and turn-off signatures can be unique, allowing discrimination against other devices.  These types of loads require a longer signature window length to capture their unique transient shape.
 \newline
-\item{Cyclical loads:} - The amount of real or reactive power consumed by these loads change depending on the cycle of their operation.  Dryers, ovens, and washers are included in this category.   However, because they operate on set cycles, there are only a few possible periodic load shapes they can follow.  A modified approach is required to detect these type of loads: identifying a notable recurrent patterns during appliance operation.
+\item{Cyclical loads:} - The amount of real or reactive power consumed by these loads change depending on the cycle of their operation.  Dryers, ovens, and washers are included in this category.   However, because they operate on preset cycles, there are only a few possible periodic load shapes they can follow.  A modified approach is required to detect these type of loads: identifying a notable recurrent patterns during appliance operation.
 \end{enumerate}
 
 %Illustrative examples of these load types are shown in Fig. \ref{fig:exLoads}.  The dryer for example produces several rectangular step changes over the course of its cycle, resulting in misclassifications if not accounted for.  The modified approach for detecting these appliance is discussed below.
 
-\subsection{Averaged Power Differences}
-Our approach relies on identifying appliance turn-on and turn-off events by detecting unique transient signatures in real and reactive power consumption. To extract transient signatures for each appliance, the averaged power differences are calculated from two moving average windows.  The averaged differences for real power, $\Delta P_{avg}(n)$, is defined as,
+\subsection{Averaged Power Difference Time Series}
+Our approach relies on identifying appliance turn-on and turn-off events by detecting unique transient signatures in real and reactive power consumption. To extract transient signatures for each appliance, unique characteristics are observed in the averaged power difference time series. This calculation is made from two moving average windows.  The averaged difference for real power, $\Delta P_{avg}(n)$, is defined as,
 \begin{equation}
 \Delta P_{avg}(n) = \frac{1}{N}\sum_{k=0}^{N-1}P(n-k) - \frac{1}{N}\sum_{k=N+D}^{2N+D-1}P(n-k)
 \end{equation}
-where $N$ is the window size and $D$ is the distance between the two windows.  The averaged differences for reactive power, $\Delta Q_{avg}(n)$, is calculated using the same $N$ and $D$.  It should be noted that if a shorter window size is used, it is easier to distinguish events happening at the same incidence.  However, the detector becomes less robust to noise.
+where $N$ is the window size and $D$ is the distance between the two windows.  The averaged difference for reactive power, $\Delta Q_{avg}(n)$, is calculated using the same $N$ and $D$.  It should be noted that if a shorter window size is used, it is easier to distinguish events happening at the same incidence.  However, the detector becomes less robust to noise.
 
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=3.5in]{fig/maw.eps}
-	\caption{Difference of two moving average windows to detect transient signatures.}
+	\caption{Difference of two moving average windows to calculate averaged power difference time series.  The bottom plot shows the transient signature for appliance XXXXXXX.}
 	\label{fig:maw}
 \end{figure}
 
-Using the averaged power differences to determine true appliance event indices, tagging labels from the raw data are first corrected.  A threshold in real power differences is then set to indicate whether an event occurred, (i.e., an event occurred if $|\Delta P_{avg}(n)| >$ threshold).  Then the corrected indices are used as the actual event index instead of the tagging info provided in the raw data.  On the top plot of Fig. \ref{fig:tagging}, the tagging labels of the bedroom lights do not align with the actual event incidence.  The bottom plot shows when the first index of the averaged power difference is greater than the threshold; this index is used as the corrected tagging label.  It should be noted that some appliances that consume very small real or reactive power are discarded as they cannot be detected.  For these appliances, using real and reactive power differences will cause false detections in the test data due to the effects of the noise.  Additional features must be considered to detect such appliances.
+Using the averaged power difference time series to determine true appliance event indices, tagging labels from the raw data are first corrected.  A threshold in the averaged real power difference is then set to indicate whether an event occurred, (i.e., an event occurred if $|\Delta P_{avg}(n)| >$ threshold).  Then the corrected indices are used as the actual event index instead of the tagging info provided in the raw data.  On the top plot of Fig. \ref{fig:tagging}, the tagging labels of the bedroom lights do not align with the actual event incidence.  The bottom plot shows when the first index of the averaged power difference is greater than the threshold; this index is used as the corrected tagging label.  It should be noted that some appliances that consume very small real or reactive power are discarded as they cannot be detected.  For these appliances, using real and reactive power difference will cause false detections in the test data due to the effects of the noise.  Additional features must be considered to detect such appliances.
 
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=3.5in]{fig/tagginginfo.eps}
-	\caption{Provided tagging labels are corrected in the power differences domain.}
+	\caption{Provided tagging labels are corrected in the power difference time series.}
 	\label{fig:tagging}
 \end{figure}
 	
 
 \subsection{Window Extraction}
-After taking the power differences, the next step is to extract the signatures for turn-on  and turn-off events. The windows are extracted using the corrected tagging labels.  For rectangular load shapes, the transient signature window is extracted from the start of the turn-on event until the load reaches steady-state power consumption.  If an appliance has longer transient characteristics (non-rectangular load shapes), longer window sizes are used to capture the entire unique transient period.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consume about 38 W at event incidence.  However, the laptop charger then spends additional 38 Watts to fully turn on.  Therefore, a longer window length is needed to detect the laptop charger than the dining room lights. 
+After calculating the averaged power difference time series, the next step is to extract the signatures for turn-on  and turn-off events.  For rectangular load shapes, the transient signature window is extracted from the start of the turn-on event until the load reaches steady-state power consumption.  If an appliance has longer transient characteristics (non-rectangular load shapes), longer window sizes are used to capture the entire unique transient period.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consume about 38 W at event incidence.  However, the laptop charger requires additional power to fully turn on.  Therefore, if a longer window length is used, this characteristic of the laptop charger in the averaged power difference time series can be used to discriminate it from other similar appliances.  Examples of extracted signature windows from the averaged power difference time series are shown in Fig. XXXXXXX.  Extracted signature windows $w_{i,j}$ from each $j^{\text{th}}$ event of the $i^{\text{th}}$ appliance in the training data, have length $\text{N}_{i,j}$ and define the unique transient characteristics in the averaged power difference time series.
 
 \begin{figure}[!t]
 	\centering
@@ -561,9 +527,9 @@ After taking the power differences, the next step is to extract the signatures f
 	\label{fig:windowlength}
 \end{figure}
 
-Cyclical loads exhibit unique characteristics that are different from the rectangular and the non-rectangular loads.  These types of appliances are difficult to be detected by using turn-on and turn-off signature windows because each step change in power consumption during the cycle can be mistaken for other appliances..  Therefore, for cyclical loads only, a window is trained to capture unique signatures during their operation.  Consider the dryer in Home 2 as shown in Fig. \ref{fig:dryerH2}.  The load shape of the dryer has multiple sharp peaks during its operation.  Therefore, a single window can be trained to detect these sharp peaks.  In this case, the following rule can be made:  "While the recurrent pattern window is detecting an event, the appliance is operating."  
+Cyclical loads exhibit unique characteristics that are different from the rectangular and the non-rectangular loads.  These types of appliances are difficult to be detected by using turn-on and turn-off signature windows because each step change in power consumption during the cycle can be mistaken for other appliances.  Therefore, for cyclical loads only, a window is trained to capture unique signatures during their operation.  Consider the dryer in Home 2 as shown in Fig. \ref{fig:dryerH2}.  The load shape of the dryer has multiple sharp peaks during its operation.  Therefore, a single window can be trained to detect these sharp peaks.  In this case, the following rule can be made:  ``While the recurrent pattern window is detecting an event, the appliance is operating."  
 
-Outlier detection is also held during this stage.  Consider the four on/off events of a computer as shown in Fig. \ref{fig:outlier}.  It can be seen that when event two occurred, some background noise affected the turn-on signature of the computer.  In this case, the second event is regarded as an outlier and is not used in training the windows.  When the window extraction procedure is complete transient signature windows are defined for all detectable events.  
+Outlier detection is also held during this stage.  Consider the four on/off events of a computer as shown in Fig. \ref{fig:outlier}.  It can be seen that when event two occurred, some background noise affected the turn-on signature of the computer.  In this case, the second event is regarded as an outlier and is not used in training the windows.  When the window extraction procedure is complete, transient signature windows are defined for all detectable events.  
 
 \begin{figure}[!t]
 	\centering
@@ -665,15 +631,15 @@ Outlier detection is also held during this stage.  Consider the four on/off even
 
 
 
-\section{Cross-Validation}\label{sec:cv}
-In this section, we present the procedure for cross-validating the signature windows trained in Section \ref{sec:training} in the training set.  The objective of cross-validating the signature windows of each appliance is to verify the ability to detect other events of the same appliance in the training data.  The root-mean-squared error (RMSE) is chosen as the metric to determine how well the signature window matches with the measured signal.  The equations for calculating RMSE are shown in (\ref{eq:RMSE-P}) and (\ref{eq:RMSE-Q}).
+\section{Cross-Validation and Testing}\label{sec:cv}
+In this section, we present the procedure for cross-validating the classification performance of the signature windows trained in Section \ref{sec:training}.  The objective of cross-validating signature windows of each appliance is to verify the ability to detect other events of the same appliance in the training data.  The root-mean-squared error (RMSE) is chosen as the metric to determine how well the signature window matches with the measured signal.  The equations for calculating RMSE are shown in (\ref{eq:RMSE-P}) and (\ref{eq:RMSE-Q}).
 \begin{align}
 \label{eq:RMSE-P}
 \text{RMSE}_{\text{P}}(n) &= \sqrt{\frac{1}{N}\sum\limits_{k=1}^{N}(w_{i,j}(k) - \Delta P_{avg}(n+k))^2}\\
 \label{eq:RMSE-Q}
 \text{RMSE}_{\text{Q}}(n) &= \sqrt{\frac{1}{N}\sum\limits_{k=1}^{N}(w_{i,j}(k) - \Delta Q_{avg}(n+k))^2}
 \end{align}
-where $w_{i,j}$ is the transient signature window for $j$-th turn-on or turn-off event for appliance number $i$.  For each $w_{i,j}$ the procedure for cross-validation is presented in Fig \ref{fig:flow}.
+where $w_{i,j}$ is the transient signature window for $j^{\text{th}}$ turn-on or turn-off event for appliance number $i$.  For each signature window $w_{i,j}$, the procedure for cross-validation is described below (also summarized in Fig \ref{fig:flow}).
 
 %\begin{algorithm}
 %	\caption{Cross-validation Algorithm}\label{euclid}
@@ -697,12 +663,12 @@ where $w_{i,j}$ is the transient signature window for $j$-th turn-on or turn-off
 %need to determine P and Q thresholds simultaneously
 %Turn-on and turn-off events are detected when the RMSE falls below a specified threshold simultaneously for both real and reactive power differences.    If an appliance cannot be detected during cross-validation, it will not be predicted in the test set.  
 
-Both $\text{RMSE}_{\text{P}}$ and $\text{RMSE}_{\text{Q}}$ will simultaneously reach a minimum when the associated appliance turns on or off in the averaged power differences domain. However, other appliances switching on and off can cause $\text{RMSE}_{\text{P}}$ and $\text{RMSE}_{\text{Q}}$ value to rise, fall, or stay the same.  It is possible that both the RMSE values drop when the window is detecting different appliance.  This happens when the signature windows of the two appliances have a very similar shape and amplitude.  To prevent this scenario, RMSE thresholds ($\theta_P$ and $\theta_Q$) are set to prevent other appliances from being detected.  If such thresholds ($\theta_P$ and $\theta_Q$) can not be set, the window is discarded.  Figure \ref{fig:bread} shows an example of this procedure. The window successfully detects the breadmaker turning-on with all the other events being rejected. 
+An example is shown in Figure \ref{fig:bread} for the breadmaker.  $\text{RMSE}_{\text{P}}$ and $\text{RMSE}_{\text{Q}}$ is calculated between the averaged power difference time series and the signature window for the appliance.  Both $\text{RMSE}_{\text{P}}$ and $\text{RMSE}_{\text{Q}}$ simultaneously reach a minimum when the extracted signature window closely matches the measured signal.  This corresponds to the time when the associated appliance turns on or off in the averaged power difference time series. However, other appliances switching on and off cause $\text{RMSE}_{\text{P}}$ and $\text{RMSE}_{\text{Q}}$ value to vary and it is possible that both the RMSE values drop due to switching of an appliance with a similar transient characteristics.  This happens when the signature windows of the two appliances have a very similar shape and amplitude.  To prevent this scenario, RMSE thresholds ($\theta_P$ and $\theta_Q$) are set to prevent other appliances from being detected.  If such thresholds ($\theta_P$ and $\theta_Q$) can not be set, the window is discarded.  In this example, the window successfully detects the breadmaker turning-on with all the other events being rejected. 
 
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=3.5in]{fig/cv_bread.eps}
-	\caption{Cross-validation of appliance "breadmaker" for two events in the training data.}
+	\caption{Cross-validation of one training window for appliance "breadmaker". A turn-on event is detected when the RMSE time series falls below the specified threshold. }
 	\label{fig:bread}
 \end{figure}
 
@@ -727,9 +693,28 @@ Both $\text{RMSE}_{\text{P}}$ and $\text{RMSE}_{\text{Q}}$ will simultaneously r
 	\end{tabular}
 \end{table}
 
+\begin{table}[!t]
+	\renewcommand{\arraystretch}{1.3}
+	\caption{Number of Appliances Validated and Discarded for Each Home}\label{classes}
+	\label{table:cv}
+	\centering
+\begin{tabular}{c|cc}
+	\hline 
+	\textbf{Load Shape} & \multicolumn{1}{c|}{\textbf{Turn-on Window}} & \textbf{Turn-off Window}\tabularnewline
+	\hline 
+	\hline 
+	rectangular & 80 & 80\tabularnewline
+	non-rectangular & 80 & 80\tabularnewline
+	\multicolumn{1}{c}{} &  & \tabularnewline
+	\hline 
+	\textbf{Load Shape} & \multicolumn{2}{c}{\textbf{Recurrent Pattern Window\linebreak (samples)}}\tabularnewline
+	\hline 
+	\hline
+	Cyclical & \multicolumn{2}{c}{80}\tabularnewline
+\end{tabular}
+\end{table}
 
-\section{Test Data}\label{sec:test}
-We then apply our algorithm on the provided test data and identify appliance on and off intervals.  The detections are made from the signature windows we extracted from the training set with the threshold values acquired from cross-validation.  The algorithm is shown below and is applied for every extracted signature window $w_{i,j}(n)$.
+We then apply our algorithm to the provided test data and identify appliance on and off intervals.  The detections are made from the signature windows we extracted from the training set with the threshold values acquired from cross-validation.  The algorithm is shown below and is applied for every extracted signature window $w_{i,j}$.
 
 \begin{algorithm}
 	\caption{Event Detection Algorithm}\label{euclid}
@@ -745,27 +730,11 @@ We then apply our algorithm on the provided test data and identify appliance on 
 	\end{algorithmic}
 \end{algorithm}
 
-Although the competition has closed, we are ableo to submit our predictions and see its rank compared to past submissions. Our best submission would have placed 7th overall.  However, the strategy for the test data is modified to achieve the best score.  Because scoring is based on average Hamming distance, thresholds are adjusted so that only the most likely predictions, i.e., low RMSE values are predicted.  
 
 \section{Conclusion}\label{sec:concl}
-From our cross-validation and test data submission results, the proposed strategy can be a simple yet effective method for household energy usage disaggregation. One of the advantages of this approach is that it is more interpretable because it follows an intuitive approach for detecting appliance on and off events.  With the proposed approach, misclassifications can be traced back to the signature window length or detection thresholds.  This is particularly true when compared to methods utilizing ``black box" predictive models such as artificial neural networks.  Furthermore, the proposed approach as the ability for real time processing. Because calculations are implemented as sliding windows, data can be streamed into the algorithm. Additionally, this method only utilized a subset of the entire dataset, needing only P and Q measurements.  High frequency features could have been added to help classify smaller appliances that were discarded during cross-validation.  However, one of the primary drawbacks is that manual identification of appropriate window lengths is requried during training.  Future work would consider automation of appropriate window lengths.
+From our cross-validation and test data submission results, the proposed strategy can be a simple yet effective method for household energy usage disaggregation. One of the advantages of this approach is that it is more interpretable because it follows an intuitive approach for detecting appliance on and off events.  With the proposed approach, misclassifications can be traced back to the signature window length or detection thresholds.  This is particularly true when compared to methods utilizing ``black box" predictive models such as artificial neural networks.  Furthermore, the proposed approach has the ability for real time processing. Because calculations are implemented as sliding windows, data can be streamed into the algorithm. Additionally, this method only utilized a subset of the entire dataset, needing only P and Q measurements.  High frequency features could have been added to help classify smaller appliances that were discarded during cross-validation.  However, one of the primary drawbacks is that manual identification of appropriate window lengths is required during training.  Future work would consider automation of appropriate window lengths.
 
-
-
-%-constant power - static: can be difficult if rated power is similar between two appliances, same for below.
-%- resistive (lights, heaters, kettle) - P domain and rectangular mainly, can be separated in P domain only if turn on/off signature is unique or if rated power is not similar to others
-%- resistive + reactive (rotating like fans) - Q is a feature to help classify; if P is not unique, but Q is, greatly increases classification
-%-dynamic
-%	- cyclical (washer dryer) - require rules, ie. recurrent pattern detection
-%	also high freqency domain for hard to identify appliances.  you can get 7th w/ just P/Q alone.   
 	
-
-
-
-
-
-
-
 
 
 % conference papers do not normally have an appendix

@@ -1,7 +1,50 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: PES2015.aux
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: PES2015.aux
 The style file: ieeetr.bst
 Database file #1: Bib.bib
 Warning--entry type for "Kaggle" isn't style-file defined
 --line 104 of file Bib.bib
 Warning--there's a month but no year in Kaggle
+You've used 10 entries,
+            1876 wiz_defined-function locations,
+            552 strings with 5321 characters,
+and the built_in function-call counts, 3255 in all, are:
+= -- 325
+> -- 107
+< -- 0
++ -- 40
+- -- 30
+* -- 238
+:= -- 432
+add.period$ -- 10
+call.type$ -- 10
+change.case$ -- 9
+chr.to.int$ -- 0
+cite$ -- 11
+duplicate$ -- 166
+empty$ -- 301
+format.name$ -- 30
+if$ -- 812
+int.to.chr$ -- 0
+int.to.str$ -- 10
+missing$ -- 9
+newline$ -- 33
+num.names$ -- 9
+pop$ -- 28
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 148
+stack$ -- 0
+substring$ -- 272
+swap$ -- 85
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 28
+width$ -- 12
+write$ -- 98
 (There were 2 warnings)
