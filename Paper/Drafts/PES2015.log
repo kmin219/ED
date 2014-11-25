@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.7.21)  24 NOV 2014 22:17
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.7.21)  24 NOV 2014 22:39
 entering extended mode
 **PES2015.tex
 (C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\Paper\Drafts\PES2015.tex
@@ -451,22 +451,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 489--491
 
  []
 
-Package epstopdf Info: Source file: <fig/maw.eps>
-(epstopdf)                    date: 2014-11-21 14:39:04
-(epstopdf)                    size: 15099 bytes
-(epstopdf)             Output file: <./fig/maw-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-11-21 14:39:05
-(epstopdf)                    size: 5688 bytes
-(epstopdf)             Command: <epstopdf --outfile=./fig/maw-eps-converted-to.
-pdf fig/maw.eps>
+Package epstopdf Info: Source file: <fig/maw2.eps>
+(epstopdf)                    date: 2014-11-24 22:35:51
+(epstopdf)                    size: 18298 bytes
+(epstopdf)             Output file: <./fig/maw2-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-11-24 22:35:53
+(epstopdf)                    size: 7624 bytes
+(epstopdf)             Command: <epstopdf --outfile=./fig/maw2-eps-converted-to
+.pdf fig/maw2.eps>
 (epstopdf)             \includegraphics on input line 496.
 Package epstopdf Info: Output file is already uptodate.
-<./fig/maw-eps-converted-to.pdf, id=24, 421.575pt x 316.18124pt>
-File: ./fig/maw-eps-converted-to.pdf Graphic file (type pdf)
+<./fig/maw2-eps-converted-to.pdf, id=24, 421.575pt x 316.18124pt>
+File: ./fig/maw2-eps-converted-to.pdf Graphic file (type pdf)
 
-<use ./fig/maw-eps-converted-to.pdf>
-Package pdftex.def Info: ./fig/maw-eps-converted-to.pdf used on input line 496.
-
+<use ./fig/maw2-eps-converted-to.pdf>
+Package pdftex.def Info: ./fig/maw2-eps-converted-to.pdf used on input line 496
+.
 (pdftex.def)             Requested size: 252.94499pt x 189.7102pt.
 
 Overfull \hbox (0.94499pt too wide) in paragraph at lines 496--497
@@ -495,9 +495,9 @@ Overfull \hbox (0.94499pt too wide) in paragraph at lines 503--504
  [][] 
  []
 
-[3 <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/fig/maw-eps
--converted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Dr
-afts/fig/nonrec-eps-converted-to.pdf>]
+[3 <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/fig/maw2-ep
+s-converted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/D
+rafts/fig/nonrec-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig/tagginginfo.eps>
 (epstopdf)                    date: 2014-11-21 15:39:37
 (epstopdf)                    size: 18084 bytes
@@ -509,7 +509,7 @@ rted-to.pdf fig/tagginginfo.eps>
 (epstopdf)             \includegraphics on input line 521.
 Package epstopdf Info: Output file is already uptodate.
 
-<./fig/tagginginfo-eps-converted-to.pdf, id=40, 420.57124pt x 312.16624pt>
+<./fig/tagginginfo-eps-converted-to.pdf, id=41, 420.57124pt x 312.16624pt>
 File: ./fig/tagginginfo-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/tagginginfo-eps-converted-to.pdf>
@@ -531,7 +531,7 @@ Package epstopdf Info: Source file: <fig/windowlength.eps>
 erted-to.pdf fig/windowlength.eps>
 (epstopdf)             \includegraphics on input line 532.
 Package epstopdf Info: Output file is already uptodate.
-<./fig/windowlength-eps-converted-to.pdf, id=41, 420.57124pt x 316.18124pt>
+<./fig/windowlength-eps-converted-to.pdf, id=42, 420.57124pt x 316.18124pt>
 File: ./fig/windowlength-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/windowlength-eps-converted-to.pdf>
@@ -553,7 +553,7 @@ Package epstopdf Info: Source file: <fig/dryerH2.eps>
 -to.pdf fig/dryerH2.eps>
 (epstopdf)             \includegraphics on input line 543.
 Package epstopdf Info: Output file is already uptodate.
-<./fig/dryerH2-eps-converted-to.pdf, id=42, 420.57124pt x 212.795pt>
+<./fig/dryerH2-eps-converted-to.pdf, id=43, 420.57124pt x 212.795pt>
 File: ./fig/dryerH2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/dryerH2-eps-converted-to.pdf>
@@ -575,7 +575,7 @@ Package epstopdf Info: Source file: <fig/outlier.eps>
 -to.pdf fig/outlier.eps>
 (epstopdf)             \includegraphics on input line 550.
 Package epstopdf Info: Output file is already uptodate.
-<./fig/outlier-eps-converted-to.pdf, id=43, 420.57124pt x 316.18124pt>
+<./fig/outlier-eps-converted-to.pdf, id=44, 420.57124pt x 316.18124pt>
 File: ./fig/outlier-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/outlier-eps-converted-to.pdf>
@@ -587,13 +587,10 @@ Overfull \hbox (0.94499pt too wide) in paragraph at lines 550--551
  [][] 
  []
 
-
-Underfull \vbox (badness 8000) has occurred while \output is active []
-
- [4 <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/fig/taggin
-ginfo-eps-converted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED
-/Paper/Drafts/fig/windowlength-eps-converted-to.pdf> <C:/Users/Kyungwoo.ECE-San
-toso2/Documents/GitHub/ED/Paper/Drafts/fig/dryerH2-eps-converted-to.pdf>]
+[4 <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/Paper/Drafts/fig/tagging
+info-eps-converted-to.pdf> <C:/Users/Kyungwoo.ECE-Santoso2/Documents/GitHub/ED/
+Paper/Drafts/fig/windowlength-eps-converted-to.pdf> <C:/Users/Kyungwoo.ECE-Sant
+oso2/Documents/GitHub/ED/Paper/Drafts/fig/dryerH2-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig/cv_bread.eps>
 (epstopdf)                    date: 2014-11-21 17:47:06
 (epstopdf)                    size: 517930 bytes
@@ -605,7 +602,7 @@ d-to.pdf fig/cv_bread.eps>
 (epstopdf)             \includegraphics on input line 697.
 Package epstopdf Info: Output file is already uptodate.
 
-<./fig/cv_bread-eps-converted-to.pdf, id=58, 797.98125pt x 477.785pt>
+<./fig/cv_bread-eps-converted-to.pdf, id=59, 797.98125pt x 477.785pt>
 File: ./fig/cv_bread-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/cv_bread-eps-converted-to.pdf>
@@ -642,7 +639,7 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  4383 strings out of 493921
- 68815 string characters out of 3147234
+ 68820 string characters out of 3147234
  133421 words of memory out of 3000000
  7604 multiletter control sequences out of 15000+200000
  40982 words of font info for 74 fonts, out of 3000000 for 9000
@@ -660,9 +657,9 @@ gram Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 /urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8
 a.pfb>
-Output written on PES2015.pdf (6 pages, 706896 bytes).
+Output written on PES2015.pdf (6 pages, 708925 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
+ 118 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

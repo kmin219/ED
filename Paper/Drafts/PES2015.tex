@@ -484,16 +484,16 @@ This section describes how transient signature windows are extracted by using av
 The appliances are first categorized into three load types based on their load shapes in P and Q.  The types include rectangular, non-rectangular, and cyclic loads:
 
 \begin{enumerate}
-\item{Rectangular loads:} These types of loads consume constant power during steady-state operation and their transient period is characterized by a sharp transition from zero to rated power consumption.  Their load shapes are generally rectangular and consist primarily of resistive loads, such as incandescent lights and heating elements.  Some inductive loads, such as small fans, also exhibit this load shape.  A short duration signature window in the real and the reactive power difference time series is used to detect these loads.
+\item{Rectangular loads:} These types of loads consume constant power during steady-state operation and their transient period is characterized by a sharp transition from zero to rated power consumption.  Their load shapes are generally rectangular and consist primarily of resistive loads, such as incandescent lights and heating elements.  Some inductive loads, such as small fans, also exhibit this load shape.  A short duration signature window in the real and the reactive power difference time series is used to detect these loads.  An example is shown in Fig. \ref{fig:maw}.
 \newline
-\item{Non-rectangular loads:} These types of loads have a longer transient period when turning on and include computers and TVs.  Their transient period is characterized by a stepwise or gradual transition from zero to rated power consumption.  Although the power consumed may vary based on how the device is operated, the turn-on and turn-off signatures can be unique, allowing discrimination against other devices.  These types of loads require a longer signature window length to capture their unique transient shape.
+\item{Non-rectangular loads:} These types of loads have a longer transient period when turning on and include computers and TVs.  Their transient period is characterized by a stepwise or gradual transition from zero to rated power consumption.  Although the power consumed may vary based on how the device is operated, the turn-on and turn-off signatures can be unique, allowing discrimination against other devices.  These types of loads require a longer signature window length to capture their unique transient shape.  An example is shown in Fig. \ref{fig:nonrec}.
 \newline
 \item{Cyclical loads:} - The amount of real or reactive power consumed by these loads change depending on the cycle of their operation.  Dryers, ovens, and washers are included in this category.   However, because they operate on preset cycles, there are only a few possible periodic load shapes they can follow.  A modified approach is required to detect these type of loads: identifying a notable recurrent patterns during appliance operation.
 \end{enumerate}
 
 \begin{figure}[!t]
 	\centering
-	\includegraphics[width=3.5in]{fig/maw.eps}
+	\includegraphics[width=3.5in]{fig/maw2.eps}
 	\caption{Difference of two moving average windows to calculate averaged power difference time series.  The bottom plot shows the transient signature for appliance bedroom lights.}
 	\label{fig:maw}
 \end{figure}
@@ -501,7 +501,7 @@ The appliances are first categorized into three load types based on their load s
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=3.5in]{fig/nonrec.eps}
-	\caption{Load Shape of TV/VTR in Home 2.}
+	\caption{Example of a non-rectangular load shape (TV/VTR in Home 2) showing longer turn-on transient than rectangular loads.}
 	\label{fig:nonrec}
 \end{figure}
 
