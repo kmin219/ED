@@ -423,12 +423,12 @@ In this paper, we present a method that focuses on extracting turn-on and turn-o
 \section{Approach}\label{sec:dataMethod}
 %The objective is this.... because of this and the dataset, our methodology is specifically chosen for ...This section provides an overview of the dataset and a description of our methodology. 
 
-In this section, we describe the dataset and our methodology for detecting turn-on and turn-off events of appliances in the test data. 
+In this section, we describe the dataset and our methodology for detecting turn-on and turn-off events of appliances. 
 
 \subsection{Dataset}
 We utilize the complete dataset from the Belkin Energy Disaggregation Competition hosted on kaggle.com, provided by Belkin Energy \cite{Kaggle}.  The dataset is publicly available on the competition website and contains single-point sensing measurements from the service entrance panel for four households (labeled H1-H4).  The measurements include the first five harmonics of rms voltage and current on two phases and high frequency noise (EMI) data for each household.  The EMI data is not required with our approach (see further discussion in Section \ref{sec:concl}).  Although both training and test datasets are provided, only the training data provides labels and corresponding timestamps for each appliance. Table \ref{table:dataset} shows the number of distinct appliances in each home and the number of training and test sets provided. 
 
-Each training set consists of manually generated power consumption data for each appliance in each home.  The training data is a time series where only one appliance is switched on at a time, although background noise can be present from untagged appliances. Tagging labels in the training data are also provided, however, these are not always precise enough to correctly identify device turn-on and turn-off times. Correction of tagging labels for training data is therefore needed and is discussed in Section \ref{sec:training}.  Fig.\ref{fig:traintest} shows an example of both training and test data from H2.  The observations recorded in each training and test set cover approximately 24 hours.  
+Each training set consists of manually generated power consumption data for each appliance in each home.  The training data is a time series where only one appliance is switched on at a time, although background noise can be present from untagged appliances. Tagging labels in the training data are also provided, however, these are not always precise enough to correctly identify device turn-on and turn-off times. Correction of tagging labels for training data is therefore needed and is discussed in Section \ref{sec:training}.  Fig. \ref{fig:traintest} shows an example of both training and test data from H2.  The observations recorded in each training and test set cover approximately 24 hours.  
 
 \begin{table}[!t]
 	\renewcommand{\arraystretch}{1.3}
@@ -492,7 +492,7 @@ The appliances are first categorized into three load types based on their load s
 \newline
 \item{Non-rectangular loads:} These types of loads have a longer transient period when turning on and include computers and TVs.  Their transient period is characterized by a stepwise or gradual transition from zero to rated power consumption.  Although the power consumed may vary based on how the device is operated, the turn-on and turn-off signatures can be unique, allowing discrimination against other devices.  These types of loads require a longer signature window length to capture their unique transient shape.  An example is shown in Fig. \ref{fig:nonrec}.
 \newline
-\item{Cyclical loads:} The amount of real or reactive power consumed by these loads change depending on the cycle of their operation.  Dryers, ovens, and washers are included in this category.   However, because they operate on preset cycles, there are only a few possible periodic load shapes they can follow.  A modified approach is required to detect these type of loads: identifying notable recurrent patterns during appliance operation.
+\item{Cyclical loads:} The amount of real or reactive power consumed by these loads change depending on the cycle of their operation.  Dryers and ovens are included in this category.   However, because they operate on preset cycles, there are only a few possible periodic load shapes they can follow.  A modified approach is required to detect this type of load: identifying notable recurrent patterns during appliance operation.
 \end{enumerate}
 
 \begin{figure}[!t]
@@ -529,7 +529,7 @@ Using the averaged power difference time series to determine true appliance even
 	
 
 \subsection{Window Extraction}
-After calculating the averaged power difference time series, the next step is to extract the signatures for turn-on  and turn-off events.  For rectangular load shapes, transient signature windows are extracted from the start of the turn-on event until the load reaches steady-state power consumption.  If an appliance has longer transient characteristics (non-rectangular load shape), a longer window size is used to capture the entire unique transient period.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consume about 38 W at event incidence.  However, the laptop charger requires additional power to fully turn on.  Therefore, if a longer window length is used, this characteristic is captured in the averaged power difference time series and can be used to discriminate it from other similar appliances. Thus, extracted signature windows $w_{i,j}$, define the unique transient characteristics in the averaged power difference time series for each event of each appliance in the training data.  Table \ref{table:winLen} provides the range for the lengths of extracted signature windows, categorized by load type.
+After calculating the averaged power difference time series, the next step is to extract the signatures for turn-on  and turn-off events.  For rectangular load shapes, transient signature windows are extracted from the start of the turn-on event until the load reaches steady-state power consumption.  If an appliance has longer transient characteristics (non-rectangular load shape), a longer window size is used to capture the entire unique transient period.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consume about 38 W at event incidence.  However, the laptop charger requires additional power to fully turn on.  Therefore, if a longer window length is used, this characteristic is captured in the averaged power difference time series and can be used to discriminate it from other similar appliances. Thus, extracted signature windows define the unique transient characteristics in the averaged power difference time series for each event of each appliance in the training data.  Table \ref{table:winLen} provides the range for the lengths of extracted signature windows, categorized by load type.
 
 \begin{figure}[!t]
 	\centering
@@ -538,7 +538,7 @@ After calculating the averaged power difference time series, the next step is to
 	\label{fig:windowlength}
 \end{figure}
 
-Cyclical loads exhibit unique characteristics that are different from the rectangular and the non-rectangular loads.  These types of appliances are difficult to be detected by using turn-on and turn-off signature windows because each step change in power consumption during the cycle can appear as individual appliances turning on and off. Therefore, for cyclical loads only, a window is trained to capture recurrent patterns during their operation.  Consider the dryer in Home 2 as shown in Fig. \ref{fig:dryerH2}.  The load shape of the dryer has multiple sharp peaks during its operation.  Therefore, a single window can be trained to detect these sharp peaks.  In this case, the following rule can be made:  ``While the recurrent pattern window is detecting an event, the appliance is operating."  
+Cyclical loads exhibit unique characteristics that are different from the rectangular and the non-rectangular loads.  These types of appliances are difficult to be detected by using turn-on and turn-off signature windows because each step change in power consumption during the cycle can appear as individual appliances turning on or off. Therefore, for cyclical loads only, a window is trained to capture recurrent patterns during their operation.  Consider the dryer in Home 2 as shown in Fig. \ref{fig:dryerH2}.  The load shape of the dryer has multiple sharp peaks during its operation.  Therefore, a single window can be trained to detect these sharp peaks.  In this case, the following rule can be made:  ``While the recurrent pattern window is detecting an event, the appliance is operating."  
 
 Outlier detection is also held during this stage.  Consider the four on/off events of a computer as shown in Fig. \ref{fig:outlier}.  It can be seen that when event two occurred, some background noise affected the turn-on signature of the computer.  In this case, the second event is regarded as an outlier and is not used in training the windows.  
 
@@ -587,7 +587,7 @@ Outlier detection is also held during this stage.  Consider the four on/off even
 	\centering
 	\begin{tabular}{C{2.5cm}||C{2.5cm}C{2.5cm}}
 		\hline
-		\textbf{Load Shape} & \textbf{Turn-on Window (Samples)} & \textbf{Turn-off Window (Samples)}\tabularnewline
+		\textbf{Load Type} & \textbf{Turn-on Window (Samples)} & \textbf{Turn-off Window (Samples)}\tabularnewline
 		\hline
 		\hline
 		Rectangular & 30 -- 80 & 30 -- 70\tabularnewline
@@ -729,7 +729,7 @@ An example for the cross-validation procedure is illustrated in Fig. \ref{fig:br
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=3.5in]{fig/cv_bread.eps}
-	\caption{Cross-validation of one training window for appliance "breadmaker". A turn-on event is detected when the RMSE time series falls below the specified threshold. }
+	\caption{Cross-validation of one training window for appliance "breadmaker". A turn-on event is detected when both RMSE time series simultaneously fall below the specified threshold. }
 	\label{fig:bread}
 \end{figure}
 
@@ -792,7 +792,7 @@ We then apply our algorithm to the provided test data and identify appliance ope
 \end{algorithm}
 
 \section{Conclusion}\label{sec:concl}
-From our cross-validation and test results, the proposed strategy can be a simple yet effective method for disaggregation of household energy usage. One of the advantages of this approach is that it is more interpretable because it follows an intuitive approach for detecting appliance on and off events.  With the proposed approach, misclassifications can be traced back to the signature window length or detection thresholds.  This is particularly true when compared to methods utilizing ``black box" predictive models such as artificial neural networks.  Furthermore, the proposed approach has the ability for real time processing. Because calculations are implemented as sliding windows, data can be streamed into the algorithm. Additionally, this method only utilized a subset of the entire dataset, needing only P and Q measurements.  High frequency features could have been added to help classify smaller appliances that were discarded during cross-validation.  One of the primary drawbacks, however, is that manual identification of appropriate window lengths is required during training.  Future work would consider automation of appropriate window lengths.
+From our cross-validation and test results, the proposed strategy can be a simple yet effective method for disaggregation of household energy usage. One of the advantages of this approach is that it is more interpretable because it follows an intuitive approach for detecting appliance on and off events.  With the proposed approach, misclassifications can be traced back to the signature window length or detection thresholds.  This is particularly evident when compared to methods utilizing ``black box" predictive models such as artificial neural networks.  Furthermore, the proposed approach has the ability for real time processing. Because calculations are implemented as sliding windows, data can be streamed into the algorithm. Additionally, this method only utilized a subset of the entire dataset, needing only P and Q measurements.  High frequency features could have been added to help classify smaller appliances that were discarded during cross-validation.  One of the primary drawbacks, however, is that manual identification of appropriate window lengths is required during training.  Future work would consider automation of appropriate window lengths.
 
 	
 
