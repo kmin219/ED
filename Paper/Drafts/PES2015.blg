@@ -6,45 +6,45 @@ Database file #1: Bib.bib
 Warning--entry type for "Kaggle" isn't style-file defined
 --line 104 of file Bib.bib
 Warning--there's a month but no year in Kaggle
-You've used 10 entries,
+You've used 9 entries,
             1876 wiz_defined-function locations,
-            552 strings with 5321 characters,
-and the built_in function-call counts, 3255 in all, are:
-= -- 325
-> -- 107
+            545 strings with 5121 characters,
+and the built_in function-call counts, 2875 in all, are:
+= -- 286
+> -- 93
 < -- 0
-+ -- 40
-- -- 30
-* -- 238
-:= -- 432
-add.period$ -- 10
-call.type$ -- 10
-change.case$ -- 9
++ -- 35
+- -- 26
+* -- 209
+:= -- 380
+add.period$ -- 9
+call.type$ -- 9
+change.case$ -- 8
 chr.to.int$ -- 0
-cite$ -- 11
-duplicate$ -- 166
-empty$ -- 301
-format.name$ -- 30
-if$ -- 812
+cite$ -- 10
+duplicate$ -- 148
+empty$ -- 270
+format.name$ -- 26
+if$ -- 718
 int.to.chr$ -- 0
-int.to.str$ -- 10
-missing$ -- 9
-newline$ -- 33
-num.names$ -- 9
-pop$ -- 28
+int.to.str$ -- 9
+missing$ -- 8
+newline$ -- 30
+num.names$ -- 8
+pop$ -- 27
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 148
+skip$ -- 131
 stack$ -- 0
-substring$ -- 272
-swap$ -- 85
+substring$ -- 236
+swap$ -- 74
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 28
-width$ -- 12
-write$ -- 98
+while$ -- 25
+width$ -- 10
+write$ -- 88
 (There were 2 warnings)

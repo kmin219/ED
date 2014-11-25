@@ -1,8 +1,8 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{1}
 
 \bibitem{mit}
 C.~Laughman, K.~Lee, R.~Cox, S.~Shaw, S.~Leeb, L.~Norford, and P.~Armstrong,
-  ``Power signature analysis,'' {\em Power and Energy Magazine, IEEE}, vol.~1,
+  ``Power signature analysis,'' {\em IEEE Power and Energy Magazine}, vol.~1,
   pp.~56--63, Mar 2003.
 
 \bibitem{adaptive}
@@ -18,7 +18,7 @@ S.~Gupta, M.~S. Reynolds, and S.~N. Patel, ``Electrisense: Single-point sensing
 
 \bibitem{prob}
 M.~Zeifman, ``Disaggregation of home energy display data using probabilistic
-  approach,'' {\em Consumer Electronics, IEEE Transactions on}, vol.~58,
+  approach,'' {\em IEEE Transactions on Consumer Electronics}, vol.~58,
   pp.~23--31, February 2012.
 
 \bibitem{Hart}
@@ -27,8 +27,8 @@ G.~Hart, ``Nonintrusive appliance load monitoring,'' {\em Proceedings of the
 
 \bibitem{Shaw}
 S.~Shaw, S.~Leeb, L.~Norford, and R.~Cox, ``Nonintrusive load monitoring and
-  diagnostics in power systems,'' {\em Instrumentation and Measurement, IEEE
-  Transactions on}, vol.~57, pp.~1445--1454, July 2008.
+  diagnostics in power systems,'' {\em IEEE Transactions on Instrumentation and
+  Measurement}, vol.~57, pp.~1445--1454, July 2008.
 
 \bibitem{Lin}
 Y.-H. Lin and M.-S. Tsai, ``A novel feature extraction method for the
@@ -36,16 +36,10 @@ Y.-H. Lin and M.-S. Tsai, ``A novel feature extraction method for the
   Computer Communication Control and Automation (3CA), 2010 International
   Symposium on}, vol.~2, pp.~215--218, May 2010.
 
-\bibitem{Chang}
-H.-H. Chang, L.-S. Lin, N.~Chen, and W.-J. Lee,
-  ``Particle-swarm-optimization-based nonintrusive demand monitoring and load
-  identification in smart meters,'' {\em Industry Applications, IEEE
-  Transactions on}, vol.~49, pp.~2229--2236, Sept 2013.
-
 \bibitem{Wave}
 H.-H. Chang, K.-L. Lian, Y.-C. Su, and W.-J. Lee, ``Power-spectrum-based
   wavelet transform for nonintrusive demand monitoring and load
-  identification,'' {\em Industry Applications, IEEE Transactions on}, vol.~50,
+  identification,'' {\em IEEE Transactions on Industry Applications}, vol.~50,
   pp.~2081--2089, May 2014.
 
 \bibitem{Kaggle}
