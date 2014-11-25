@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.12)  25 NOV 2014 11:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.12)  25 NOV 2014 15:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -287,6 +287,10 @@ Package: fixltx2e 2014/09/29 v1.1s fixes to LaTeX
 LaTeX Info: Redefining \em on input line 430.
 LaTeX Info: The control sequence `\[' is already robust on input line 481.
 LaTeX Info: The control sequence `\]' is already robust on input line 482.
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf.sty
 Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
@@ -641,10 +645,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4489 strings out of 493109
- 70975 string characters out of 6135003
- 143285 words of memory out of 5000000
- 7880 multiletter control sequences out of 15000+600000
+ 4561 strings out of 493109
+ 71859 string characters out of 6135003
+ 144371 words of memory out of 5000000
+ 7948 multiletter control sequences out of 15000+600000
  40982 words of font info for 74 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  42i,11n,47p,1379b,324s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -660,7 +664,7 @@ texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist
 /fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/ty
 pe1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/ti
 mes/utmri8a.pfb>
-Output written on PES2015.pdf (5 pages, 685416 bytes).
+Output written on PES2015.pdf (5 pages, 685164 bytes).
 PDF statistics:
  113 PDF objects out of 1000 (max. 8388607)
  76 compressed objects within 1 object stream

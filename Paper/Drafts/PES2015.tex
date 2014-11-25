@@ -8,7 +8,7 @@
 %% for current contact information.
 %%
 %% This is a skeleton file demonstrating the use of IEEEtran.cls
-%% (requires IEEEtran.cls version 1.8 or later) with an IEEE conference paper.
+%% (requires IEEEtran.cls version 1.8 or latyearer) with an IEEE conference paper.
 %%
 %% Support sites:
 %% http://www.michaelshell.org/tex/ieeetran/
@@ -310,7 +310,7 @@
 
 % *** PDF, URL AND HYPERLINK PACKAGES ***
 %
-%\usepackage{url}
+\usepackage{url}
 % url.sty was written by Donald Arseneau. It provides better support for
 % handling and breaking URLs. url.sty is already installed on most LaTeX
 % systems. The latest version and documentation can be obtained at:
@@ -470,7 +470,7 @@ Our goal is to develop an interpretable yet effective classification approach.  
 
 The first step is to extract transient signature windows for each appliance.  Raw data is converted from a power time series ($\text{P}_{\text{rms}}$ and $\text{Q}_{\text{rms}}$ ) into an averaged power difference time series ($\Delta P_{avg}$ and $\Delta Q_{avg}$) by taking the difference of two moving average windows.  After $\Delta P_{avg}$ and $\Delta Q_{avg}$ are calculated, transient signature windows are extracted for each appliance.  Each signature window, $w_{i,j}$ is of length $\text{N}_{i,j}$, meaning each $i^{\text{th}}$ appliance and corresponding $j^{\text{th}}$ turn-on or turn-off event in the training data has a signature window with its own specified window length. The procedure is explained in detail in Section \ref{sec:training}. 
 
-Once transient signatures are extracted for each appliance in the training data, cross-validation is performed.  The objective of this step is to determine the ability of each signature window to only detect other events of the same appliance. If an appliance cannot be detected during cross-validation, it will not be predicted in the test set. For the test set, we use the cross-validated signature windows and threshold values to calculate an RMSE time series and detect appliance turn-on and turn-off events. The procedure is presented in Section \ref{sec:cv}. The results and conclusion are discussed in Section \ref{sec:concl}.  
+Once transient signatures are extracted for each appliance in the training data, cross-validation is performed.  The objective of this step is to determine the ability of each signature window to only detect other events of the same appliance. If an appliance can not be detected during cross-validation, it will not be predicted in the test set. For the test set, we use the cross-validated signature windows and threshold values to calculate an RMSE time series and detect appliance turn-on and turn-off events. The procedure is presented in Section \ref{sec:cv}. The results and conclusion are discussed in Section \ref{sec:concl}.  
 
 \begin{figure}[!t]
 	\centering
@@ -518,7 +518,7 @@ Our approach relies on identifying appliance turn-on and turn-off events by dete
 \end{equation}
 where $N$ is the window size and $D$ is the distance between the two windows.  The averaged difference for reactive power, $\Delta Q_{avg}(n)$, is calculated using the same $N$ and $D$.  It should be noted that if a shorter window size is used, it is easier to distinguish events happening at the same incidence.  However, the detector becomes less robust to noise.
 
-Using the averaged power difference time series to determine true appliance event indices, tagging labels from the raw data are first corrected.  A threshold in the averaged real power difference is then set to indicate whether an event occurred, (i.e., an event occurred if $|\Delta P_{avg}(n)| >$ threshold).  Then the corrected indices are used as the actual event index instead of the tagging info provided in the raw data.  On the top plot of Fig. \ref{fig:tagging}, the tagging labels of the bedroom lights do not align with the actual event incidence.  The bottom plot shows when the first index of the averaged power difference is greater than the threshold; this index is used as the corrected tagging label.  It should be noted that some appliances that consume very small real or reactive power are discarded as they cannot be detected.  For these appliances, using real and reactive power difference will cause false detections in the test data due to the effects of the noise.  Additional features must be considered to detect such appliances.
+Using the averaged power difference time series to determine true appliance event indices, tagging labels from the raw data are first corrected.  A threshold in the averaged real power difference is then set to indicate whether an event occurred, (i.e., an event occurred if $|\Delta P_{avg}(n)| >$ threshold).  Then the corrected indices are used as the actual event index instead of the tagging info provided in the raw data.  On the top plot of Fig. \ref{fig:tagging}, the tagging labels of the bedroom lights do not align with the actual event incidence.  The bottom plot shows when the first index of the averaged power difference is greater than the threshold; this index is used as the corrected tagging label.  It should be noted that some appliances that consume very small real or reactive power are discarded as they can not be detected.  For these appliances, using real and reactive power difference will cause false detections in the test data due to the effects of the noise.  Additional features must be considered to detect such appliances.
 
 \begin{figure}[!t]
 	\centering
@@ -529,7 +529,7 @@ Using the averaged power difference time series to determine true appliance even
 	
 
 \subsection{Window Extraction}
-After calculating the averaged power difference time series, the next step is to extract the signatures for turn-on  and turn-off events.  For rectangular load shapes, transient signature windows are extracted from the start of the turn-on event until the load reaches steady-state power consumption.  If an appliance has longer transient characteristics (non-rectangular load shape), a longer window size is used to capture the entire unique transient period.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consume about 38 W at event incidence.  However, the laptop charger requires additional power to fully turn on.  Therefore, if a longer window length is used, this characteristic is captured in the averaged power difference time series and can be used to discriminate it from other similar appliances. Extracted signature windows $w_{i,j}$ have length $\text{N}_{i,j}$ and define the unique transient characteristics in the averaged power difference time series for each $j^{\text{th}}$ event of the $i^{\text{th}}$ appliance in the training data.  Table \ref{table:winLen} provides the range for the lengths of extracted signature windows, categorized by load type.
+After calculating the averaged power difference time series, the next step is to extract the signatures for turn-on  and turn-off events.  For rectangular load shapes, transient signature windows are extracted from the start of the turn-on event until the load reaches steady-state power consumption.  If an appliance has longer transient characteristics (non-rectangular load shape), a longer window size is used to capture the entire unique transient period.  For example, consider the dining room light and the laptop charger profile shown in Fig. \ref{fig:windowlength}.  Both the appliances consume about 38 W at event incidence.  However, the laptop charger requires additional power to fully turn on.  Therefore, if a longer window length is used, this characteristic is captured in the averaged power difference time series and can be used to discriminate it from other similar appliances. Thus, extracted signature windows $w_{i,j}$, define the unique transient characteristics in the averaged power difference time series for each event of each appliance in the training data.  Table \ref{table:winLen} provides the range for the lengths of extracted signature windows, categorized by load type.
 
 \begin{figure}[!t]
 	\centering
@@ -538,7 +538,7 @@ After calculating the averaged power difference time series, the next step is to
 	\label{fig:windowlength}
 \end{figure}
 
-Cyclical loads exhibit unique characteristics that are different from the rectangular and the non-rectangular loads.  These types of appliances are difficult to be detected by using turn-on and turn-off signature windows because each step change in power consumption during the cycle can be mistaken for other appliances.  Therefore, for cyclical loads only, a window is trained to capture unique signatures during their operation.  Consider the dryer in Home 2 as shown in Fig. \ref{fig:dryerH2}.  The load shape of the dryer has multiple sharp peaks during its operation.  Therefore, a single window can be trained to detect these sharp peaks.  In this case, the following rule can be made:  ``While the recurrent pattern window is detecting an event, the appliance is operating."  
+Cyclical loads exhibit unique characteristics that are different from the rectangular and the non-rectangular loads.  These types of appliances are difficult to be detected by using turn-on and turn-off signature windows because each step change in power consumption during the cycle can appear as individual appliances turning on and off. Therefore, for cyclical loads only, a window is trained to capture recurrent patterns during their operation.  Consider the dryer in Home 2 as shown in Fig. \ref{fig:dryerH2}.  The load shape of the dryer has multiple sharp peaks during its operation.  Therefore, a single window can be trained to detect these sharp peaks.  In this case, the following rule can be made:  ``While the recurrent pattern window is detecting an event, the appliance is operating."  
 
 Outlier detection is also held during this stage.  Consider the four on/off events of a computer as shown in Fig. \ref{fig:outlier}.  It can be seen that when event two occurred, some background noise affected the turn-on signature of the computer.  In this case, the second event is regarded as an outlier and is not used in training the windows.  
 
@@ -698,7 +698,7 @@ In this section, we present the procedure for cross-validating the classificatio
 \label{eq:RMSE-Q}
 \text{RMSE}_{\text{Q}}(n) &= \sqrt{\frac{1}{N}\sum\limits_{k=1}^{N}(w_{i,j}(k) - \Delta Q_{avg}(n+k))^2}
 \end{align}
-where $w_{i,j}$ is the transient signature window for $j^{\text{th}}$ turn-on or turn-off event for appliance number $i$.  Additionally, log(RMSE) is taken to suppress noise.  
+where $w_{i,j}$ is the transient signature window, with length $N = N_{i,j}$, for the $j^{\text{th}}$ turn-on or turn-off event for appliance number $i$.  Additionally, log(RMSE) is taken to make the minimum more distinct.  
 
 %\begin{algorithm}
 %	\caption{Cross-validation Algorithm}\label{euclid}
