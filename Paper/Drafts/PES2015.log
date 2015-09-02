@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.7.21)  1 DEC 2014 14:18
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.7.21)  1 DEC 2014 15:36
 entering extended mode
 **PES2015.tex
 (C:\Users\Kyungwoo.ECE-Santoso2\Documents\GitHub\ED\Paper\Drafts\PES2015.tex
@@ -368,11 +368,11 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 438.
+(Font)              <8> on input line 440.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 438.
+(Font)              <6> on input line 440.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 438.
+(Font)              <5> on input line 440.
 Package epstopdf Info: Source file: <fig/exTrain.eps>
 (epstopdf)                    date: 2014-11-24 22:02:53
 (epstopdf)                    size: 75582 bytes
@@ -381,14 +381,14 @@ Package epstopdf Info: Source file: <fig/exTrain.eps>
 (epstopdf)                    size: 32014 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/exTrain-eps-converted
 -to.pdf fig/exTrain.eps>
-(epstopdf)             \includegraphics on input line 457.
+(epstopdf)             \includegraphics on input line 459.
 Package epstopdf Info: Output file is already uptodate.
  <./fig/exTrain-eps-converted-to.pdf, id=1, 610.28pt x 192.72pt>
 File: ./fig/exTrain-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/exTrain-eps-converted-to.pdf>
 Package pdftex.def Info: ./fig/exTrain-eps-converted-to.pdf used on input line 
-457.
+459.
 (pdftex.def)             Requested size: 240.29901pt x 75.88371pt.
 Package epstopdf Info: Source file: <fig/exTestH2_1.eps>
 (epstopdf)                    date: 2014-11-24 22:02:49
@@ -398,7 +398,7 @@ Package epstopdf Info: Source file: <fig/exTestH2_1.eps>
 (epstopdf)                    size: 88189 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/exTestH2_1-eps-conver
 ted-to.pdf fig/exTestH2_1.eps>
-(epstopdf)             \includegraphics on input line 460.
+(epstopdf)             \includegraphics on input line 462.
 Package epstopdf Info: Output file is already uptodate.
 
 <./fig/exTestH2_1-eps-converted-to.pdf, id=2, 610.28pt x 192.72pt>
@@ -406,7 +406,7 @@ File: ./fig/exTestH2_1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/exTestH2_1-eps-converted-to.pdf>
 Package pdftex.def Info: ./fig/exTestH2_1-eps-converted-to.pdf used on input li
-ne 460.
+ne 462.
 (pdftex.def)             Requested size: 240.29901pt x 75.88371pt.
  [1{C:/Users/Kyungwoo.ECE-Santoso2/AppData/Local/MiKTeX/2.9/pdftex/config/pdfte
 x.map}
@@ -414,40 +414,40 @@ x.map}
 
 ]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 471.
+(Font)              <7> on input line 473.
 
 <fig/flow.png, id=11, 204.06238pt x 240.19737pt>
 File: fig/flow.png Graphic file (type png)
  <use fig/flow.png>
-Package pdftex.def Info: fig/flow.png used on input line 477.
+Package pdftex.def Info: fig/flow.png used on input line 479.
 (pdftex.def)             Requested size: 238.49121pt x 280.74023pt.
 
-Underfull \hbox (badness 2005) in paragraph at lines 491--493
+Underfull \hbox (badness 2005) in paragraph at lines 493--495
 []\OT1/ptm/m/n/10 Rectangular loads: These types of loads con-sume
  []
 
 
-Underfull \hbox (badness 2913) in paragraph at lines 491--493
+Underfull \hbox (badness 2913) in paragraph at lines 493--495
 \OT1/ptm/m/n/10 ap-pli-ances with heat-ing el-e-ments. Some in-duc-tive
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 491--493
+Underfull \hbox (badness 10000) in paragraph at lines 493--495
 
  []
 
 
-Underfull \hbox (badness 1960) in paragraph at lines 493--495
+Underfull \hbox (badness 1960) in paragraph at lines 495--497
 []\OT1/ptm/m/n/10 Non-rectangular loads: These types of loads have
  []
 
 
-Underfull \hbox (badness 4805) in paragraph at lines 493--495
+Underfull \hbox (badness 4805) in paragraph at lines 495--497
 \OT1/ptm/m/n/10 a longer tran-sient pe-riod when turn-ing on and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 493--495
+Underfull \hbox (badness 10000) in paragraph at lines 495--497
 
  []
 
@@ -463,18 +463,18 @@ Package epstopdf Info: Source file: <fig/maw2.eps>
 (epstopdf)                    size: 7624 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/maw2-eps-converted-to
 .pdf fig/maw2.eps>
-(epstopdf)             \includegraphics on input line 500.
+(epstopdf)             \includegraphics on input line 502.
 Package epstopdf Info: Output file is already uptodate.
 
 <./fig/maw2-eps-converted-to.pdf, id=24, 421.575pt x 316.18124pt>
 File: ./fig/maw2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/maw2-eps-converted-to.pdf>
-Package pdftex.def Info: ./fig/maw2-eps-converted-to.pdf used on input line 500
+Package pdftex.def Info: ./fig/maw2-eps-converted-to.pdf used on input line 502
 .
 (pdftex.def)             Requested size: 252.94695pt x 173.45154pt.
 
-Overfull \hbox (0.94695pt too wide) in paragraph at lines 500--501
+Overfull \hbox (0.94695pt too wide) in paragraph at lines 502--503
  [][] 
  []
 
@@ -486,17 +486,17 @@ Package epstopdf Info: Source file: <fig/nonrec.eps>
 (epstopdf)                    size: 8945 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/nonrec-eps-converted-
 to.pdf fig/nonrec.eps>
-(epstopdf)             \includegraphics on input line 507.
+(epstopdf)             \includegraphics on input line 509.
 Package epstopdf Info: Output file is already uptodate.
 <./fig/nonrec-eps-converted-to.pdf, id=25, 420.57124pt x 316.18124pt>
 File: ./fig/nonrec-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/nonrec-eps-converted-to.pdf>
 Package pdftex.def Info: ./fig/nonrec-eps-converted-to.pdf used on input line 5
-07.
+09.
 (pdftex.def)             Requested size: 252.94792pt x 173.45154pt.
 
-Overfull \hbox (0.94792pt too wide) in paragraph at lines 507--508
+Overfull \hbox (0.94792pt too wide) in paragraph at lines 509--510
  [][] 
  []
 
@@ -508,17 +508,17 @@ Package epstopdf Info: Source file: <fig/tagginginfo.eps>
 (epstopdf)                    size: 9263 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/tagginginfo-eps-conve
 rted-to.pdf fig/tagginginfo.eps>
-(epstopdf)             \includegraphics on input line 525.
+(epstopdf)             \includegraphics on input line 527.
 Package epstopdf Info: Output file is already uptodate.
 <./fig/tagginginfo-eps-converted-to.pdf, id=26, 420.57124pt x 312.16624pt>
 File: ./fig/tagginginfo-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/tagginginfo-eps-converted-to.pdf>
 Package pdftex.def Info: ./fig/tagginginfo-eps-converted-to.pdf used on input l
-ine 525.
+ine 527.
 (pdftex.def)             Requested size: 252.94792pt x 173.4496pt.
 
-Overfull \hbox (0.94792pt too wide) in paragraph at lines 525--526
+Overfull \hbox (0.94792pt too wide) in paragraph at lines 527--528
  [][] 
  []
 
@@ -534,7 +534,7 @@ Package epstopdf Info: Source file: <fig/windowlength.eps>
 (epstopdf)                    size: 15282 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/windowlength-eps-conv
 erted-to.pdf fig/windowlength.eps>
-(epstopdf)             \includegraphics on input line 536.
+(epstopdf)             \includegraphics on input line 538.
 Package epstopdf Info: Output file is already uptodate.
 
 <./fig/windowlength-eps-converted-to.pdf, id=45, 420.57124pt x 316.18124pt>
@@ -542,10 +542,10 @@ File: ./fig/windowlength-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/windowlength-eps-converted-to.pdf>
 Package pdftex.def Info: ./fig/windowlength-eps-converted-to.pdf used on input 
-line 536.
+line 538.
 (pdftex.def)             Requested size: 252.94792pt x 173.45154pt.
 
-Overfull \hbox (0.94792pt too wide) in paragraph at lines 536--537
+Overfull \hbox (0.94792pt too wide) in paragraph at lines 538--539
  [][] 
  []
 
@@ -557,17 +557,17 @@ Package epstopdf Info: Source file: <fig/dryerH2.eps>
 (epstopdf)                    size: 33468 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/dryerH2-eps-converted
 -to.pdf fig/dryerH2.eps>
-(epstopdf)             \includegraphics on input line 571.
+(epstopdf)             \includegraphics on input line 573.
 Package epstopdf Info: Output file is already uptodate.
 <./fig/dryerH2-eps-converted-to.pdf, id=46, 420.57124pt x 212.795pt>
 File: ./fig/dryerH2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/dryerH2-eps-converted-to.pdf>
 Package pdftex.def Info: ./fig/dryerH2-eps-converted-to.pdf used on input line 
-571.
+573.
 (pdftex.def)             Requested size: 252.94792pt x 101.17932pt.
 
-Overfull \hbox (0.94792pt too wide) in paragraph at lines 571--572
+Overfull \hbox (0.94792pt too wide) in paragraph at lines 573--574
  [][] 
  []
 
@@ -579,17 +579,17 @@ Package epstopdf Info: Source file: <fig/outlier.eps>
 (epstopdf)                    size: 29445 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/outlier-eps-converted
 -to.pdf fig/outlier.eps>
-(epstopdf)             \includegraphics on input line 578.
+(epstopdf)             \includegraphics on input line 580.
 Package epstopdf Info: Output file is already uptodate.
 <./fig/outlier-eps-converted-to.pdf, id=47, 421.575pt x 316.18124pt>
 File: ./fig/outlier-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/outlier-eps-converted-to.pdf>
 Package pdftex.def Info: ./fig/outlier-eps-converted-to.pdf used on input line 
-578.
+580.
 (pdftex.def)             Requested size: 252.94695pt x 166.22438pt.
 
-Overfull \hbox (0.94695pt too wide) in paragraph at lines 578--579
+Overfull \hbox (0.94695pt too wide) in paragraph at lines 580--581
  [][] 
  []
 
@@ -605,7 +605,7 @@ Package epstopdf Info: Source file: <fig/cv_bread.eps>
 (epstopdf)                    size: 96805 bytes
 (epstopdf)             Command: <epstopdf --outfile=./fig/cv_bread-eps-converte
 d-to.pdf fig/cv_bread.eps>
-(epstopdf)             \includegraphics on input line 728.
+(epstopdf)             \includegraphics on input line 730.
 Package epstopdf Info: Output file is already uptodate.
 
 <./fig/cv_bread-eps-converted-to.pdf, id=62, 797.98125pt x 477.785pt>
@@ -613,10 +613,10 @@ File: ./fig/cv_bread-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./fig/cv_bread-eps-converted-to.pdf>
 Package pdftex.def Info: ./fig/cv_bread-eps-converted-to.pdf used on input line
- 728.
+ 730.
 (pdftex.def)             Requested size: 252.94499pt x 151.45082pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 728--729
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 730--731
  [][] 
  []
 
@@ -658,7 +658,7 @@ b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/tim
 es/utmri8a.pfb>
-Output written on PES2015.pdf (5 pages, 635364 bytes).
+Output written on PES2015.pdf (5 pages, 636803 bytes).
 PDF statistics:
  111 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
