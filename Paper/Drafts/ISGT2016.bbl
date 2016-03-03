@@ -1,0 +1,50 @@
+\begin{thebibliography}{1}
+
+\bibitem{mit}
+C.~Laughman, K.~Lee, R.~Cox, S.~Shaw, S.~Leeb, L.~Norford, and P.~Armstrong,
+  ``Power signature analysis,'' {\em IEEE Power Energy Mag.}, vol.~1,
+  pp.~56--63, Mar 2003.
+
+\bibitem{adaptive}
+R.~Dong, L.~Ratliff, H.~Ohlsson, and S.~Sastry, ``Energy disaggregation via
+  adaptive filtering,'' in {\em 51st Annual Allerton Conference on
+  Communication, Control, and Computing (Allerton)}, pp.~173--180, Oct 2013.
+
+\bibitem{EMI}
+S.~Gupta, M.~S. Reynolds, and S.~N. Patel, ``Electrisense: Single-point sensing
+  using emi for electrical event detection and classification in the home,'' in
+  {\em Proceedings of the 12th ACM International Conference on Ubiquitous
+  Computing}, Ubicomp '10, (New York, NY, USA), pp.~139--148, ACM, 2010.
+
+\bibitem{prob}
+M.~Zeifman, ``Disaggregation of home energy display data using probabilistic
+  approach,'' {\em IEEE Trans. Consum. Electron.}, vol.~58, pp.~23--31,
+  February 2012.
+
+\bibitem{Hart}
+G.~Hart, ``Nonintrusive appliance load monitoring,'' {\em Proceedings of the
+  IEEE}, vol.~80, pp.~1870--1891, Dec 1992.
+
+\bibitem{Shaw}
+S.~Shaw, S.~Leeb, L.~Norford, and R.~Cox, ``Nonintrusive load monitoring and
+  diagnostics in power systems,'' {\em IEEE Trans. Instrum. Meas.}, vol.~57,
+  pp.~1445--1454, July 2008.
+
+\bibitem{Lin}
+Y.-H. Lin and M.-S. Tsai, ``A novel feature extraction method for the
+  development of nonintrusive load monitoring system based on bp-ann,'' in {\em
+  International Symposium on Computer Communication Control and Automation
+  (3CA)}, vol.~2, pp.~215--218, May 2010.
+
+\bibitem{Wave}
+H.-H. Chang, K.-L. Lian, Y.-C. Su, and W.-J. Lee, ``Power-spectrum-based
+  wavelet transform for nonintrusive demand monitoring and load
+  identification,'' {\em IEEE Trans. Ind. Appl.}, vol.~50, pp.~2081--2089, May
+  2014.
+
+\bibitem{Kaggle}
+``Belkin energy disaggregation competition.'' [Online] Available:
+  ``\url{http://www.kaggle.com/c/belkin-energy-disaggregation-competition"},
+  2013.
+
+\end{thebibliography}
