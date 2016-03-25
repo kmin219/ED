@@ -2,46 +2,43 @@
 \citation{mit}
 \citation{adaptive,EMI,prob,Hart,Shaw,Lin,Wave}
 \citation{Kaggle}
-\citation{Kaggle}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {II}Approach}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Transient Signature Window Approach}{1}}
 \newlabel{sec:dataMethod}{{II}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Dataset}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Methodology}{1}}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Number of Distinct Appliances and Datasets for Each Home}}{2}}
-\newlabel{classes}{{I}{2}}
-\newlabel{table:dataset}{{I}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Methodology}{1}}
+\citation{Kaggle}
 \newlabel{fig:event1ml}{{1a}{2}}
 \newlabel{sub@fig:event1ml}{{(a)}{a}}
 \newlabel{fig:event2ml}{{1b}{2}}
 \newlabel{sub@fig:event2ml}{{(b)}{b}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Example of (a) training and (b) test data from Home 2. In each plot, real power consumption measured from the service entrance panel is shown for both phases. }}{2}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Training}}}{2}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Test}}}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Example of (a) typical aggregated load data and (b) disaggregated load data. In each plot, real power consumption measured from the service entrance panel is shown for both phases. }}{2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Typical aggregated load demand measured at service entrance panel}}}{2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Dissagregated load data}}}{2}}
 \newlabel{fig:traintest}{{1}{2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Flow chart of proposed methodology. The procedure is separated into window extraction, cross-validation, and application to test data.}}{2}}
 \newlabel{fig:flow}{{2}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Dataset}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {III}Signature Window Extraction}{2}}
 \newlabel{sec:training}{{III}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Load Types}{2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Difference of two moving average windows to calculate averaged power difference time series. The bottom plot shows the transient signature for incandescent bedroom lights.}}{3}}
 \newlabel{fig:maw}{{3}{3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Example of a non-rectangular load shape (TV in Home 2) showing longer turn-on transient than rectangular loads.}}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Example of a delayed load shape (TV in Home 2) showing longer turn-on transient than instantaneous loads.}}{3}}
 \newlabel{fig:nonrec}{{4}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Averaged Power Difference Time Series}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Provided tagging labels are corrected in the averaged power difference time series.}}{3}}
 \newlabel{fig:tagging}{{5}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Averaged Power Difference Time Series}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Window Extraction}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Example of how choosing the appropriate window length can affect classification.}}{4}}
 \newlabel{fig:windowlength}{{6}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Window Extraction}{4}}
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Range of Signature Window Lengths for Each Load Type}}{4}}
-\newlabel{table:winLen}{{II}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Cross-Validation and Testing}{4}}
+\newlabel{sec:cv}{{IV}{4}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Range of Signature Window Lengths for Each Load Type}}{4}}
+\newlabel{table:winLen}{{I}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Recurrent pattern during operation of the dryer in Home 2.}}{4}}
 \newlabel{fig:dryerH2}{{7}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Computer turn-on event outlier shown in the 2nd event.}}{4}}
 \newlabel{fig:outlier}{{8}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}Cross-Validation and Testing}{4}}
-\newlabel{sec:cv}{{IV}{4}}
 \newlabel{eq:RMSE-P}{{2}{4}}
 \newlabel{eq:RMSE-Q}{{3}{4}}
 \bibdata{Bib}
@@ -57,11 +54,11 @@
 \bibstyle{ieeetr}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Cross-validation of one training window for appliance "breadmaker". A turn-on event is detected when both RMSE time series simultaneously fall below the specified threshold. }}{5}}
 \newlabel{fig:bread}{{9}{5}}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Number of Appliances Validated and Discarded for Each Home}}{5}}
-\newlabel{classes}{{III}{5}}
-\newlabel{table:cv}{{III}{5}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Event Detection Algorithm}}{5}}
-\newlabel{euclid}{{1}{5}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Number of Appliances Validated and Discarded for Each Home}}{5}}
+\newlabel{classes}{{II}{5}}
+\newlabel{table:cv}{{II}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Conclusion}{5}}
 \newlabel{sec:concl}{{V}{5}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Event Detection Algorithm}}{5}}
+\newlabel{euclid}{{1}{5}}
 \@writefile{toc}{\contentsline {section}{References}{5}}
